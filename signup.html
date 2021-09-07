@@ -1,0 +1,44 @@
+<html>
+<title>COMSTAR Portal Login</title>
+<script>
+function verifyPassword() {  
+  var pw = document.getElementById("password").value; 
+  var cf= document.getElementById("confirm").value;
+  if(pw !== cf) {  
+     document.getElementById("message").innerHTML = "**Passwords are not matched!";  
+     return false;  
+  } 
+   
+ //minimum password length validation  
+  if(pw.length < 8) {  
+     document.getElementById("message").innerHTML = "**Password length must be atleast 8 characters";  
+     return false;  
+  }  
+  
+//maximum length of password validation  
+  if(pw.length > 15) {  
+     document.getElementById("message").innerHTML = "**Password length must not exceed 15 characters";  
+     return false;  
+  } 
+}  
+</script>
+<head><link rel="icon" href="Assets/logo.png"></head>
+<body>
+<form action="signup.php"method="post" onsubmit="return verifyPassword()">
+<fieldset>
+<center>
+<legend>Sign Up</legend>
+<input type="email" placeholder="E-mail" required name="email"><br>
+<input type="password" placeholder="Password" id="password" required name="pass"><br>
+<input type="password" placeholder="Reenter Password" id="confirm" required name="confirm"><br>
+<input type="checkbox" id="term" required name="term"<br>
+<label for="term">I have read and agree to the <a href="Terms and Condition.html">Terms and Conditions</a></label><br>
+<input type="submit" value="Sign Up"><br>
+<span id = "message" style="color:red"> </span> 
+<p>Already have an account?<a href="login.html">Login</a></p>
+</form>
+</fieldset>
+
+</body>
+</html>
+

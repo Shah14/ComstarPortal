@@ -1,0 +1,43 @@
+<html>
+<title>COMSTAR Portal Password Reset</title>
+<head>
+	<link rel="icon" href="Assets/logo.png">
+</head>
+<script>
+function verifyPassword() {  
+  var pw = document.getElementById("password").value; 
+  var cf= document.getElementById("confirm").value;
+  if(pw !== cf) {  
+     document.getElementById("message").innerHTML = "**Passwords are not matched!";  
+     return false;  
+  } 
+   
+ //minimum password length validation  
+  if(pw.length < 8) {  
+     document.getElementById("message").innerHTML = "**Password length must be atleast 8 characters";  
+     return false;  
+  }  
+  
+//maximum length of password validation  
+  if(pw.length > 15) {  
+     document.getElementById("message").innerHTML = "**Password length must not exceed 15 characters";  
+     return false;  
+  } 
+}  
+</script
+<head><link rel="icon" href="Assets/logo.png"></head>
+<body>
+<form action="forget.php"method="post"onsubmit="return verifyPassword()">
+<fieldset>
+<center>
+<legend>Reset Password</legend>
+<input type="email"placeholder="E-mail"required name="email"><br>
+<input type="password"placeholder="Enter New Password"id="password"required name="pass"><br>
+<input type="password"placeholder="Reenter New Password" id="confirm"required name="confirm"><br>
+<input type="submit" value="Reset"><br>
+<span id = "message" style="color:red"> </span> 
+<p>Have not signed up?<a href="signup.html">Create Account</a></p>
+</form>
+</fieldset>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<?php
+session_start();
+if(isset($_SESSION["login"]) === false){
+	header("Location: home.php");
+}else{
+	header("Location: login.html");
+}
+?>
+<html>  
+<head>  
+	<link rel="icon" href="Assets/logo.png">
+    <title>COMSTAR Portal Login</title>   
+	<script src="jquery-3.3.1.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head> 
+<style>
+h1 {text-align: center;}
+p {text-align: center;}
+div {text-align: center;}
+</style> 
+<body>  
+    <div id = "frm"> 
+        <h1>COMSTAR Portal Login </h1><fieldset>  
+        <form name="f1" action = "authentication.php" onsubmit = "return validation()" method = "POST">  
+            <p>  
+                <label> Login: </label>  <br>
+                <input type = "email" id ="email" placeholder="E-mail" name  = "email" />  
+            </p>  
+            <p>  
+                <label> Password: </label>  <br>
+                <input type = "password" id ="pass" placeholder="Password" name  = "pass" />  
+            </p>  
+            <p>     
+                <input type =  "submit" id = "btn" value = "Login" />  <br>
+<span id = "message" style="color:red"> </span> 
+            </p>  </fieldset>
+        </form>  
+		<p>Have no account?<a href="signup.html">Create Account</a></p>
+		<p>Forgotten your password?<a href="forget.html">Reset Password</a></p>
+    </div>  
+    <script>  
+            function validation()  
+            {  
+                var id=document.f1.email.value;  
+                var ps=document.f1.pass.value;  
+                if(id.length=="" && ps.length=="") {  
+				swal ( "Oops" ,  "E-mail and Password fields are empty!" ,  "error" )
+                    return false;  
+                }  
+                else  
+                {  
+                    if(id.length=="") {  
+						swal ( "Oops" ,  "E-mail field is empty!" ,  "error" )
+                        return false;  
+                    }   
+                    if (ps.length=="") {  
+						swal ( "Oops" ,  "Password field is empty!" ,  "error" )
+						return false;  
+                    }  
+                } 
+				
+var pw = document.getElementById("pass").value; 
+ //minimum password length validation  
+  if(pw.length < 8) {  
+     document.getElementById("message").innerHTML = "**Password length must be atleast 8 characters";  
+     return false;  
+  }
+  
+//maximum length of password validation  
+  if(pw.length > 15) {  
+     document.getElementById("message").innerHTML = "**Password length must not exceed 15 characters";  
+     return false;  
+  } 				
+            }  
+</script>  
+</body>     
+</html>  
