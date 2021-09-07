@@ -5,8 +5,6 @@
 <link rel="icon" href="Assets/logo.png">
 </head>
 <?php
-session_start();
-$_SESSION["login"]="active";
 $con = new mysqli("localhost","root","","comstar_portal");
 if ($con->connect_error) {
   die("Connection failed: " . $con->connect_error);
@@ -24,13 +22,23 @@ $pass='$_POST[pass]';
         $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
         $count = mysqli_num_rows($result);  
           
+		$sql1 = "select *from admin where Email = '$_POST[email]' and Password ='$_POST[pass]'";  
+        $result1 = mysqli_query($con, $sql1);  
+        $row1 = mysqli_fetch_array($result1, MYSQLI_ASSOC);  
+        $count1 = mysqli_num_rows($result1); 
+		
         if($count == 1){  
+			session_start();
+			$_SESSION["login"]="active";
 			header("Location: home.php");
-        }  
+        } 
+		elseif($count1 ==1){
+			session_start();
+			$_SESSION["admin"]="active";
+			header("Location: admin.php");
+		}
         else{  
 			echo '<script>alert("Incorrect e-mail or password entered!")</script>'; 
-			$_SESSION = array();
-			session_destroy();	
         } 			
 ?>  
 

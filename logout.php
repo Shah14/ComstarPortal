@@ -2,13 +2,14 @@
 // Initialize the session
 session_start();
  
-// Unset all of the session variables
-$_SESSION = array();
- 
-// Destroy the session.
-session_destroy();
- 
-// Redirect to login page
-header("location: login.html");
+if(isset($_SESSION["admin"]) === true){
+	unset($_SESSION["admin"]);
+	header("Location: login.html");
+}elseif(isset($_SESSION["login"]) === true){
+	unset($_SESSION["login"]);
+	header("Location: login.html");
+}else{
+	header("Location: login.html");
+}
 exit;
 ?>
