@@ -30,11 +30,13 @@ $pass='$_POST[pass]';
         if($count == 1){  
 			session_start();
 			$_SESSION["login"]="active";
+			$_SESSION["User"]="$_POST[email]";
 			header("Location: home.php");
         } 
 		elseif($count1 ==1){
 			session_start();
 			$_SESSION["admin"]="active";
+			$_SESSION["Admin"]="$_POST[email]";
 			header("Location: admin.php");
 		}
         else{  
