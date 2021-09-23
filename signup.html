@@ -1,5 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="COMSTAR_INTERFACE_FIRST_SPRINT/Sign Up/Sign Up_interface_1/fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="COMSTAR_INTERFACE_FIRST_SPRINT/Sign Up/Sign Up_interface_1/css/owl.carousel.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="COMSTAR_INTERFACE_FIRST_SPRINT/Sign Up/Sign Up_interface_1/css/bootstrap.min.css">
+    
+    <!-- Style -->
+    <link rel="stylesheet" href="COMSTAR_INTERFACE_FIRST_SPRINT/Sign Up/Sign Up_interface_1/css/style.css">
+	<link rel="icon" href="Assets/logo.png"></head>
+    <title>COMSTAR Portal Create Account</title>
+  </head>
+  <style>
+	.social-login a {
+	display: block;
+	text-decoration: none;
+	display: block;
+	position: relative;
+	text-align: center;
+	color: #fff;
+	margin-bottom: 10px; }
+	.social-login a:hover {
+    color: #fff; }
+	.social-login a.facebook {
+    background: #3b5998; }
+    .social-login a.facebook:hover {
+    background: #344e86; }
+	.social-login a.twitter {
+    background: #1da1f2; }
+    .social-login a.twitter:hover {
+    background: #0d95e8; }
+	.social-login a.google {
+    background: #ea4335; }
+    .social-login a.google:hover {
+    background: #e82e1e; }
+	</style>
+  <body>
+  
+
+  <div class="d-lg-flex half">
+    <div class="bg order-1 order-md-2" style="background-image: url('COMSTAR_INTERFACE_FIRST_SPRINT/Sign Up/Sign Up_interface_1/images/bg_1.jpg');"></div>
+    <div class="contents order-2 order-md-1">
+
+      <div class="container">
+        <div class="row align-items-center justify-content-center">
+          <div class="col-md-7">
+		  
+		  	  
+            <h3>Sign Up to <strong>COMSTAR Portal</strong></h3>
+            <p class="mb-4">Welcome to COMSTAR UTMKL Official Website. Get updates on our upcoming programme and events!</p>
+			
+			<form action="signup.php"method="post" onsubmit="return verifyPassword()">
+			<fieldset>
+			<div class="form-group first">
+				<label for="email">E-mail</label>
+				<input type="email" class="form-control"placeholder="E-mail" required name="email">
+			</div>
+			<div class="form-group">
+				<label for="password">Password</label>
+				<input type="password" class="form-control"placeholder="Password" id="password" required name="pass">
+			</div>
+			<div class="form-group last mb-3">
+				<label for="password">Password</label>
+				<input type="password" class="form-control"placeholder="Reenter Password" id="confirm" required name="confirm">
+			</div>
+			<center><input type="checkbox" id="term" required name="term"<br>
+			<label for="term">I have read and agree to the <a href="Terms and Condition.html">Terms and Conditions</a></label><br>
+			<span id = "message" style="color:red"> </span>
+			<input type="submit" value="Sign Up"class="btn btn-block btn-primary">
+			 <span class="d-block text-center my-4 text-muted">&mdash; or &mdash;</span>
+              
+              <div class="social-login">
+                <a href="login.html" class="btn btn-block btn-primary">Login</a>               
+              </div>
+			</form>
+			</fieldset>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+  </div>
+    
+    
+
+    <script src="COMSTAR_INTERFACE_FIRST_SPRINT/Sign Up/Sign Up_interface_1/js/jquery-3.3.1.min.js"></script>
+    <script src="COMSTAR_INTERFACE_FIRST_SPRINT/Sign Up/Sign Up_interface_1/js/popper.min.js"></script>
+    <script src="COMSTAR_INTERFACE_FIRST_SPRINT/Sign Up/Sign Up_interface_1/js/bootstrap.min.js"></script>
+    <script src="COMSTAR_INTERFACE_FIRST_SPRINT/Sign Up/Sign Up_interface_1/js/main.js"></script>
+  </body>
+</html>
+
 <html>
-<title>COMSTAR Portal Login</title>
+
 <script>
 function verifyPassword() {  
   var pw = document.getElementById("password").value; 
@@ -11,7 +112,7 @@ function verifyPassword() {
    
  //minimum password length validation  
   if(pw.length < 8) {  
-     document.getElementById("message").innerHTML = "**Password length must be atleast 8 characters";  
+     document.getElementById("message").innerHTML = "**Password length must be at least 8 characters";  
      return false;  
   }  
   
@@ -22,22 +123,9 @@ function verifyPassword() {
   } 
 }  
 </script>
-<head><link rel="icon" href="Assets/logo.png"></head>
+<head>
 <body>
-<form action="signup.php"method="post" onsubmit="return verifyPassword()">
-<fieldset>
-<center>
-<legend>Sign Up</legend>
-<input type="email" placeholder="E-mail" required name="email"><br>
-<input type="password" placeholder="Password" id="password" required name="pass"><br>
-<input type="password" placeholder="Reenter Password" id="confirm" required name="confirm"><br>
-<input type="checkbox" id="term" required name="term"<br>
-<label for="term">I have read and agree to the <a href="Terms and Condition.html">Terms and Conditions</a></label><br>
-<input type="submit" value="Sign Up"><br>
-<span id = "message" style="color:red"> </span> 
-<p>Already have an account?<a href="login.html">Login</a></p>
-</form>
-</fieldset>
+
 
 </body>
 </html>

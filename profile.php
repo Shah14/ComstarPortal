@@ -9,7 +9,7 @@ session_start();
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>COMSTAR Portal Admin Dashboard</title>
+  <title>COMSTAR Portal User Profile</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -39,9 +39,6 @@ session_start();
   ======================================================== -->
 </head>
 <style>
-table, th, td {
-  border:1px solid black;
-}
 .collapsible {
   background-color: #777;
   color: white;
@@ -67,15 +64,15 @@ table, th, td {
 }
 
 </style>
-<body>
 <?php
-if(isset($_SESSION["admin"]) === true){
+if(isset($_SESSION["login"]) === true){
 }else{
 	header("Location: login.html");
 }
 print_r($_SESSION);
-$q=$_SESSION["Admin"];
+$q=$_SESSION["User"];
 ?>
+<body>
 
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top header-inner-pages">
@@ -111,7 +108,7 @@ $q=$_SESSION["Admin"];
           </li>
 		  <li><a href="blog.html">Forum</a></li>
           <li><a class="nav-link scrollto" href="home.php#contact">Contact</a></li>
-		  <li><a class="nav-link scrollto" href="profile.php">Profile</a></li>
+		  <li><a class="nav-link scrollto active" href="profile.php">Profile</a></li>
           <li><a class="nav-link scrollto" href="logout.php">Logout</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -128,9 +125,9 @@ $q=$_SESSION["Admin"];
 
         <ol>
           <li><a href="home.php">Home</a></li>
-          <li>Admin Profile</li>
+          <li>Profile</li>
         </ol>
-        <h2>Admin Profile</h2>
+        <h2>Profile</h2>
 
       </div>
     </section><!-- End Breadcrumbs -->
@@ -152,51 +149,19 @@ $q=$_SESSION["Admin"];
               <div class="entry-content">
                 <?php
 				$con = new mysqli("localhost","root","","comstar_portal");
-				$result=mysqli_query($con,"SELECT * FROM `admin` WHERE Email='$q'");
+				$result=mysqli_query($con,"SELECT * FROM `login` WHERE Email='$q'");
 				if ($result->num_rows > 0) {
 					while($row = $result->fetch_assoc()) {
 						echo "Name						&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:" .$row["Name"];
 						echo "<br>Email					&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:" .$row["Email"];
+						echo "<br>Matric Number			&nbsp;&nbsp;&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:" .$row["Matric Number"];
 						echo "<br>Password				&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:" .$row["Password"];
+						echo "<br>Verification			&nbsp;&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:" .$row["Verification"];
+						echo "<br>User Type				&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:" .$row["User Type"];
 						}
 					}
 
-				
-				
-				
 				?>
-				<br><br><h5>Pending Verification Users</h5>
-				<?php
-					$result=mysqli_query($con,"SELECT * FROM `login` WHERE `Verification`='Pending'");
-						echo "<table style=width:100%>";
-						echo "<tr>
-						<td>NAME</td>
-						<td>EMAIL</td>
-						<td>MATRIC NUMBER</td>
-						<td>USER TYPE</td>
-						<td>STATUS</td>";
-					if ($result->num_rows > 0) {
-						while($row = $result->fetch_assoc()) {
-						
-						echo "</tr><td>" 
-						.$row["Name"]."</td><td>" 
-						.$row["Email"]."</td><td>"
-						.$row["Matric Number"]."</td><td>"
-						.$row["User Type"]."</td><td>"
-						.$row["Verification"]."</td>";
-						}
-					} else{
-						echo "</tr><td>
-						No data</td><td>
-						No data</td><td>
-						No data</td><td>
-						No data</td><td>
-						No data</td>" ;
-				}
-
-
-				?>
-				</table>
               </div>
 
             </article><!-- End blog entry -->          
@@ -207,16 +172,13 @@ $q=$_SESSION["Admin"];
 
             <div class="sidebar">
 
-              <h3 class="sidebar-title">Admin Dashboard</h3>
-<button class="collapsible">Verify User</button>
+              <h3 class="sidebar-title">User Dashboard</h3>
+<button class="collapsible">Request Verification</button>
 <div class="content">
 <br>
-<form action="verify.php" method="post">
+<form action="requestverify.php" method="post">
 <input class="text" placeholder="Enter Matric Number" required name="matric_number">
-<br><input type="radio" required id="UTM" name="verify" value="UTM">UTM
-<br><input type="radio" required id="COMSTAR" name="verify" value="COMSTAR">COMSTAR
-<br><input type="radio" required id="Non-Student" name="verify" value="Public">Public
-<br><input type="submit"value="Verify">
+<input type="submit"value="Enter">
 </form>
 <br>
 </div><br>
@@ -349,13 +311,4 @@ for (i = 0; i < coll.length; i++) {
   });
 }
 </script>
-</html>
-
-
-<?php
-
-?>
-<br>
-<body>
-
 </html>

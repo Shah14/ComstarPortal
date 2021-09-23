@@ -9,7 +9,7 @@ if ($con->connect_error) {
 $sql="UPDATE `login` SET `Password`=MD5('$_POST[pass]')
 WHERE `Email`='$_POST[email]'";
 
-$sql="UPDATE `admin` SET `Password`='$_POST[pass]'
+$sql1="UPDATE `admin` SET `Password`='$_POST[pass]'
 WHERE `Email`='$_POST[email]'";
 
 if ($con->query($sql) === TRUE) {
@@ -17,7 +17,7 @@ if ($con->query($sql) === TRUE) {
 } else {
   echo "Error updating record: " . $con->error;
 }
-
+$con->query($sql1);
 mysqli_close($con);
 ?>
 <html>
