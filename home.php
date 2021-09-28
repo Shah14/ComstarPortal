@@ -44,6 +44,14 @@ if(isset($_SESSION["login"]) === true){
 }
 print_r($_SESSION);
 $q=$_SESSION["User"];
+$con = new mysqli("localhost","root","","comstar_portal");
+$result=mysqli_query($con,"SELECT * FROM `login` WHERE Email='$q'");
+if ($result->num_rows > 0) {
+	while($row = $result->fetch_assoc()) {
+		$name=$row["Name"];
+						
+		}
+	}
 ?>
 <body>
 
@@ -79,10 +87,19 @@ $q=$_SESSION["User"];
               <li><a href="#">Hackathon</a></li>
             </ul>
           </li>
+		  <li class="dropdown"><a href="#"><span>Profile</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+               <li><center><b><?php echo $name; ?></b></center></li>
+               <li><a class="nav-link scrollto" href="profile.php">View Profile</a></li>
+			   <li><a class="nav-link scrollto" href="#">View Payment History</a></li>
+			   <li><a class="nav-link scrollto" href="admin.php">View Admin</a></li>
+               <li><a class="nav-link scrollto" href="logout.php">Logout</a></li>
+            </ul>
+          </li>
 		  <li><a href="blog.html">Forum</a></li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-		  <li><a class="nav-link scrollto" href="profile.php">Profile</a></li>
-          <li><a class="nav-link scrollto" href="logout.php">Logout</a></li>
+		  
+          
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
