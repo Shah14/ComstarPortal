@@ -1,0 +1,37 @@
+body {font-family: 'Roboto', sans-serif; color: #ffffff; height: 100%; background: #0e0e0e}
+.documentation-main {width: 1200px; margin: 10% auto 0; text-align: center}
+.documentation-main img {margin: 0 20px}
+h1 {font-size: 28px; width: 40%; margin: 0 auto; line-height: 40px; font-weight: 400; margin-bottom: 2%;}
+p {width: 52%; margin: 0 auto; color: #909090; margin-bottom: 8%; font-size: 16px; line-height: 24px;}
+.logo { margin-bottom: 40px; display: inline-block;}
+.logo img { width: 70%;}
+
+@media (max-width: 1210px) {
+    .documentation-main {width: 992px; margin: 8% auto 8%;}   
+    h1 {width: 50%;}
+    p {width: 62%;}
+    .documentation-main a img{ width: 44%; }
+}
+
+@media (max-width: 1000px) {
+    .documentation-main {width: 760px;}   
+    h1 {width: 60%;}
+    p {width: 77%;}
+    .documentation-main a img{ width: 40%; }
+}
+
+@media (max-width: 767px) {
+    .documentation-main {width: 100%;}   
+    h1 {width: 100%; font-size: 24px; line-height: 34px; margin-bottom: 4%;}
+    p {width: 100%; font-weight: 400;}
+    .documentation-main a img{ width: 90%; }
+    .documentation-main a.logo img{ width: 70%;}
+    .documentation-main img {margin: 0}
+}
+
+@media (max-width: 640px) {
+    .documentation-main {width: 100%;}   
+
+    .documentation-main a img{ width: 100%; }
+    .documentation-main img {margin: 0}
+}
