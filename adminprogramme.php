@@ -7,7 +7,7 @@ session_start();
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin | Dashboard</title>
+  <title>Admin Programme | Dashboard</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="icon" href="Assets/logo.png">
@@ -18,6 +18,7 @@ session_start();
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="COMSTAR_INTERFACE_FIRST_SPRINT/AdminLTE-3.1.0/dist/css/adminlte.min.css">
+
 </head>
 <!--
 `body` tag options:
@@ -28,7 +29,6 @@ session_start();
   * sidebar-collapse
   * sidebar-mini
 -->
-
 <?php
 if(isset($_SESSION["admin"]) === true){
 }else{
@@ -37,7 +37,6 @@ if(isset($_SESSION["admin"]) === true){
 print_r($_SESSION);
 $q=$_SESSION["Admin"];
 ?>
-
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
   <!-- Navbar -->
@@ -226,7 +225,7 @@ $q=$_SESSION["Admin"];
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./admin.php" class="nav-link active">
+                <a href="./admin.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Home</p>
                 </a>
@@ -243,8 +242,8 @@ $q=$_SESSION["Admin"];
                   <p>User Verification</p>
                 </a>
               </li>
-			   <li class="nav-item">
-                <a href="./adminprogramme.php" class="nav-link">
+			  <li class="nav-item">
+                <a href="./index.html" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Programme</p>
                 </a>
@@ -863,241 +862,31 @@ $q=$_SESSION["Admin"];
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <div class="content-header">
+    <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Home</h1>
-          </div><!-- /.col -->
+            <h1>Programme</h1>
+          </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item active"><a href="admin.php">Home</a></li>
+              <li class="breadcrumb-item"><a href="admin.php">Home</a></li>
+              <li class="breadcrumb-item active">Programme</li>
             </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
+          </div>
+        </div>
       </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
+    </section>
 
     <!-- Main content -->
-        <section class="content">
+    <section class="content">
       <div class="container-fluid">
-        <!-- Info boxes -->
-        <div class="row">
-          <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box">
-              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
+        <div class="row" >
+          <div class="col-md-6">
 
-              <div class="info-box-content">
-                <span class="info-box-text">Website Completion Progress</span>
-                <span class="info-box-number">
-                  33
-                  <small>%</small>
-                </span>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-          </div>
-          <!-- /.col -->
-          <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box mb-3">
-              <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-tag"></i></span>
-
-              <div class="info-box-content">
-				<span class="info-box-text">Sprint 2 Progress</span>
-                <span class="info-box-number">11<small>%</small></span>
-                
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-          </div>
-          <!-- /.col -->
-
-          <!-- fix for small devices only -->
-          <div class="clearfix hidden-md-up"></div>
-
-          <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box mb-3">
-              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Registered Users</span>
-                <span class="info-box-number">
-				<?php
-				$con = new mysqli("localhost","root","","comstar_portal");
-				$count=0;
-				$result=mysqli_query($con,"SELECT Name FROM `login`");
-					while($row = $result->fetch_assoc()) {
-						$count++;
-					}
-                echo $count;
-				echo "</span>";
-				?>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-          </div>
-          <!-- /.col -->
-          <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box mb-3">
-              <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Website Admin</span>
-                <span class="info-box-number">
-				<?php
-				$con = new mysqli("localhost","root","","comstar_portal");
-				$count=0;
-				$result=mysqli_query($con,"SELECT Name FROM `admin`");
-					while($row = $result->fetch_assoc()) {
-						$count++;
-					}
-                echo $count;
-				echo "</span>";
-				?>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-          </div>
-          <!-- /.col -->
-        </div>
-        <!-- /.row -->
-
-        <div class="row">
-          <div class="col-md-12">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="card-title">Website Progress Report</h5>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-tool dropdown-toggle" data-toggle="dropdown">
-                      <i class="fas fa-wrench"></i>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right" role="menu">
-                      <a href="#" class="dropdown-item">Action</a>
-                      <a href="#" class="dropdown-item">Another action</a>
-                      <a href="#" class="dropdown-item">Something else here</a>
-                      <a class="dropdown-divider"></a>
-                      <a href="#" class="dropdown-item">Separated link</a>
-                    </div>
-                  </div>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-md-12">
-                    <p class="text-center">
-                      <strong>Website Completion</strong>
-                    </p>
-
-                    <div class="progress-group">
-                      Sprint 1
-                      <span class="float-right"><b>18</b>/18</span>
-                      <div class="progress progress-sm">
-                        <div class="progress-bar bg-primary" style="width: 100%"></div>
-                      </div>
-                    </div>
-                    <!-- /.progress-group -->
-
-                    <div class="progress-group">
-                      Sprint 2
-                      <span class="float-right"><b>6</b>/36</span>
-                      <div class="progress progress-sm">
-                        <div class="progress-bar bg-danger" style="width: 17%"></div>
-                      </div>
-                    </div>
-
-                    <!-- /.progress-group -->
-                    <div class="progress-group">
-                      <span class="progress-text">Sprint 3</span>
-                      <span class="float-right"><b>0</b>/18</span>
-                      <div class="progress progress-sm">
-                        <div class="progress-bar bg-success" style="width: 0%"></div>
-                      </div>
-                    </div>
-
-                    <!-- /.progress-group -->
-                    <div class="progress-group">
-                      Total Progress
-                      <span class="float-right"><b>24</b>/72</span>
-                      <div class="progress progress-sm">
-                        <div class="progress-bar bg-warning" style="width: 33%"></div>
-                      </div>
-                    </div>
-                    <!-- /.progress-group -->
-                  </div>
-                  <!-- /.col -->
-                </div>
-                <!-- /.row -->
-              </div>
-              <!-- ./card-body -->
-              <div class="card-footer">
-                <div class="row">
-                  <div class="col-sm-3 col-6">
-                    <div class="description-block border-right">
-                      <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 25%</span>
-                      <h5 class="description-header">18/18</h5>
-                      <span class="description-text">Sprint 1</span>
-                    </div>
-                    <!-- /.description-block -->
-                  </div>
-                  <!-- /.col -->
-                  <div class="col-sm-3 col-6">
-                    <div class="description-block border-right">
-                      <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 8%</span>
-                      <h5 class="description-header">6/36</h5>
-                      <span class="description-text">Sprint 2</span>
-                    </div>
-                    <!-- /.description-block -->
-                  </div>
-                  <!-- /.col -->
-                  <div class="col-sm-3 col-6">
-                    <div class="description-block border-right">
-                      <span class="description-percentage text-warning"><i class="fas fa-caret-left"></i> 0%</span>
-                      <h5 class="description-header">0/18</h5>
-                      <span class="description-text">Sprint 3</span>
-                    </div>
-                    <!-- /.description-block -->
-                  </div>
-                  <!-- /.col -->
-                  <div class="col-sm-3 col-6">
-                    <div class="description-block">
-                      <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 33%</span>
-                      <h5 class="description-header">24/72</h5>
-                      <span class="description-text">Total Progress</span>
-                    </div>
-                    <!-- /.description-block -->
-                  </div>
-                </div>
-                <!-- /.row -->
-              </div>
-              <!-- /.card-footer -->
-            </div>
-            <!-- /.card -->
-          </div>
-          <!-- /.col -->
-        </div>
-        <!-- /.row -->
-
-        <!-- Main row -->
-       <!-- TABLE: LATEST ORDERS -->
-	    <div class="row">
-	    <div class="col-12 col-sm-6 col-md-6">
             <div class="card">
               <div class="card-header border-transparent">
-                <h3 class="card-title">Registered Users</h3>
+                <h3 class="card-title">Added Programme</h3>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -1114,25 +903,28 @@ $q=$_SESSION["Admin"];
                   <table class="table m-0">			  
 					  <?php
 				$con = new mysqli("localhost","root","","comstar_portal");
-				$result=mysqli_query($con,"SELECT * FROM `login`");
+				$result=mysqli_query($con,"SELECT * FROM `programme`");
 						echo "<thead><tr>
+						<th>PROGRAMME ID</th>
 						<th>NAME</th>
-						<th>EMAIL</th>
-						<th>MATRIC NUMBER</th>
-						<th>USER TYPE</th>
+						<th>DATE</th>
+						<th>VENUE</th>
+						<th>FEE PRICE (RM)</th>
 						<th>STATUS</th>";
 					if ($result->num_rows > 0) {
 						while($row = $result->fetch_assoc()) {
 						
 						echo "</tr></thead><tbody><tr><td>" 
+						.$row["Programme ID"]."</td><td>" 
 						.$row["Name"]."</td><td>" 
-						.$row["Email"]."</td><td>"
-						.$row["Matric Number"]."</td><td>"
-						.$row["User Type"]."</td><td>"
-						.$row["Verification"]."</td></tr>";
+						.$row["Date"]."</td><td>"
+						.$row["Venue"]."</td><td>"
+						.$row["Fee Price"]."</td><td>"
+						.$row["Status"]."</td></tr>";
 						}
 					} else{
 						echo "</tr></thead><tbody><tr><td>
+						No data</td><td>
 						No data</td><td>
 						No data</td><td>
 						No data</td><td>
@@ -1155,85 +947,161 @@ $q=$_SESSION["Admin"];
               <!-- /.card-footer -->
             </div>
             <!-- /.card -->
-			</div>
-			 <div class="col-md-6">
-                <!-- USERS LIST -->
-                <div class="card">
-                  <div class="card-header">
-                    <h3 class="card-title">Website Admin</h3>
+			
 
-                    <div class="card-tools">
-                      <span class="badge badge-danger"><?php
-				$con = new mysqli("localhost","root","","comstar_portal");
-				$count=0;
-				$result=mysqli_query($con,"SELECT Name FROM `admin`");
-					while($row = $result->fetch_assoc()) {
-						$count++;
-					}
-                echo $count;
-				?> Registered Administrator</span>
-                      <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                        <i class="fas fa-minus"></i>
-                      </button>
-                      <button type="button" class="btn btn-tool" data-card-widget="remove">
-                        <i class="fas fa-times"></i>
-                      </button>
-                    </div>
+            
+          </div>
+          <!-- /.col -->
+                   <div class="col-md-6">
+            <div class="card">
+              <div class="card-header p-2">
+                <ul class="nav nav-pills">
+                  <li class="nav-item"><a class="nav-link active" href="#add" data-toggle="tab">Add Programme</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#update" data-toggle="tab">Update Programme</a></li>
+				  <li class="nav-item"><a class="nav-link" href="#delete" data-toggle="tab">Delete Programme</a></li>
+                </ul>
+              </div><!-- /.card-header -->
+              <div class="card-body">
+                <div class="tab-content">
+			 
+                  <div class="active tab-pane" id="add">
+                    <form action="addprogramme.php" class="form-horizontal" method="post">
+                      <div class="form-group row">
+                        <label for="inputID" class="col-sm-2 col-form-label">Programme ID</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" required name="id" placeholder="Example : PWDC1234">
+                        </div>
+                      </div>
+					  <div class="form-group row">
+                        <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" required name="name" placeholder="Example : Unity Workshop">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputEmail" class="col-sm-2 col-form-label">Date</label>
+                        <div class="col-sm-10">
+                          <input type="date" class="form-control" required name="date" >
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputName2" class="col-sm-2 col-form-label">Venue</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" required name="venue" placeholder="Example : Menara Razak">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputExperience" class="col-sm-2 col-form-label">Fee Price (RM)</label>
+                        <div class="col-sm-10">
+                          <input type="number" class="form-control" required name="fee" placeholder="Example : 5.00">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputSkills" class="col-sm-2 col-form-label">Status</label>
+                        <div class="col-sm-10">
+                        <select id="status" name="status">
+						  <option value="Open To Public">Open To Public</option>
+						  <option value="Open To UTM">Open To UTM</option>
+						  <option value="Open To COMSTAR">Open To COMSTAR</option>
+						  <option value="Closed">Closed</option>
+						</select>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="offset-sm-2 col-sm-10">
+                          <button type="submit" class="btn btn-danger">Add</button>
+                        </div>
+                      </div>
+                    </form>
                   </div>
-                  <!-- /.card-header -->
-                  <div class="card-body p-0">
-                    <ul class="users-list clearfix">
-                      <li>
-                        <img src="Assets/zuhair.jpg" height="128px"width="128px"class="img-circle elevation-2" alt="User Image">
-                        <a class="users-list-name" href="#">Zuhair Isyraq</a>
-                        <span class="users-list-date">Leader</span>
-                      </li>
-                      <li>
-                        <img src="Assets/shah.jpg" height="128px"width="128px"class="img-circle elevation-2" alt="User Image">
-                        <a class="users-list-name" href="#">Shah Eq'mal</a>
-                        <span class="users-list-date">Programmer</span>
-                      </li>
-                      <li>
-                        <img src="Assets/danish.jpg" height="128px"width="128px"class="img-circle elevation-2" alt="User Image">
-                        <a class="users-list-name" href="#">Danish</a>
-                        <span class="users-list-date">Graphic Designer</span>
-                      </li>
-                      <li>
-                        <img src="Assets/abid.jpg" height="128px"width="140px"class="img-circle elevation-2" alt="User Image">
-                        <a class="users-list-name" href="#">Abid</a>
-                        <span class="users-list-date">Documentation Manager</span>
-                      </li>
-                      <li>
-                        <img src="Assets/haziq.jpg" height="128px"width="128px"class="img-circle elevation-2" alt="User Image">
-                        <a class="users-list-name" href="#">Haziq</a>
-                        <span class="users-list-date">Documentation Writer</span>
-                      </li>
-                      <li>
-                        <img src="Assets/haiqal.jpg" height="128px"width="128px"class="img-circle elevation-2" alt="User Image">
-                        <a class="users-list-name" href="#">Haiqal</a>
-                        <span class="users-list-date">Documentation Analyst</span>
-                      </li>                   
-                    </ul>
-                    <!-- /.users-list -->
+				   <div class="tab-pane" id="update">
+                    <form action="updateprogramme.php" class="form-horizontal" method="post">
+                      <div class="form-group row">
+                        <label for="inputID" class="col-sm-2 col-form-label">Programme ID</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" required name="id" placeholder="Example : PWDC1234">
+                        </div>
+                      </div>
+					  <div class="form-group row">
+                        <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" required name="name" placeholder="Example : Unity Workshop">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputEmail" class="col-sm-2 col-form-label">Date</label>
+                        <div class="col-sm-10">
+                          <input type="date" class="form-control" required name="date" >
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputName2" class="col-sm-2 col-form-label">Venue</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" required name="venue" placeholder="Example : Menara Razak">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputExperience" class="col-sm-2 col-form-label">Fee Price (RM)</label>
+                        <div class="col-sm-10">
+                          <input type="number" class="form-control" required name="fee" placeholder="Example : 5.00">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputSkills" class="col-sm-2 col-form-label">Status</label>
+                        <div class="col-sm-10">
+                        <select id="status" name="status">
+						  <option value="Open To Public">Open To Public</option>
+						  <option value="Open To UTM">Open To UTM</option>
+						  <option value="Open To COMSTAR">Open To COMSTAR</option>
+						  <option value="Closed">Closed</option>
+						</select>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="offset-sm-2 col-sm-10">
+                          <button type="submit" class="btn btn-danger">Update</button>
+                        </div>
+                      </div>
+                    </form>
                   </div>
-                  <!-- /.card-body -->
-                  <div class="card-footer text-center">
+                  <!-- /.tab-pane -->
+				  <div class="tab-pane" id="delete">
+				  <h1>WORK IN PROGRESS</h1>
+                    <form action="changepassword.php"class="form-horizontal" method="post" onsubmit="return verifyPassword()">
+                      <div class="form-group row">
+                        <label for="inputName" class="col-sm-2 col-form-label">New Password</label>
+                        <div class="col-sm-10">
+                          <input type="password" id="password" class="form-control" required name="password"  placeholder="Example : 12345678">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputEmail" class="col-sm-2 col-form-label">Confirm New Password</label>
+                        <div class="col-sm-10">
+                          <input type="password" id="confirm" class="form-control" required name="confirm" placeholder="Example : 12345678">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="offset-sm-2 col-sm-10">
+                          <button type="submit" value = "Change" class="btn btn-danger">Change</button>
+                        </div>
+                      </div>
+                    </form>
                   </div>
-                  <!-- /.card-footer -->
+                  <!-- /.tab-pane -->
                 </div>
-                <!--/.card -->
-              </div>
-              <!-- /.col -->
-</div>
-
-
-
-      </div><!--/. container-fluid -->
+                <!-- /.tab-content -->
+              </div><!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
-	
-    </div>
-    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
   </div>
   <!-- /.content-wrapper -->
 
@@ -1269,6 +1137,30 @@ $q=$_SESSION["Admin"];
 <script src="COMSTAR_INTERFACE_FIRST_SPRINT/AdminLTE-3.1.0/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="COMSTAR_INTERFACE_FIRST_SPRINT/AdminLTE-3.1.0/dist/js/pages/dashboard3.js"></script>
+
+
 </body>
+<script>
+function verifyPassword() {  
+  var pw = document.getElementById("password").value; 
+  var cf= document.getElementById("confirm").value;
+  if(pw !== cf) {  
+     document.getElementById("message").innerHTML = "**Passwords are not matched!";  
+     return false;  
+  } 
+   
+ //minimum password length validation  
+  if(pw.length < 8) {  
+     document.getElementById("message").innerHTML = "**Password length must be at least 8 characters";  
+     return false;  
+  }  
+  
+//maximum length of password validation  
+  if(pw.length > 15) {  
+     document.getElementById("message").innerHTML = "**Password length must not exceed 15 characters";  
+     return false;  
+  } 
+}  
+</script>
 </html>
 

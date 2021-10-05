@@ -114,7 +114,7 @@ if ($result->num_rows > 0) {
               <li><a href="#">Hackathon</a></li>
             </ul>
           </li>
-		 <li class="dropdown"><a class="nav-link scrollto active" href="home.php"><span>Profile</span> <i class="bi bi-chevron-down"></i></a>
+		 <li class="dropdown"><a class="nav-link scrollto active" href="#"><span>Profile</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
                <li><center><b><?php echo $name; ?></b></center></li>
                <li><a class="nav-link scrollto" href="profile.php">View Profile</a></li>
@@ -199,14 +199,22 @@ if ($result->num_rows > 0) {
 <button class="collapsible">Update Profile</button>
 <div class="content">
 <br>
-  <p>Progress In Work.</p>
-</div>
+<form action="updateprofile.php" method="post">
+<input class="text" placeholder="Enter Name" required name="name">
+<input type="submit"value="Update">
+</form>
 <br>
+</div><br>
 <button class="collapsible">Change Password</button>
 <div class="content">
 <br>
-  <p>Progress In Work.</p>
-</div>
+<form action="changeuserpassword.php" method="post" onsubmit="return verifyPassword()">
+<input class="password" id="password" placeholder="Enter New Password" required name="password">
+<input class="password" id="confirm" placeholder="Confirm New Password" required name="confirm"><br>
+<input type="submit"value="Change">
+</form>
+<br>
+</div><br>
               
 
             </div><!-- End sidebar -->
@@ -324,5 +332,25 @@ for (i = 0; i < coll.length; i++) {
     } 
   });
 }
+function verifyPassword() {  
+  var pw = document.getElementById("password").value; 
+  var cf= document.getElementById("confirm").value;
+  if(pw !== cf) {  
+     document.getElementById("message").innerHTML = "**Passwords are not matched!";  
+     return false;  
+  } 
+   
+ //minimum password length validation  
+  if(pw.length < 8) {  
+     document.getElementById("message").innerHTML = "**Password length must be at least 8 characters";  
+     return false;  
+  }  
+  
+//maximum length of password validation  
+  if(pw.length > 15) {  
+     document.getElementById("message").innerHTML = "**Password length must not exceed 15 characters";  
+     return false;  
+  } 
+}  
 </script>
 </html>
