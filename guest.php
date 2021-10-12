@@ -38,20 +38,14 @@ session_start();
   ======================================================== -->
 </head>
 <?php
-if(isset($_SESSION["login"]) === true){
+if(isset($_SESSION["guest"]) === true){
 }else{
 	header("Location: login.html");
 }
 print_r($_SESSION);
-$q=$_SESSION["User"];
+$q=$_SESSION["guest"];
 $con = new mysqli("localhost","root","","comstar_portal");
-$result=mysqli_query($con,"SELECT * FROM `login` WHERE Email='$q'");
-if ($result->num_rows > 0) {
-	while($row = $result->fetch_assoc()) {
-		$name=$row["Name"];
-						
-		}
-	}
+
 ?>
 <style>
 b {
@@ -65,7 +59,7 @@ b {
   <header id="header" class="fixed-top ">
     <div class="container d-flex align-items-center justify-content-between">
 
-      <h1 class="logo"><a href="home.php">COMSTAR UTMKL</a></h1>
+      <h1 class="logo"><a href="guest.php">COMSTAR UTMKL</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -93,15 +87,7 @@ b {
               <li><a href="#">Hackathon</a></li>
             </ul>
           </li>
-		  <li class="dropdown"><a href="#"><span>Profile</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-               <li><center><b><?php echo $name; ?></b></center></li>
-               <li><a class="nav-link scrollto" href="profile.php">View Profile</a></li>
-			   <li><a class="nav-link scrollto" href="#">View Payment History</a></li>
-			   <li><a class="nav-link scrollto" href="admin.php">View Admin</a></li>
-               <li><a class="nav-link scrollto" href="logout.php">Logout</a></li>
-            </ul>
-          </li>
+		  <li><a href="login.html">Login</a></li>
 		  <li><a href="blog.html">Forum</a></li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
 		  
@@ -248,7 +234,7 @@ b {
 
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
             <div class="icon-box">
-			  <a href="supportuser.php">
+			  <a href="supportguest.php">
               <div class="icon"><i class="bx bx-support"> </i></div>
               <h4 class="title">Technical Support</a></h4>
               <p class="description">Found bugs? Glitches? Nonsense from your auntie? Report them here.</p>

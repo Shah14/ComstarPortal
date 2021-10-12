@@ -9,7 +9,7 @@ session_start();
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>COMSTAR Portal Admin Dashboard</title>
+  <title>COMSTAR Portal Technical Support</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -39,9 +39,6 @@ session_start();
   ======================================================== -->
 </head>
 <style>
-table, th, td {
-  border:1px solid black;
-}
 .collapsible {
   background-color: #777;
   color: white;
@@ -67,15 +64,23 @@ table, th, td {
 }
 
 </style>
-<body>
 <?php
-if(isset($_SESSION["admin"]) === true){
+if(isset($_SESSION["login"]) === true){
 }else{
 	header("Location: login.html");
 }
 print_r($_SESSION);
-$q=$_SESSION["Admin"];
+$q=$_SESSION["User"];
+$con = new mysqli("localhost","root","","comstar_portal");
+$result=mysqli_query($con,"SELECT * FROM `login` WHERE Email='$q'");
+if ($result->num_rows > 0) {
+	while($row = $result->fetch_assoc()) {
+		$name=$row["Name"];
+						
+		}
+	}
 ?>
+<body>
 
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top header-inner-pages">
@@ -109,10 +114,16 @@ $q=$_SESSION["Admin"];
               <li><a href="#">Hackathon</a></li>
             </ul>
           </li>
+		 <li class="dropdown"><a class="nav-link scrollto active" href="#"><span>Profile</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+               <li><center><b><?php echo $name; ?></b></center></li>
+               <li><a class="nav-link scrollto" href="profile.php">View Profile</a></li>
+			   <li><a class="nav-link scrollto" href="#">View Payment History</a></li>
+               <li><a class="nav-link scrollto" href="logout.php">Logout</a></li>
+            </ul>
+          </li>
 		  <li><a href="blog.html">Forum</a></li>
-          <li><a class="nav-link scrollto" href="home.php#contact">Contact</a></li>
-		  <li><a class="nav-link scrollto" href="profile.php">Profile</a></li>
-          <li><a class="nav-link scrollto" href="logout.php">Logout</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -128,9 +139,9 @@ $q=$_SESSION["Admin"];
 
         <ol>
           <li><a href="home.php">Home</a></li>
-          <li>Admin Profile</li>
+          <li>Technical Support</li>
         </ol>
-        <h2>Admin Profile</h2>
+        <h2>Technical Support</h2>
 
       </div>
     </section><!-- End Breadcrumbs -->
@@ -141,101 +152,39 @@ $q=$_SESSION["Admin"];
 
         <div class="row">
 
-          <div class="col-lg-8 entries">
+          <div class="col-lg-12 entries">
 
             <article class="entry">
 
-              <div class="entry-img">
-                <center><img src="Assets/logo.png"alt="Avatar" class="avatar"></center>
-              </div>
-
               <div class="entry-content">
-                <?php
-				$con = new mysqli("localhost","root","","comstar_portal");
-				$result=mysqli_query($con,"SELECT * FROM `admin` WHERE Email='$q'");
-				if ($result->num_rows > 0) {
-					while($row = $result->fetch_assoc()) {
-						echo "Name						&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:" .$row["Name"];
-						echo "<br>Email					&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:" .$row["Email"];
-						echo "<br>Password				&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:" .$row["Password"];
-						}
-					}
-
-				
-				
-				
-				?>
-				<br><br><h5>Pending Verification Users</h5>
-				<?php
-					$result=mysqli_query($con,"SELECT * FROM `login` WHERE `Verification`='Pending'");
-						echo "<table style=width:100%>";
-						echo "<tr>
-						<td>NAME</td>
-						<td>EMAIL</td>
-						<td>MATRIC NUMBER</td>
-						<td>USER TYPE</td>
-						<td>STATUS</td>";
-					if ($result->num_rows > 0) {
-						while($row = $result->fetch_assoc()) {
-						
-						echo "</tr><td>" 
-						.$row["Name"]."</td><td>" 
-						.$row["Email"]."</td><td>"
-						.$row["Matric Number"]."</td><td>"
-						.$row["User Type"]."</td><td>"
-						.$row["Verification"]."</td>";
-						}
-					} else{
-						echo "</tr><td>
-						No data</td><td>
-						No data</td><td>
-						No data</td><td>
-						No data</td><td>
-						No data</td>" ;
-				}
-
-
-				?>
-				</table>
+			  <form action="support.php" class="form-horizontal" method="post">
+					  <div class="form-group row">
+                        <label for="inputSkills" class="col-sm-2 col-form-label">Support Type</label>
+                        <div class="col-sm-10">
+                        <select id="type" name="type">
+						  <option value="Bug/Glitch/Error Report">Bug/Glitch/Error Report</option>
+						  <option value="Feedback">Feedback</option>
+						  <option value="Suggestion">Suggestion</option>
+						</select>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputSkills" class="col-sm-2 col-form-label">Description</label>
+                        <div class="col-sm-10">
+						  <textarea class="form-control" name="description" rows="5" placeholder="Describe the support required" required></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="offset-sm-2 col-sm-10">
+                          <br><button type="submit" class="btn btn-danger">Submit</button>
+                        </div>
+                      </div>
+                    </form>
               </div>
 
             </article><!-- End blog entry -->          
            
           </div><!-- End blog entries list -->
-
-          <div class="col-lg-4">
-
-            <div class="sidebar">
-
-              <h3 class="sidebar-title">Admin Dashboard</h3>
-<button class="collapsible">Verify User</button>
-<div class="content">
-<br>
-<form action="verify.php" method="post">
-<input class="text" placeholder="Enter Matric Number" required name="matric_number">
-<br><input type="radio" required id="UTM" name="verify" value="UTM">UTM
-<br><input type="radio" required id="COMSTAR" name="verify" value="COMSTAR">COMSTAR
-<br><input type="radio" required id="Non-Student" name="verify" value="Public">Public
-<br><input type="submit"value="Verify">
-</form>
-<br>
-</div><br>
-<button class="collapsible">Update Profile</button>
-<div class="content">
-<br>
-  <p>Progress In Work.</p>
-</div>
-<br>
-<button class="collapsible">Change Password</button>
-<div class="content">
-<br>
-  <p>Progress In Work.</p>
-</div>
-              
-
-            </div><!-- End sidebar -->
-
-          </div><!-- End blog sidebar -->
 
         </div>
 
@@ -274,19 +223,19 @@ $q=$_SESSION["Admin"];
         </div>
 
         <div class="col-lg-3 col-md-6 footer-links">
-          <h4>Source</h4>
-          <ul>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Last Year Project</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Last Year Final</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Last Year Test</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Last Year Quiz</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Last Year Exercise</a></li>
+          <h4>&emsp;</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="https://www.utm.my/">UTM</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="https://en.wikipedia.org/wiki/University_of_Technology_Malaysia">Wikipedia</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="https://sso.utm.my/login">MyUTM</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="https://utmspace.blackboard.com/">Blackboard</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="https://www.topuniversities.com/">QS Top University</a></li>
             </ul>
         </div>
 
         <div class="col-lg-4 col-md-6 footer-newsletter">
           <h4>Join Our Community</h4>
-          <p>This form does nothing :(</p>
+          <p>Subscribe to our newsletter to get updates and information regarding COMSTAR Club</p>
           <form action="" method="post">
             <input type="email" name="email"><input type="submit" value="Subscribe">
           </form>
@@ -348,14 +297,25 @@ for (i = 0; i < coll.length; i++) {
     } 
   });
 }
+function verifyPassword() {  
+  var pw = document.getElementById("password").value; 
+  var cf= document.getElementById("confirm").value;
+  if(pw !== cf) {  
+     document.getElementById("message").innerHTML = "**Passwords are not matched!";  
+     return false;  
+  } 
+   
+ //minimum password length validation  
+  if(pw.length < 8) {  
+     document.getElementById("message").innerHTML = "**Password length must be at least 8 characters";  
+     return false;  
+  }  
+  
+//maximum length of password validation  
+  if(pw.length > 15) {  
+     document.getElementById("message").innerHTML = "**Password length must not exceed 15 characters";  
+     return false;  
+  } 
+}  
 </script>
-</html>
-
-
-<?php
-
-?>
-<br>
-<body>
-
 </html>

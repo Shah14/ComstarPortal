@@ -248,6 +248,18 @@ $q=$_SESSION["Admin"];
                   <p>Programme</p>
                 </a>
               </li>
+			  <li class="nav-item">
+                <a href="./admintechnical.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Technical Support</p>
+                </a>
+              </li>
+			  <li class="nav-item">
+                <a href="./adminhomeedit.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Edit Homepage</p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item">
@@ -969,7 +981,7 @@ $q=$_SESSION["Admin"];
                       <div class="form-group row">
                         <label for="inputID" class="col-sm-2 col-form-label">Programme ID</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" required name="id" placeholder="Example : PWDC1234">
+                          <input type="text" class="form-control" required name="id" placeholder="Example : PDWC1234">
                         </div>
                       </div>
 					  <div class="form-group row">
@@ -1019,7 +1031,7 @@ $q=$_SESSION["Admin"];
                       <div class="form-group row">
                         <label for="inputID" class="col-sm-2 col-form-label">Programme ID</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" required name="id" placeholder="Example : PWDC1234">
+                          <input type="text" class="form-control" required name="id" placeholder="Example : PDWC1234">
                         </div>
                       </div>
 					  <div class="form-group row">
@@ -1065,24 +1077,17 @@ $q=$_SESSION["Admin"];
                     </form>
                   </div>
                   <!-- /.tab-pane -->
-				  <div class="tab-pane" id="delete">
-				  <h1>WORK IN PROGRESS</h1>
-                    <form action="changepassword.php"class="form-horizontal" method="post" onsubmit="return verifyPassword()">
+				   <div class="tab-pane" id="delete">
+                    <form action="deleteprogramme.php" class="form-horizontal" method="post">
                       <div class="form-group row">
-                        <label for="inputName" class="col-sm-2 col-form-label">New Password</label>
+                        <label for="inputID" class="col-sm-2 col-form-label">Programme ID</label>
                         <div class="col-sm-10">
-                          <input type="password" id="password" class="form-control" required name="password"  placeholder="Example : 12345678">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputEmail" class="col-sm-2 col-form-label">Confirm New Password</label>
-                        <div class="col-sm-10">
-                          <input type="password" id="confirm" class="form-control" required name="confirm" placeholder="Example : 12345678">
+                          <input type="text" class="form-control" required name="id" placeholder="Example : PDWC1234">
                         </div>
                       </div>
                       <div class="form-group row">
                         <div class="offset-sm-2 col-sm-10">
-                          <button type="submit" value = "Change" class="btn btn-danger">Change</button>
+                          <button type="submit" class="btn btn-danger">Delete</button>
                         </div>
                       </div>
                     </form>

@@ -249,6 +249,18 @@ $q=$_SESSION["Admin"];
                   <p>Programme</p>
                 </a>
               </li>
+			  <li class="nav-item">
+                <a href="./admintechnical.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Technical Support</p>
+                </a>
+              </li>
+			  <li class="nav-item">
+                <a href="./adminhomeedit.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Edit Homepage</p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item">
@@ -1013,9 +1025,9 @@ $q=$_SESSION["Admin"];
 
                     <div class="progress-group">
                       Sprint 2
-                      <span class="float-right"><b>6</b>/36</span>
+                      <span class="float-right"><b>20</b>/36</span>
                       <div class="progress progress-sm">
-                        <div class="progress-bar bg-danger" style="width: 17%"></div>
+                        <div class="progress-bar bg-danger" style="width: 56%"></div>
                       </div>
                     </div>
 
@@ -1031,9 +1043,9 @@ $q=$_SESSION["Admin"];
                     <!-- /.progress-group -->
                     <div class="progress-group">
                       Total Progress
-                      <span class="float-right"><b>24</b>/72</span>
+                      <span class="float-right"><b>38</b>/72</span>
                       <div class="progress progress-sm">
-                        <div class="progress-bar bg-warning" style="width: 33%"></div>
+                        <div class="progress-bar bg-warning" style="width: 53%"></div>
                       </div>
                     </div>
                     <!-- /.progress-group -->
@@ -1056,8 +1068,8 @@ $q=$_SESSION["Admin"];
                   <!-- /.col -->
                   <div class="col-sm-3 col-6">
                     <div class="description-block border-right">
-                      <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 8%</span>
-                      <h5 class="description-header">6/36</h5>
+                      <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 56%</span>
+                      <h5 class="description-header">20/36</h5>
                       <span class="description-text">Sprint 2</span>
                     </div>
                     <!-- /.description-block -->
@@ -1074,8 +1086,8 @@ $q=$_SESSION["Admin"];
                   <!-- /.col -->
                   <div class="col-sm-3 col-6">
                     <div class="description-block">
-                      <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 33%</span>
-                      <h5 class="description-header">24/72</h5>
+                      <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 53%</span>
+                      <h5 class="description-header">38/72</h5>
                       <span class="description-text">Total Progress</span>
                     </div>
                     <!-- /.description-block -->

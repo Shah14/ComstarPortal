@@ -1,10 +1,5 @@
 <?php
 session_start();
-if(isset($_SESSION["login"]) === false){
-	header("Location: home.php");
-}else{
-	header("Location: login.html");
-}
 ?>
 <!doctype html>
 <html lang="en">
@@ -26,6 +21,11 @@ if(isset($_SESSION["login"]) === false){
 	<link rel="icon" href="Assets/logo.png">
     <title>COMSTAR Portal Login</title>
   </head>
+<?php
+  if(isset($_SESSION["login"]) === true){
+  header("Location: home.php");
+}
+?>
   <body>
   
   
@@ -60,7 +60,9 @@ if(isset($_SESSION["login"]) === false){
               <span class="d-block text-center my-4 text-muted">&mdash; or &mdash;</span>
               
               <div class="social-login">
-                <a href="signup.html" class="btn btn-block btn-primary">Create Account</a>               
+                <a href="signup.html" class="btn btn-block btn-primary">Create Account</a>       
+				<span class="d-block text-center my-4 text-muted">&mdash; or &mdash;</span>		
+				<a href="guestlogin.php" class="btn btn-block btn-primary">Continue As Guest</a>    		
               </div>
             </form>
         </div>

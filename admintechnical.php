@@ -7,7 +7,7 @@ session_start();
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin Profile | Dashboard</title>
+  <title>Admin Technical Support | Dashboard</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="icon" href="Assets/logo.png">
@@ -231,7 +231,7 @@ $q=$_SESSION["Admin"];
                 </a>
               </li>
 			  <li class="nav-item">
-                <a href="./adminprofile.php" class="nav-link active">
+                <a href="./adminprofile.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>View Profile</p>
                 </a>
@@ -249,7 +249,7 @@ $q=$_SESSION["Admin"];
                 </a>
               </li>
 			  <li class="nav-item">
-                <a href="./admintechnical.php" class="nav-link">
+                <a href="./admintechnical.php" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Technical Support</p>
                 </a>
@@ -878,12 +878,12 @@ $q=$_SESSION["Admin"];
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Profile</h1>
+            <h1>Technical Support</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="admin.php">Home</a></li>
-              <li class="breadcrumb-item active">User Profile</li>
+              <li class="breadcrumb-item active">Technical Support</li>
             </ol>
           </div>
         </div>
@@ -894,213 +894,91 @@ $q=$_SESSION["Admin"];
     <section class="content">
       <div class="container-fluid">
         <div class="row" >
-          <div class="col-md-3">
+          <div class="col-md-7">
 
-            <!-- Profile Image -->
-            <div class="card card-primary card-outline">
-              <div class="card-body box-profile">
-                <div class="text-center">
-                  <img class="profile-user-img img-fluid img-circle" alt="User profile picture"
-				  <?php 
-				  $con = new mysqli("localhost","root","","comstar_portal");
-				  $result=mysqli_query($con,"SELECT * FROM `admin` WHERE Email='$q'");
-				  if ($result->num_rows > 0) {
-				  while($row = $result->fetch_assoc()) {
-				  $image=$row["Image"];
-						
-		}
-	}
-					echo 'src="Profile Picture/'.$image.'.png" >'?> 
+            <div class="card">
+              <div class="card-header border-transparent">
+                <h3 class="card-title">Support Requests</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
                 </div>
-
-								
-				<h3 class="profile-username text-center">
-				<?php
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <table class="table m-0">			  
+					  <?php
 				$con = new mysqli("localhost","root","","comstar_portal");
-				$result=mysqli_query($con,"SELECT * FROM `admin` WHERE Email='$q'");
-					while($row = $result->fetch_assoc()) {
+				$result=mysqli_query($con,"SELECT * FROM `technical`");
+						echo "<thead><tr>
+						<th>USER</th>
+						<th>SUPPORT TYPE</th>
+						<th>DESCRIPTION</th>
+						<th>DATE AND TIME</th>";
+					if ($result->num_rows > 0) {
+						while($row = $result->fetch_assoc()) {
 						
-                echo $row["Name"];
-				echo "</h3>";
-					}
-?>
-                <p class="text-muted text-center">Administrator</p>
+						echo "</tr></thead><tbody><tr><td>" 
+						.$row["Email"]."</td><td>" 
+						.$row["Type"]."</td><td>" 
+						.$row["Description"]."</td><td>"
+						.$row["Date"]."</td></tr>";
+						}
+					} else{
+						echo "</tr></thead><tbody><tr><td>
+						No data</td><td>
+						No data</td><td>
+						No data</td><td>
+						No data</td><tr>" ;
+				}
 
-                <ul class="list-group list-group-unbordered mb-3">
-                  <li class="list-group-item">
-                    <b>Name</b> <a class="float-right">
-					<?php
-				$result=mysqli_query($con,"SELECT * FROM `admin` WHERE Email='$q'");
-					while($row = $result->fetch_assoc()) {
-                echo $row["Name"];
-				echo "</a>";
-					}
-					?>
-                  </li>
-                  <li class="list-group-item">
-                    <b>E-mail</b> <a class="float-right">
-					<?php
-				$result=mysqli_query($con,"SELECT * FROM `admin` WHERE Email='$q'");
-					while($row = $result->fetch_assoc()) {
-                echo $row["Email"];
-				echo "</a>";
-					}
-					?>
-                  </li>
-                  <li class="list-group-item">
-                    <b>Password</b> <a class="float-right">
-					<?php
-				$result=mysqli_query($con,"SELECT * FROM `admin` WHERE Email='$q'");
-					while($row = $result->fetch_assoc()) {
-                echo $row["Password"];
-				echo "</a>";
-					}
-					?>
-                  </li>
-                </ul>
 
-                <a href="logout.php" class="btn btn-primary btn-block"><b>Log Out</b></a>
+				?>
+                  </tbody>
+                </table>
+                    
+                </div>
+                <!-- /.table-responsive -->
               </div>
               <!-- /.card-body -->
+              <div class="card-footer clearfix">
+                
+              </div>
+              <!-- /.card-footer -->
             </div>
             <!-- /.card -->
 			
 
-            <!-- About Me Box -->
-            <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">About Me</h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <strong><i class="fas fa-book mr-1"></i> Education</strong>
-
-                <p class="text-muted">
-                  Universiti Technology Malaysia
-                </p>
-
-                <hr>
-
-                <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
-
-                <p class="text-muted">Selangor, Malaysia</p>
-
-                <hr>
-
-                <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
-
-                <p class="text-muted">
-                  <span class="tag tag-danger">UI Design,</span>
-                  <span class="tag tag-success">Coding,</span>
-                  <span class="tag tag-info">Javascript,</span>
-                  <span class="tag tag-warning">PHP,</span>
-                  <span class="tag tag-primary">Node.js</span>
-                </p>
-
-                <hr>
-
-                <strong><i class="far fa-file-alt mr-1"></i> Quote</strong>
-
-                <p class="text-muted">jom valo</p>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
+            
           </div>
           <!-- /.col -->
-                   <div class="col-md-9">
+                   <div class="col-md-5">
             <div class="card">
               <div class="card-header p-2">
-                <ul class="nav nav-pills">
-                  <li class="nav-item"><a class="nav-link active" href="#update" data-toggle="tab">Update Profile Details</a></li>
-				  <li class="nav-item"><a class="nav-link" href="#image" data-toggle="tab">Update Profile Picture</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#change" data-toggle="tab">Change Password</a></li>
-                </ul>
+                Delete Request
               </div><!-- /.card-header -->
-              <div class="card-body">
-                <div class="tab-content">
-			 
-                  <div class="active tab-pane" id="update">
-                    <form action="updateadmin.php" class="form-horizontal" method="post">
+              <div class="card-body">			 
+                    <form action="deletesupport.php" class="form-horizontal" method="post">
                       <div class="form-group row">
-                        <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                        <label for="inputID" class="col-sm-2 col-form-label">User</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" required name="name" placeholder="Example : John Bin Doe">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputEmail" class="col-sm-2 col-form-label">Education</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" name="education" placeholder="Example : Universiti Malaya">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputName2" class="col-sm-2 col-form-label">Location</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" name="location" placeholder="Example : Petaling Jaya, Selangor">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputExperience" class="col-sm-2 col-form-label">Skills</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" name="skills" placeholder="Example : Cooking">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputSkills" class="col-sm-2 col-form-label">Quote</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" name="quote" placeholder="Example : 2ez4rtz">
+                          <input type="text" class="form-control" required name="id" placeholder="Example : user@gmail">
                         </div>
                       </div>
                       <div class="form-group row">
                         <div class="offset-sm-2 col-sm-10">
-                          <button type="submit" class="btn btn-danger">Update</button>
+                          <button type="submit" class="btn btn-danger">Delete</button>
                         </div>
                       </div>
                     </form>
-                  </div>
-                  <!-- /.tab-pane -->
-				  
-				  <div class="tab-pane" id="image">
-                    <form action="adminpicture.php"class="form-horizontal" method="post" enctype="multipart/form-data">
-                      <div class="form-group row">
-                        <label for="inputName" class="col-sm-2 col-form-label">Select Image To Upload</label>
-                        <div class="col-sm-10">
-                          <input type="file" id="fileToUpload" required name="fileToUpload" >
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <div class="offset-sm-2 col-sm-10">
-                          <button type="submit" value = "Upload Image" class="btn btn-danger">Update</button>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-				  
-				  <div class="tab-pane" id="change">
-                    <form action="changepassword.php"class="form-horizontal" method="post" onsubmit="return verifyPassword()">
-                      <div class="form-group row">
-                        <label for="inputName" class="col-sm-2 col-form-label">New Password</label>
-                        <div class="col-sm-10">
-                          <input type="password" id="password" class="form-control" required name="password"  placeholder="Example : 12345678">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputEmail" class="col-sm-2 col-form-label">Confirm New Password</label>
-                        <div class="col-sm-10">
-                          <input type="password" id="confirm" class="form-control" required name="confirm" placeholder="Example : 12345678">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <div class="offset-sm-2 col-sm-10">
-                          <button type="submit" value = "Change" class="btn btn-danger">Change</button>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                  <!-- /.tab-pane -->
-                </div>
-                <!-- /.tab-content -->
+
+
               </div><!-- /.card-body -->
             </div>
             <!-- /.card -->
