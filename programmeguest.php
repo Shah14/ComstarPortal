@@ -9,7 +9,7 @@ session_start();
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>COMSTAR Portal User Profile</title>
+  <title>COMSTAR Portal Programme</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -65,20 +65,13 @@ session_start();
 
 </style>
 <?php
-if(isset($_SESSION["login"]) === true){
+if(isset($_SESSION["guest"]) === true){
 }else{
 	header("Location: login.html");
 }
 print_r($_SESSION);
-$q=$_SESSION["User"];
+$q=$_SESSION["guest"];
 $con = new mysqli("localhost","root","","comstar_portal");
-$result=mysqli_query($con,"SELECT * FROM `login` WHERE Email='$q'");
-if ($result->num_rows > 0) {
-	while($row = $result->fetch_assoc()) {
-		$name=$row["Name"];
-						
-		}
-	}
 ?>
 <body>
 
@@ -86,34 +79,27 @@ if ($result->num_rows > 0) {
   <header id="header" class="fixed-top header-inner-pages">
     <div class="container d-flex align-items-center justify-content-between">
 
-      <h1 class="logo"><a href="home.php">COMSTAR UTMKL</a></h1>
+      <h1 class="logo"><a href="guest.php">COMSTAR UTMKL</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
       <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto" href="home.php">Home</a></li>
-          <li><a class="nav-link scrollto" href="home.php#about">About</a></li>
-          <li><a class="nav-link scrollto" href="home.php#services">Services</a></li>
-          <li><a class="nav-link scrollto " href="home.php#portfolio">Gallery</a></li>
-          <li><a class="nav-link scrollto" href="home.php#team">Member</a></li>
-          <li class="dropdown"><a href="programme.php"><span>Programme</span> <i class="bi bi-chevron-down"></i></a>
+       <ul>
+          <li><a class="nav-link scrollto active" href="guest.php#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="guest.php#about">About</a></li>
+          <li><a class="nav-link scrollto" href="guest.php#services">Services</a></li>
+          <li><a class="nav-link scrollto " href="guest.php#portfolio">Gallery</a></li>
+          <li><a class="nav-link scrollto" href="guest.php#team">Member</a></li>
+          <li class="dropdown"><a href="programmeguest.php"><span>Programme</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="programme.php#UTM">UTM</a></li>
-              <li><a href="programme.php#COMSTAR">COMSTAR</a></li>
-              <li><a href="programme.php#Public">Public</a></li>
+              <li><a href="programmeguest.php#UTM">UTM</a></li>
+              <li><a href="programmeguest.php#COMSTAR">COMSTAR</a></li>
+              <li><a href="programmeguest.php#Public">Public</a></li>
             </ul>
           </li>
-		 <li class="dropdown"><a class="nav-link scrollto active" href="#"><span>Profile</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-               <li><center><b><?php echo $name; ?></b></center></li>
-               <li><a class="nav-link scrollto" href="profile.php">View Profile</a></li>
-			   <li><a class="nav-link scrollto" href="https://www.sandbox.paypal.com/myaccount/transactions/?free_text_search=&filter_id=&currency=ALL&issuance_product_name=&asset_names=&asset_symbols=&type=&status=&start_date=2021-07-23&end_date=2021-10-21">View Payment History</a></li>
-               <li><a class="nav-link scrollto" href="logout.php">Logout</a></li>
-            </ul>
-          </li>
+		  <li><a href="login.html">Login</a></li>
 		  <li><a href="blog.html">Forum</a></li>
-          <li><a class="nav-link scrollto" href="home.php#contact">Contact</a></li>
+          <li><a class="nav-link scrollto" href="guest.php#contact">Contact</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -129,107 +115,111 @@ if ($result->num_rows > 0) {
 
         <ol>
           <li><a href="home.php">Home</a></li>
-          <li>Profile</li>
+          <li>Programme</li>
         </ol>
-        <h2>Profile</h2>
+        <h2>Programme</h2>
 
       </div>
     </section><!-- End Breadcrumbs -->
 
     <!-- ======= Blog Section ======= -->
-    <section id="blog" class="blog">
+	
+    <section id="UTM" class="blog">
       <div class="container" data-aos="fade-up">
+	  <h1>UTM</h1>
 
-        <div class="row">
-
-          <div class="col-lg-8 entries">
-
-            <article class="entry">
-
-              <div class="entry-img">
-                <center><img class="avatar" alt="Avatar" 
-				  <?php 
-				  $con = new mysqli("localhost","root","","comstar_portal");
-				  $result=mysqli_query($con,"SELECT * FROM `login` WHERE Email='$q'");
-				  if ($result->num_rows > 0) {
-				  while($row = $result->fetch_assoc()) {
-				  $image=$row["Image"];
-						
-		}
-	}
-					echo 'src="Profile Picture/'.$image.'.png" >'?> </center>
-              </div>
-
-              <div class="entry-content">
+       
+			  <div class="row">
+		
                 <?php
-				$con = new mysqli("localhost","root","","comstar_portal");
-				$result=mysqli_query($con,"SELECT * FROM `login` WHERE Email='$q'");
+				$result=mysqli_query($con,"SELECT * FROM `programme` WHERE Status='Open To UTM'");
 				if ($result->num_rows > 0) {
 					while($row = $result->fetch_assoc()) {
-						echo "Name						&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:" .$row["Name"];
-						echo "<br>Email					&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:" .$row["Email"];
-						echo "<br>Matric Number			&nbsp;&nbsp;&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:" .$row["Matric Number"];
-						echo "<br>Password				&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:" .$row["Password"];
-						echo "<br>Verification			&nbsp;&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:" .$row["Verification"];
-						echo "<br>User Type				&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:" .$row["User Type"];
+							   echo '<div class="col-lg-3 entries">
+							   <article class="entry">
+							   <div class="entry-content">';
+						echo "Name:<p style='color:red;'>" .$row["Name"] ."<br></p>";
+						echo "Date:<p style='color:red;'>" .$row["Date"] ."<br></p>";
+						echo "Venue:<p style='color:red;'>" .$row["Venue"] ."<br></p>";
+						echo "Fee Price:<p style='color:red;'>RM" .$row["Fee Price"] ."<br></p>";
+						echo "Status:<p style='color:red;'>" .$row["Status"] ."<br></p>";
+						echo "<button ><a href='login.html'style='color:black;'>Register</a></button>";
+						echo "</div></article></div>";						
 						}
 					}
 
 				?>
-              </div>
-
-            </article><!-- End blog entry -->          
+				
+              </div>       
            
           </div><!-- End blog entries list -->
 
-          <div class="col-lg-4">
+        </div>
 
-            <div class="sidebar">
+      </div>
+    </section><!-- End Blog Section -->
+	
+	<section id="COMSTAR" class="blog">
+      <div class="container" data-aos="fade-up">
+	  <h1>COMSTAR</h1>
+       
+			  <div class="row">
+		
+                <?php
+				$result=mysqli_query($con,"SELECT * FROM `programme` WHERE Status='Open To COMSTAR'");
+				if ($result->num_rows > 0) {
+					while($row = $result->fetch_assoc()) {
+							   echo '<div class="col-lg-3 entries">
+							   <article class="entry">
+							   <div class="entry-content">';
+						echo "Name:<p style='color:green;'>" .$row["Name"] ."<br></p>";
+						echo "Date:<p style='color:green;'>" .$row["Date"] ."<br></p>";
+						echo "Venue:<p style='color:green;'>" .$row["Venue"] ."<br></p>";
+						echo "Fee Price:<p style='color:green;'>RM" .$row["Fee Price"] ."<br></p>";
+						echo "Status:<p style='color:green;'>" .$row["Status"] ."<br></p>";
+						echo "<button ><a href='login.html'style='color:black;'>Register</a></button>";
+						echo "</div></article></div>";
+						}
+					}
 
-              <h3 class="sidebar-title">User Dashboard</h3>
-<button class="collapsible">Request Verification</button>
-<div class="content">
-<br>
-<form action="requestverify.php" method="post">
-<input class="text" placeholder="Enter Matric Number" required name="matric_number">
-<input type="submit"value="Enter">
-</form>
-<br>
-</div><br>
-<button class="collapsible">Update Profile Details</button>
-<div class="content">
-<br>
-<form action="updateprofile.php" method="post">
-<input class="text" placeholder="Enter Name" required name="name">
-<input type="submit"value="Update">
-</form>
-<br>
-</div><br>
-<button class="collapsible">Update Profile Picture</button>
-<div class="content">
-<br>
-<form action="userpicture.php" method="post" enctype="multipart/form-data">
-Select image to upload:
-  <input type="file" required name="fileToUpload" id="fileToUpload">
-  <input type="submit" value="Update" name="submit">
-</form>
-<br>
-</div><br>
-<button class="collapsible">Change Password</button>
-<div class="content">
-<br>
-<form action="changeuserpassword.php" method="post" onsubmit="return verifyPassword()">
-<input class="password" id="password" placeholder="Enter New Password" required name="password">
-<input class="password" id="confirm" placeholder="Confirm New Password" required name="confirm"><br>
-<input type="submit"value="Change">
-</form>
-<br>
-</div><br>
-              
+				?>
+              </div>       
+           
+          </div><!-- End blog entries list -->
 
-            </div><!-- End sidebar -->
+        </div>
 
-          </div><!-- End blog sidebar -->
+      </div>
+    </section><!-- End Blog Section -->
+	
+	<section id="Public" class="blog">
+      <div class="container" data-aos="fade-up">
+	  <h1>Public</h1>
+       
+			  <div class="row">
+		
+                <?php
+				$con = new mysqli("localhost","root","","comstar_portal");
+				$result=mysqli_query($con,"SELECT * FROM `programme` WHERE Status='Open To Public'");
+				if ($result->num_rows > 0) {
+					while($row = $result->fetch_assoc()) {
+							   echo '<div class="col-lg-3 entries">
+							   <article class="entry">
+							   <div class="entry-content">';
+						echo "Name:<p style='color:blue;'>" .$row["Name"] ."<br></p>";
+						echo "Date:<p style='color:blue;'>" .$row["Date"] ."<br></p>";
+						echo "Venue:<p style='color:blue;'>" .$row["Venue"] ."<br></p>";
+						echo "Fee Price:<p style='color:blue;'>RM" .$row["Fee Price"] ."<br></p>";
+						echo "Status:<p style='color:blue;'>" .$row["Status"] ."<br></p>";
+						echo "<button ><a href='login.html'style='color:black;'>Register</a></button>";
+						echo "</div></article></div>";
+						}
+					}
+
+				?>
+              </div>       
+           
+          </div><!-- End blog entries list -->
 
         </div>
 
@@ -259,9 +249,9 @@ Select image to upload:
         <div class="col-lg-2 col-md-6 footer-links">
           <h4>Useful Links</h4>
           <ul>
-            <li><i class="bx bx-chevron-right"></i> <a href="home.php">Home</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="home.php#about">About us</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="home.php#services">Services</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="guest.php">Home</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="guest.php#about">About us</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="guest.php#services">Services</a></li>
             <li><i class="bx bx-chevron-right"></i> <a href="Terms and Condition.html">Terms and Conditions</a></li>
             <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
           </ul>

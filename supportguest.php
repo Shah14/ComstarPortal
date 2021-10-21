@@ -88,21 +88,11 @@ print_r($_SESSION);
           <li><a class="nav-link scrollto" href="guest.php#services">Services</a></li>
           <li><a class="nav-link scrollto " href="guest.php#portfolio">Gallery</a></li>
           <li><a class="nav-link scrollto" href="guest.php#team">Member</a></li>
-          <li class="dropdown"><a href="#"><span>Programme</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="programmeguest.php"><span>Programme</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="#">Comstar AGM</a></li>
-              <li class="dropdown"><a href="#"><span>Workshop</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="#">Adobe Photoshop</a></li>
-                  <li><a href="#">Adobe Premiere</a></li>
-                  <li><a href="#">Adobe After Effects</a></li>
-                  <li><a href="#">Framework Website</a></li>
-                  <li><a href="#">Data Cloud</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Comsport</a></li>
-              <li><a href="#">Comstarian Days</a></li>
-              <li><a href="#">Hackathon</a></li>
+              <li><a href="programmeguest.php#UTM">UTM</a></li>
+              <li><a href="programmeguest.php#COMSTAR">COMSTAR</a></li>
+              <li><a href="programmeguest.php#Public">Public</a></li>
             </ul>
           </li>
 		 <li><a href="login.html">Login</a></li>

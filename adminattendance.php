@@ -7,7 +7,7 @@ session_start();
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin | Dashboard</title>
+  <title>Admin Attendance | Dashboard</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="icon" href="Assets/logo.png">
@@ -18,6 +18,7 @@ session_start();
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="COMSTAR_INTERFACE_FIRST_SPRINT/AdminLTE-3.1.0/dist/css/adminlte.min.css">
+
 </head>
 <!--
 `body` tag options:
@@ -28,7 +29,6 @@ session_start();
   * sidebar-collapse
   * sidebar-mini
 -->
-
 <?php
 if(isset($_SESSION["admin"]) === true){
 }else{
@@ -37,7 +37,6 @@ if(isset($_SESSION["admin"]) === true){
 print_r($_SESSION);
 $q=$_SESSION["Admin"];
 ?>
-
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
   <!-- Navbar -->
@@ -226,7 +225,7 @@ $q=$_SESSION["Admin"];
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./admin.php" class="nav-link active">
+                <a href="./admin.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Home</p>
                 </a>
@@ -243,14 +242,14 @@ $q=$_SESSION["Admin"];
                   <p>User Verification</p>
                 </a>
               </li>
-			   <li class="nav-item">
+			  <li class="nav-item">
                 <a href="./adminprogramme.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Programme</p>
                 </a>
               </li>
 			  <li class="nav-item">
-                <a href="./adminattendance.php" class="nav-link">
+                <a href="./adminattendance.php" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Admin Attendance</p>
                 </a>
@@ -887,377 +886,97 @@ $q=$_SESSION["Admin"];
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <div class="content-header">
+    <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Home</h1>
-          </div><!-- /.col -->
+            <h1>Attendance</h1>
+          </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item active"><a href="admin.php">Home</a></li>
+              <li class="breadcrumb-item"><a href="admin.php">Home</a></li>
+              <li class="breadcrumb-item active">Attendance</li>
             </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
+          </div>
+        </div>
       </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
+    </section>
 
     <!-- Main content -->
-        <section class="content">
-      <div class="container-fluid">
-        <!-- Info boxes -->
-        <div class="row">
-          <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box">
-              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Website Completion Progress</span>
-                <span class="info-box-number">
-                  69
-                  <small>%</small>
-                </span>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-          </div>
-          <!-- /.col -->
-          <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box mb-3">
-              <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-tag"></i></span>
-
-              <div class="info-box-content">
-				<span class="info-box-text">Sprint 2 Progress</span>
-                <span class="info-box-number">89<small>%</small></span>
-                
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-          </div>
-          <!-- /.col -->
-
-          <!-- fix for small devices only -->
-          <div class="clearfix hidden-md-up"></div>
-
-          <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box mb-3">
-              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Registered Users</span>
-                <span class="info-box-number">
-				<?php
-				$con = new mysqli("localhost","root","","comstar_portal");
-				$count=0;
-				$result=mysqli_query($con,"SELECT Name FROM `login`");
-					while($row = $result->fetch_assoc()) {
-						$count++;
-					}
-                echo $count;
-				echo "</span>";
-				?>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-          </div>
-          <!-- /.col -->
-          <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box mb-3">
-              <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Website Admin</span>
-                <span class="info-box-number">
-				<?php
-				$con = new mysqli("localhost","root","","comstar_portal");
-				$count=0;
-				$result=mysqli_query($con,"SELECT Name FROM `admin`");
-					while($row = $result->fetch_assoc()) {
-						$count++;
-					}
-                echo $count;
-				echo "</span>";
-				?>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-          </div>
-          <!-- /.col -->
-        </div>
-        <!-- /.row -->
-
-        <div class="row">
-          <div class="col-md-12">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="card-title">Website Progress Report</h5>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-tool dropdown-toggle" data-toggle="dropdown">
-                      <i class="fas fa-wrench"></i>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right" role="menu">
-                      <a href="#" class="dropdown-item">Action</a>
-                      <a href="#" class="dropdown-item">Another action</a>
-                      <a href="#" class="dropdown-item">Something else here</a>
-                      <a class="dropdown-divider"></a>
-                      <a href="#" class="dropdown-item">Separated link</a>
-                    </div>
-                  </div>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-md-12">
-                    <p class="text-center">
-                      <strong>Website Completion</strong>
-                    </p>
-
-                    <div class="progress-group">
-                      Sprint 1
-                      <span class="float-right"><b>18</b>/18</span>
-                      <div class="progress progress-sm">
-                        <div class="progress-bar bg-primary" style="width: 100%"></div>
-                      </div>
-                    </div>
-                    <!-- /.progress-group -->
-
-                    <div class="progress-group">
-                      Sprint 2
-                      <span class="float-right"><b>32</b>/36</span>
-                      <div class="progress progress-sm">
-                        <div class="progress-bar bg-danger" style="width: 89%"></div>
-                      </div>
-                    </div>
-
-                    <!-- /.progress-group -->
-                    <div class="progress-group">
-                      <span class="progress-text">Sprint 3</span>
-                      <span class="float-right"><b>0</b>/18</span>
-                      <div class="progress progress-sm">
-                        <div class="progress-bar bg-success" style="width: 0%"></div>
-                      </div>
-                    </div>
-
-                    <!-- /.progress-group -->
-                    <div class="progress-group">
-                      Total Progress
-                      <span class="float-right"><b>50</b>/72</span>
-                      <div class="progress progress-sm">
-                        <div class="progress-bar bg-warning" style="width: 69%"></div>
-                      </div>
-                    </div>
-                    <!-- /.progress-group -->
-                  </div>
-                  <!-- /.col -->
-                </div>
-                <!-- /.row -->
-              </div>
-              <!-- ./card-body -->
-              <div class="card-footer">
-                <div class="row">
-                  <div class="col-sm-3 col-6">
-                    <div class="description-block border-right">
-                      <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 25%</span>
-                      <h5 class="description-header">18/18</h5>
-                      <span class="description-text">Sprint 1</span>
-                    </div>
-                    <!-- /.description-block -->
-                  </div>
-                  <!-- /.col -->
-                  <div class="col-sm-3 col-6">
-                    <div class="description-block border-right">
-                      <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 44%</span>
-                      <h5 class="description-header">32/36</h5>
-                      <span class="description-text">Sprint 2</span>
-                    </div>
-                    <!-- /.description-block -->
-                  </div>
-                  <!-- /.col -->
-                  <div class="col-sm-3 col-6">
-                    <div class="description-block border-right">
-                      <span class="description-percentage text-warning"><i class="fas fa-caret-left"></i> 0%</span>
-                      <h5 class="description-header">0/18</h5>
-                      <span class="description-text">Sprint 3</span>
-                    </div>
-                    <!-- /.description-block -->
-                  </div>
-                  <!-- /.col -->
-                  <div class="col-sm-3 col-6">
-                    <div class="description-block">
-                      <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 69%</span>
-                      <h5 class="description-header">50/72</h5>
-                      <span class="description-text">Total Progress</span>
-                    </div>
-                    <!-- /.description-block -->
-                  </div>
-                </div>
-                <!-- /.row -->
-              </div>
-              <!-- /.card-footer -->
-            </div>
-            <!-- /.card -->
-          </div>
-          <!-- /.col -->
-        </div>
-        <!-- /.row -->
-
-        <!-- Main row -->
-       <!-- TABLE: LATEST ORDERS -->
-	    <div class="row">
-	    <div class="col-12 col-sm-6 col-md-6">
-            <div class="card">
-              <div class="card-header border-transparent">
-                <h3 class="card-title">Registered Users</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body p-0">
-                <div class="table-responsive">
-                  <table class="table m-0">			  
+    
+          
+              <!-- /.card-header -->		  
 					  <?php
 				$con = new mysqli("localhost","root","","comstar_portal");
-				$result=mysqli_query($con,"SELECT * FROM `login`");
-						echo "<thead><tr>
-						<th>NAME</th>
-						<th>EMAIL</th>
-						<th>MATRIC NUMBER</th>
-						<th>USER TYPE</th>
-						<th>STATUS</th>";
-					if ($result->num_rows > 0) {
-						while($row = $result->fetch_assoc()) {
-						
-						echo "</tr></thead><tbody><tr><td>" 
-						.$row["Name"]."</td><td>" 
-						.$row["Email"]."</td><td>"
-						.$row["Matric Number"]."</td><td>"
-						.$row["User Type"]."</td><td>"
-						.$row["Verification"]."</td></tr>";
+				
+				$result=mysqli_query($con,"SELECT * FROM `programme`");
+				if ($result->num_rows > 0) {
+					while($row = $result->fetch_assoc()) {
+						$title=$row["Name"];
+						echo "<section class='content'>
+				  <div class='container-fluid'>
+						<div class='col-md-12'>
+
+							<div class='card'>
+							  <div class='card-header border-transparent'>
+								<h3 class='card-title'>$title</h3>
+
+								<div class='card-tools'>
+								  <button type='button' class='btn btn-tool' data-card-widget='collapse'>
+									<i class='fas fa-minus'></i>
+								  </button>
+								  <button type='button' class='btn btn-tool' data-card-widget='remove'>
+									<i class='fas fa-times'></i>
+								  </button>
+								</div>
+							  </div>
+							  <table class='table m-0'>	";
+								
+						$name=$row["Name"];
+						$result1=mysqli_query($con,"SELECT * FROM `list` WHERE Programme='$name'");
+						if ($result1->num_rows > 0) {
+							echo "<thead><tr>
+										<th>E-MAIL</th>
+										<th>STUDENT</th>
+										<th>ATTEND STATUS</th>
+										<th>LAST UPDATED</th>";
+							while($row = $result1->fetch_assoc()) {
+								
+								echo "</tr></thead><tbody><tr><td>" 
+								.$row["Student"]."</td><td>" 
+								.$row["Name"]."</td><td>" 
+								.$row["Attend Status"]."</td><td>" 
+								.$row["Present Time"]."</td></tr>";
+								
+								}echo "</div></tbody></table></div></div></div>" ;
+							}else {
+								echo "</tr></thead><tbody><tr><td>
+								<center>No data</center> 
+								</div></tbody></table></div></div></div>" ;
+							}
 						}
-					} else{
-						echo "</tr></thead><tbody><tr><td>
-						No data</td><td>
-						No data</td><td>
-						No data</td><td>
-						No data</td><td>
-						No data</td><tr>" ;
-				}
-
-
+					}
 				?>
-                  </tbody>
-                </table>
                     
-                </div>
-                <!-- /.table-responsive -->
-              </div>
-              <!-- /.card-body -->
-              <div class="card-footer clearfix">
                 
+              <div class="card-footer clearfix">
+			  
+                <button onclick="window.print()">Generate Attendance Report</button>
               </div>
               <!-- /.card-footer -->
             </div>
             <!-- /.card -->
-			</div>
-			 <div class="col-md-6">
-                <!-- USERS LIST -->
-                <div class="card">
-                  <div class="card-header">
-                    <h3 class="card-title">Website Admin</h3>
+			
 
-                    <div class="card-tools">
-                      <span class="badge badge-danger"><?php
-				$con = new mysqli("localhost","root","","comstar_portal");
-				$count=0;
-				$result=mysqli_query($con,"SELECT Name FROM `admin`");
-					while($row = $result->fetch_assoc()) {
-						$count++;
-					}
-                echo $count;
-				?> Registered Administrator</span>
-                      <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                        <i class="fas fa-minus"></i>
-                      </button>
-                      <button type="button" class="btn btn-tool" data-card-widget="remove">
-                        <i class="fas fa-times"></i>
-                      </button>
-                    </div>
-                  </div>
-                  <!-- /.card-header -->
-                  <div class="card-body p-0">
-                    <ul class="users-list clearfix">
-                      <li>
-                        <img src="Assets/zuhair.jpg" height="128px"width="128px"class="img-circle elevation-2" alt="User Image">
-                        <a class="users-list-name" href="#">Zuhair Isyraq</a>
-                        <span class="users-list-date">Leader</span>
-                      </li>
-                      <li>
-                        <img src="Assets/shah.jpg" height="128px"width="128px"class="img-circle elevation-2" alt="User Image">
-                        <a class="users-list-name" href="#">Shah Eq'mal</a>
-                        <span class="users-list-date">Programmer</span>
-                      </li>
-                      <li>
-                        <img src="Assets/danish.jpg" height="128px"width="128px"class="img-circle elevation-2" alt="User Image">
-                        <a class="users-list-name" href="#">Danish</a>
-                        <span class="users-list-date">Graphic Designer</span>
-                      </li>
-                      <li>
-                        <img src="Assets/abid.jpg" height="128px"width="140px"class="img-circle elevation-2" alt="User Image">
-                        <a class="users-list-name" href="#">Abid</a>
-                        <span class="users-list-date">Documentation Manager</span>
-                      </li>
-                      <li>
-                        <img src="Assets/haziq.jpg" height="128px"width="128px"class="img-circle elevation-2" alt="User Image">
-                        <a class="users-list-name" href="#">Haziq</a>
-                        <span class="users-list-date">Documentation Writer</span>
-                      </li>
-                      <li>
-                        <img src="Assets/haiqal.jpg" height="128px"width="128px"class="img-circle elevation-2" alt="User Image">
-                        <a class="users-list-name" href="#">Haiqal</a>
-                        <span class="users-list-date">Documentation Analyst</span>
-                      </li>                   
-                    </ul>
-                    <!-- /.users-list -->
-                  </div>
-                  <!-- /.card-body -->
-                  <div class="card-footer text-center">
-                  </div>
-                  <!-- /.card-footer -->
-                </div>
-                <!--/.card -->
-              </div>
-              <!-- /.col -->
-</div>
-
-
-
-      </div><!--/. container-fluid -->
+            
+          </div>
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
-	
-    </div>
-    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
   </div>
   <!-- /.content-wrapper -->
 
@@ -1293,6 +1012,30 @@ $q=$_SESSION["Admin"];
 <script src="COMSTAR_INTERFACE_FIRST_SPRINT/AdminLTE-3.1.0/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="COMSTAR_INTERFACE_FIRST_SPRINT/AdminLTE-3.1.0/dist/js/pages/dashboard3.js"></script>
+
+
 </body>
+<script>
+function verifyPassword() {  
+  var pw = document.getElementById("password").value; 
+  var cf= document.getElementById("confirm").value;
+  if(pw !== cf) {  
+     document.getElementById("message").innerHTML = "**Passwords are not matched!";  
+     return false;  
+  } 
+   
+ //minimum password length validation  
+  if(pw.length < 8) {  
+     document.getElementById("message").innerHTML = "**Password length must be at least 8 characters";  
+     return false;  
+  }  
+  
+//maximum length of password validation  
+  if(pw.length > 15) {  
+     document.getElementById("message").innerHTML = "**Password length must not exceed 15 characters";  
+     return false;  
+  } 
+}  
+</script>
 </html>
 

@@ -243,9 +243,21 @@ $q=$_SESSION["Admin"];
                 </a>
               </li>
 			  <li class="nav-item">
-                <a href="./index.html" class="nav-link active">
+                <a href="./adminprogramme.php" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Programme</p>
+                </a>
+              </li>
+			  <li class="nav-item">
+                <a href="./adminattendance.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Admin Attendance</p>
+                </a>
+              </li>
+			  <li class="nav-item">
+                <a href="https://www.sandbox.paypal.com/activities/?fromDate=2021-09-21&toDate=2021-10-21" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Admin Payment</p>
                 </a>
               </li>
 			  <li class="nav-item">
@@ -894,7 +906,7 @@ $q=$_SESSION["Admin"];
     <section class="content">
       <div class="container-fluid">
         <div class="row" >
-          <div class="col-md-6">
+          <div class="col-md-7">
 
             <div class="card">
               <div class="card-header border-transparent">
@@ -922,20 +934,29 @@ $q=$_SESSION["Admin"];
 						<th>DATE</th>
 						<th>VENUE</th>
 						<th>FEE PRICE (RM)</th>
-						<th>STATUS</th>";
+						<th>STATUS</th>
+						<th>ATTENDANCE</th>";
 					if ($result->num_rows > 0) {
 						while($row = $result->fetch_assoc()) {
-						
+						$programme=$row["Name"];
 						echo "</tr></thead><tbody><tr><td>" 
 						.$row["Programme ID"]."</td><td>" 
 						.$row["Name"]."</td><td>" 
 						.$row["Date"]."</td><td>"
 						.$row["Venue"]."</td><td>"
 						.$row["Fee Price"]."</td><td>"
-						.$row["Status"]."</td></tr>";
+						.$row["Status"]."</td><td>"
+						.$row["Attendance"]."</td><td>"
+						."<form action='visible.php' method='post'>
+						  <input type='hidden' name='programme' value='$programme'>
+						  <button class='form-control' name='visibility' type='submit' value='Visible'>Visible</button>
+						  <button class='form-control' name='visibility' type='submit' value='Hidden'>Hidden</button>
+						  </form>
+						  </td></tr>";
 						}
 					} else{
 						echo "</tr></thead><tbody><tr><td>
+						No data</td><td>
 						No data</td><td>
 						No data</td><td>
 						No data</td><td>
@@ -954,7 +975,8 @@ $q=$_SESSION["Admin"];
               </div>
               <!-- /.card-body -->
               <div class="card-footer clearfix">
-                
+			  
+                <button onclick="window.print()">Generate Attendance Report</button>
               </div>
               <!-- /.card-footer -->
             </div>
@@ -964,7 +986,7 @@ $q=$_SESSION["Admin"];
             
           </div>
           <!-- /.col -->
-                   <div class="col-md-6">
+                   <div class="col-md-5">
             <div class="card">
               <div class="card-header p-2">
                 <ul class="nav nav-pills">

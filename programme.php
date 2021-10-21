@@ -9,7 +9,7 @@ session_start();
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>COMSTAR Portal User Profile</title>
+  <title>COMSTAR Portal Programme</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -97,14 +97,14 @@ if ($result->num_rows > 0) {
           <li><a class="nav-link scrollto" href="home.php#services">Services</a></li>
           <li><a class="nav-link scrollto " href="home.php#portfolio">Gallery</a></li>
           <li><a class="nav-link scrollto" href="home.php#team">Member</a></li>
-          <li class="dropdown"><a href="programme.php"><span>Programme</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown "><a class="nav-link scrollto active" href="#"><span>Programme</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="programme.php#UTM">UTM</a></li>
-              <li><a href="programme.php#COMSTAR">COMSTAR</a></li>
-              <li><a href="programme.php#Public">Public</a></li>
+              <li><a href="#UTM">UTM</a></li>
+              <li><a href="#COMSTAR">COMSTAR</a></li>
+              <li><a href="#Public">Public</a></li>
             </ul>
           </li>
-		 <li class="dropdown"><a class="nav-link scrollto active" href="#"><span>Profile</span> <i class="bi bi-chevron-down"></i></a>
+		 <li class="dropdown"><a class="nav-link scrollto" href="#"><span>Profile</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
                <li><center><b><?php echo $name; ?></b></center></li>
                <li><a class="nav-link scrollto" href="profile.php">View Profile</a></li>
@@ -129,107 +129,177 @@ if ($result->num_rows > 0) {
 
         <ol>
           <li><a href="home.php">Home</a></li>
-          <li>Profile</li>
+          <li>Programme</li>
         </ol>
-        <h2>Profile</h2>
+        <h2>Programme</h2>
 
       </div>
     </section><!-- End Breadcrumbs -->
 
     <!-- ======= Blog Section ======= -->
-    <section id="blog" class="blog">
+	<section id="Joined" class="blog">
       <div class="container" data-aos="fade-up">
-
-        <div class="row">
-
-          <div class="col-lg-8 entries">
-
-            <article class="entry">
-
-              <div class="entry-img">
-                <center><img class="avatar" alt="Avatar" 
-				  <?php 
-				  $con = new mysqli("localhost","root","","comstar_portal");
-				  $result=mysqli_query($con,"SELECT * FROM `login` WHERE Email='$q'");
-				  if ($result->num_rows > 0) {
-				  while($row = $result->fetch_assoc()) {
-				  $image=$row["Image"];
-						
-		}
-	}
-					echo 'src="Profile Picture/'.$image.'.png" >'?> </center>
-              </div>
-
-              <div class="entry-content">
+	  <h1>Joined</h1>
+       
+			  <div class="row">
+		
                 <?php
-				$con = new mysqli("localhost","root","","comstar_portal");
-				$result=mysqli_query($con,"SELECT * FROM `login` WHERE Email='$q'");
+				$result=mysqli_query($con,"SELECT * FROM `list` WHERE Student='$q'");
 				if ($result->num_rows > 0) {
 					while($row = $result->fetch_assoc()) {
-						echo "Name						&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:" .$row["Name"];
-						echo "<br>Email					&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:" .$row["Email"];
-						echo "<br>Matric Number			&nbsp;&nbsp;&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:" .$row["Matric Number"];
-						echo "<br>Password				&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:" .$row["Password"];
-						echo "<br>Verification			&nbsp;&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:" .$row["Verification"];
-						echo "<br>User Type				&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:" .$row["User Type"];
+							   echo '<div class="col-lg-3 entries">
+							   <article class="entry">
+							   <div class="entry-content">';
+						echo "Name:<p style='color:purple;'>" .$row["Programme"] ."<br></p>";
+						echo "Date:<p style='color:purple;'>" .$row["Date"] ."<br></p>";
+						echo "Venue:<p style='color:purple;'>" .$row["Venue"] ."<br></p>";
+						echo "Fee Price:<p style='color:purple;'>RM" .$row["Fee Price"] ."<br></p>";
+						echo "Status:<p style='color:purple;'>" .$row["Status"] ."<br></p>";
+						$name=$row["Programme"];
+							$result1=mysqli_query($con,"SELECT * FROM `programme` WHERE Name='$name'");
+							if ($result1->num_rows > 0) {
+							while($row = $result1->fetch_assoc()) {
+								echo "Attendance:<p style='color:purple;'>" .$row["Attendance"] ."<br></p>";
+							$stat=$row["Attendance"];
+							$programme=$row["Name"];
+							echo "<form action='attendance.php' method='post'>
+							<input type='hidden' name='programme' value='$programme'>
+							<button $stat name='attend' type='submit' value='Present'>Attend</button><br><br>
+							  </form>
+							  <form action='https://www.sandbox.paypal.com/cgi-bin/webscr' method='post' target='_top'>
+								<input type='hidden' name='cmd' value='_s-xclick'>
+								<input type='hidden' name='hosted_button_id' value='49N77PA82NTY8'>
+								<input type='image' src='https://www.sandbox.paypal.com/en_US/i/btn/btn_paynow_SM.gif' border='0' name='submit' alt='PayPal - The safer, easier way to pay online!'>
+								<img alt='' border='0' src='https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif' width='1' height='1'>
+								</form>";
+
+								}
+							}
+						echo "</div></article></div>";
+						}
+					}else {
+						echo '<div class="col-lg-12 entries">
+							   <article class="entry">
+							   <div class="entry-content">';
+						echo "<center>You have not joined any programme:(</center>";
+						echo "</div></article></div>";
+						}
+
+				?>
+              </div>       
+           
+          </div><!-- End blog entries list -->
+
+        </div>
+
+      </div>
+    </section><!-- End Blog Section -->
+	
+    <section id="UTM" class="blog">
+      <div class="container" data-aos="fade-up">
+	  <h1>UTM</h1>
+
+       
+			  <div class="row">
+		
+                <?php
+				$result=mysqli_query($con,"SELECT * FROM `programme` WHERE Status='Open To UTM'");
+				if ($result->num_rows > 0) {
+					while($row = $result->fetch_assoc()) {
+							   echo '<div class="col-lg-3 entries">
+							   <article class="entry">
+							   <div class="entry-content">';
+						echo "Name:<p style='color:red;'>" .$row["Name"] ."<br></p>";
+						echo "Date:<p style='color:red;'>" .$row["Date"] ."<br></p>";
+						echo "Venue:<p style='color:red;'>" .$row["Venue"] ."<br></p>";
+						echo "Fee Price:<p style='color:red;'>RM" .$row["Fee Price"] ."<br></p>";
+						echo "Status:<p style='color:red;'>" .$row["Status"] ."<br></p>";
+						$name=$row["Name"];
+						echo "<form action='registerprogramme.php' method='post'>
+							  <button name='register' type='submit' value='$name'>Register</button>
+							  </form>";
+						echo "</div></article></div>";						
 						}
 					}
 
 				?>
-              </div>
-
-            </article><!-- End blog entry -->          
+				
+              </div>       
            
           </div><!-- End blog entries list -->
 
-          <div class="col-lg-4">
+        </div>
 
-            <div class="sidebar">
+      </div>
+    </section><!-- End Blog Section -->
+	
+	<section id="COMSTAR" class="blog">
+      <div class="container" data-aos="fade-up">
+	  <h1>COMSTAR</h1>
+       
+			  <div class="row">
+		
+                <?php
+				$result=mysqli_query($con,"SELECT * FROM `programme` WHERE Status='Open To COMSTAR'");
+				if ($result->num_rows > 0) {
+					while($row = $result->fetch_assoc()) {
+							   echo '<div class="col-lg-3 entries">
+							   <article class="entry">
+							   <div class="entry-content">';
+						echo "Name:<p style='color:green;'>" .$row["Name"] ."<br></p>";
+						echo "Date:<p style='color:green;'>" .$row["Date"] ."<br></p>";
+						echo "Venue:<p style='color:green;'>" .$row["Venue"] ."<br></p>";
+						echo "Fee Price:<p style='color:green;'>RM" .$row["Fee Price"] ."<br></p>";
+						echo "Status:<p style='color:green;'>" .$row["Status"] ."<br></p>";
+						$name=$row["Name"];
+						echo "<form action='registerprogramme.php' method='post'>
+							  <button name='register' type='submit' value='$name'>Register</button>
+							  </form>";
+						echo "</div></article></div>";
+						}
+					}
 
-              <h3 class="sidebar-title">User Dashboard</h3>
-<button class="collapsible">Request Verification</button>
-<div class="content">
-<br>
-<form action="requestverify.php" method="post">
-<input class="text" placeholder="Enter Matric Number" required name="matric_number">
-<input type="submit"value="Enter">
-</form>
-<br>
-</div><br>
-<button class="collapsible">Update Profile Details</button>
-<div class="content">
-<br>
-<form action="updateprofile.php" method="post">
-<input class="text" placeholder="Enter Name" required name="name">
-<input type="submit"value="Update">
-</form>
-<br>
-</div><br>
-<button class="collapsible">Update Profile Picture</button>
-<div class="content">
-<br>
-<form action="userpicture.php" method="post" enctype="multipart/form-data">
-Select image to upload:
-  <input type="file" required name="fileToUpload" id="fileToUpload">
-  <input type="submit" value="Update" name="submit">
-</form>
-<br>
-</div><br>
-<button class="collapsible">Change Password</button>
-<div class="content">
-<br>
-<form action="changeuserpassword.php" method="post" onsubmit="return verifyPassword()">
-<input class="password" id="password" placeholder="Enter New Password" required name="password">
-<input class="password" id="confirm" placeholder="Confirm New Password" required name="confirm"><br>
-<input type="submit"value="Change">
-</form>
-<br>
-</div><br>
-              
+				?>
+              </div>       
+           
+          </div><!-- End blog entries list -->
 
-            </div><!-- End sidebar -->
+        </div>
 
-          </div><!-- End blog sidebar -->
+      </div>
+    </section><!-- End Blog Section -->
+	
+	<section id="Public" class="blog">
+      <div class="container" data-aos="fade-up">
+	  <h1>Public</h1>
+       
+			  <div class="row">
+		
+                <?php
+				$con = new mysqli("localhost","root","","comstar_portal");
+				$result=mysqli_query($con,"SELECT * FROM `programme` WHERE Status='Open To Public'");
+				if ($result->num_rows > 0) {
+					while($row = $result->fetch_assoc()) {
+							   echo '<div class="col-lg-3 entries">
+							   <article class="entry">
+							   <div class="entry-content">';
+						echo "Name:<p style='color:blue;'>" .$row["Name"] ."<br></p>";
+						echo "Date:<p style='color:blue;'>" .$row["Date"] ."<br></p>";
+						echo "Venue:<p style='color:blue;'>" .$row["Venue"] ."<br></p>";
+						echo "Fee Price:<p style='color:blue;'>RM" .$row["Fee Price"] ."<br></p>";
+						echo "Status:<p style='color:blue;'>" .$row["Status"] ."<br></p>";
+						$name=$row["Name"];
+						echo "<form action='registerprogramme.php' method='post'>
+							  <button name='register' type='submit' value='$name'>Register</button>
+							  </form>";
+						echo "</div></article></div>";
+						}
+					}
+
+				?>
+              </div>       
+           
+          </div><!-- End blog entries list -->
 
         </div>
 

@@ -76,28 +76,18 @@ b {
           <li><a class="nav-link scrollto" href="#services">Services</a></li>
           <li><a class="nav-link scrollto " href="#portfolio">Gallery</a></li>
           <li><a class="nav-link scrollto" href="#team">Member</a></li>
-          <li class="dropdown"><a href="#"><span>Programme</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="programme.php"><span>Programme</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="#">Comstar AGM</a></li>
-              <li class="dropdown"><a href="#"><span>Workshop</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="#">Adobe Photoshop</a></li>
-                  <li><a href="#">Adobe Premiere</a></li>
-                  <li><a href="#">Adobe After Effects</a></li>
-                  <li><a href="#">Framework Website</a></li>
-                  <li><a href="#">Data Cloud</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Comsport</a></li>
-              <li><a href="#">Comstarian Days</a></li>
-              <li><a href="#">Hackathon</a></li>
+              <li><a href="programme.php#UTM">UTM</a></li>
+              <li><a href="programme.php#COMSTAR">COMSTAR</a></li>
+              <li><a href="programme.php#Public">Public</a></li>
             </ul>
           </li>
 		  <li class="dropdown"><a href="#"><span>Profile</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
                <li><center><b><?php echo $name; ?></b></center></li>
                <li><a class="nav-link scrollto" href="profile.php">View Profile</a></li>
-			   <li><a class="nav-link scrollto" href="#">View Payment History</a></li>
+			   <li><a class="nav-link scrollto" href="https://www.sandbox.paypal.com/myaccount/transactions/?free_text_search=&filter_id=&currency=ALL&issuance_product_name=&asset_names=&asset_symbols=&type=&status=&start_date=2021-07-23&end_date=2021-10-21">View Payment History</a></li>
 			   <li><a class="nav-link scrollto" href="admin.php">View Admin</a></li>
                <li><a class="nav-link scrollto" href="logout.php">Logout</a></li>
             </ul>
@@ -200,7 +190,7 @@ b {
 
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
             <div class="icon-box">
-			  <a href="">
+			  <a href="programme.php">
               <div class="icon"><i class="bx bx-calendar-star"></i></div>
               <h4 class="title">Programme</a></h4>
               <p class="description">View ongoing and upcoming programme available to join. Browse anonymously or simply sign in and register!</p>
@@ -481,7 +471,20 @@ b {
                 <li>COMSTARIAN Day</li>
               </ul>
               <div class="btn-wrap">
-                <a href="#" class="btn-buy">Pay Now</a>
+                <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+				<input type="hidden" name="cmd" value="_s-xclick">
+				<input type="hidden" name="hosted_button_id" value="UQ2JUVGPN7BAG">
+				<table>
+				<tr><td><input type="hidden" name="on0" value="Category">Category</td></tr><tr><td><select name="os0">
+					<option value="Male">Male RM90.00 MYR</option>
+					<option value="Female">Female RM100.00 MYR</option>
+				</select> </td></tr>
+				</table>
+				<input type="hidden" name="currency_code" value="MYR">
+				<input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_paynow_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+				<img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+				</form>
+
               </div>
             </div>
           </div>
@@ -498,7 +501,20 @@ b {
                 <li class="na">COMSTARIAN Day</li>
               </ul>
               <div class="btn-wrap">
-                <a href="#" class="btn-buy">Pay Now</a>
+                <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+				<input type="hidden" name="cmd" value="_s-xclick">
+				<input type="hidden" name="hosted_button_id" value="6YZVGAHT8E5SJ">
+				<table>
+				<tr><td><input type="hidden" name="on0" value="Category">Category</td></tr><tr><td><select name="os0">
+					<option value="Male">Male RM60.00 MYR</option>
+					<option value="Female">Female RM70.00 MYR</option>
+				</select> </td></tr>
+				</table>
+				<input type="hidden" name="currency_code" value="MYR">
+				<input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_paynow_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+				<img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+				</form>
+
               </div>
             </div>
           </div>
@@ -515,7 +531,20 @@ b {
                 <li class="na">COMSTARIAN Day</li>
               </ul>
               <div class="btn-wrap">
-                <a href="#" class="btn-buy">Pay Now</a>
+                <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+				<input type="hidden" name="cmd" value="_s-xclick">
+				<input type="hidden" name="hosted_button_id" value="VR5MXSNQEX9Q4">
+				<table>
+				<tr><td><input type="hidden" name="on0" value="Category">Category</td></tr><tr><td><select name="os0">
+					<option value="Male">Male RM30.00 MYR</option>
+					<option value="Female">Female RM35.00 MYR</option>
+				</select> </td></tr>
+				</table>
+				<input type="hidden" name="currency_code" value="MYR">
+				<input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_paynow_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+				<img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+				</form>
+
               </div>
             </div>
           </div>

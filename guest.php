@@ -70,26 +70,16 @@ b {
           <li><a class="nav-link scrollto" href="#services">Services</a></li>
           <li><a class="nav-link scrollto " href="#portfolio">Gallery</a></li>
           <li><a class="nav-link scrollto" href="#team">Member</a></li>
-          <li class="dropdown"><a href="#"><span>Programme</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="programmeguest.php"><span>Programme</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="#">Comstar AGM</a></li>
-              <li class="dropdown"><a href="#"><span>Workshop</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="#">Adobe Photoshop</a></li>
-                  <li><a href="#">Adobe Premiere</a></li>
-                  <li><a href="#">Adobe After Effects</a></li>
-                  <li><a href="#">Framework Website</a></li>
-                  <li><a href="#">Data Cloud</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Comsport</a></li>
-              <li><a href="#">Comstarian Days</a></li>
-              <li><a href="#">Hackathon</a></li>
+              <li><a href="programmeguest.php#UTM">UTM</a></li>
+              <li><a href="programmeguest.php#COMSTAR">COMSTAR</a></li>
+              <li><a href="programmeguest.php#Public">Public</a></li>
             </ul>
           </li>
 		  <li><a href="login.html">Login</a></li>
 		  <li><a href="blog.html">Forum</a></li>
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <li><a class="nav-link scrollto" href="guest.php#contact">Contact</a></li>
 		  
           
         </ul>
@@ -186,7 +176,7 @@ b {
 
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
             <div class="icon-box">
-			  <a href="">
+			  <a href="programmeguest.php">
               <div class="icon"><i class="bx bx-calendar-star"></i></div>
               <h4 class="title">Programme</a></h4>
               <p class="description">View ongoing and upcoming programme available to join. Browse anonymously or simply sign in and register!</p>
@@ -467,7 +457,7 @@ b {
                 <li>COMSTARIAN Day</li>
               </ul>
               <div class="btn-wrap">
-                <a href="#" class="btn-buy">Pay Now</a>
+                <a href="login.html" class="btn-buy">Pay Now</a>
               </div>
             </div>
           </div>
@@ -484,7 +474,7 @@ b {
                 <li class="na">COMSTARIAN Day</li>
               </ul>
               <div class="btn-wrap">
-                <a href="#" class="btn-buy">Pay Now</a>
+                <a href="login.html" class="btn-buy">Pay Now</a>
               </div>
             </div>
           </div>
@@ -501,7 +491,7 @@ b {
                 <li class="na">COMSTARIAN Day</li>
               </ul>
               <div class="btn-wrap">
-                <a href="#" class="btn-buy">Pay Now</a>
+                <a href="login.html" class="btn-buy">Pay Now</a>
               </div>
             </div>
           </div>

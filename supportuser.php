@@ -97,21 +97,11 @@ if ($result->num_rows > 0) {
           <li><a class="nav-link scrollto" href="home.php#services">Services</a></li>
           <li><a class="nav-link scrollto " href="home.php#portfolio">Gallery</a></li>
           <li><a class="nav-link scrollto" href="home.php#team">Member</a></li>
-          <li class="dropdown"><a href="#"><span>Programme</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="programme.php"><span>Programme</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="#">Comstar AGM</a></li>
-              <li class="dropdown"><a href="#"><span>Workshop</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="#">Adobe Photoshop</a></li>
-                  <li><a href="#">Adobe Premiere</a></li>
-                  <li><a href="#">Adobe After Effects</a></li>
-                  <li><a href="#">Framework Website</a></li>
-                  <li><a href="#">Data Cloud</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Comsport</a></li>
-              <li><a href="#">Comstarian Days</a></li>
-              <li><a href="#">Hackathon</a></li>
+              <li><a href="programme.php#UTM">UTM</a></li>
+              <li><a href="programme.php#COMSTAR">COMSTAR</a></li>
+              <li><a href="programme.php#Public">Public</a></li>
             </ul>
           </li>
 		 <li class="dropdown"><a class="nav-link scrollto active" href="#"><span>Profile</span> <i class="bi bi-chevron-down"></i></a>

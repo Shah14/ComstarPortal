@@ -249,6 +249,18 @@ $q=$_SESSION["Admin"];
                 </a>
               </li>
 			  <li class="nav-item">
+                <a href="./adminattendance.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Admin Attendance</p>
+                </a>
+              </li>
+			  <li class="nav-item">
+                <a href="https://www.sandbox.paypal.com/activities/?fromDate=2021-09-21&toDate=2021-10-21" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Admin Payment</p>
+                </a>
+              </li>
+			  <li class="nav-item">
                 <a href="./admintechnical.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Technical Support</p>
