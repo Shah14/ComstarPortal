@@ -112,7 +112,7 @@ if ($result->num_rows > 0) {
                <li><a class="nav-link scrollto" href="logout.php">Logout</a></li>
             </ul>
           </li>
-		  <li><a href="blog.html">Forum</a></li>
+		  <li><a href="forum.php">Forum</a></li>
           <li><a class="nav-link scrollto" href="home.php#contact">Contact</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>

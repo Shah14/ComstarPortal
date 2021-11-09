@@ -18,6 +18,7 @@ session_start();
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <!-- Vendor CSS Files -->
   <link href="COMSTAR_INTERFACE_FIRST_SPRINT/Home/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -58,7 +59,68 @@ b {
   text-align: justify;
   text-justify: inter-word;
 }
+* {
+  box-sizing: border-box;
+}
+/* Create four equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 20%;
+}
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+/* Header/Logo Title */
+.header {
+  padding: 60px;
+  text-align: center;
+  background: black;
+  color: white;
+  font-size: 30px;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active1 {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: 0.6} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: 0.6} 
+  to {opacity: 1}
+}
+.align-right {
+  text-align: right;
+}
+
+
 </style>
+
 <body>
 
   <!-- ======= Header ======= -->
@@ -92,7 +154,7 @@ b {
                <li><a class="nav-link scrollto" href="logout.php">Logout</a></li>
             </ul>
           </li>
-		  <li><a href="blog.html">Forum</a></li>
+		  <li><a href="forum.php">Forum</a></li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
 		  
           
@@ -251,14 +313,56 @@ b {
 
     <!-- ======= Cta Section ======= -->
 
-    <section id="cta" class="cta">
-      <div class="container">
+    <section id="cta" class="blog">
+	 <div class="section-title">
+          <h2>Advertisements</h2>
+          <h3>Check out our <span>Advertisements</span></h3>
+          <p>View promotions and offers provided by COMSTAR members.</p>
+        </div>
+	<div class="container">
 
         <div class="text-center">
-          <h3>WORK IN PROGRESS</h3>
-          <p> Advertisement Section in construction.</p>
-          <a class="cta-btn" href="#">Open Up The Sky</a>
-        </div>
+          
+<div class="slideshow-container">
+
+<?php
+$con = new mysqli("localhost","root","","comstar_portal");
+$result=mysqli_query($con,"SELECT * FROM `advertisement` ");
+$count=0;
+if ($result->num_rows > 0) {
+  while($row = $result->fetch_assoc()) {
+	  $count=$count+1;
+echo "<div class='mySlides fade'>";
+
+	  
+	  echo "<div class='header'>";
+	  echo "<h1>".$row["Title"]."</h1>";
+	  echo "<p>".$row["Description"]."</p>";
+							
+
+					
+	  echo "<div class='align-right'>
+	  <a href='' class='btn-learn-more'>Learn More</a>
+	  </div>
+	  
+	</div>
+	</div>";
+  }
+}
+?>
+
+</div>
+
+<br>
+
+<div style="text-align:center">
+  <span hidden class="dot"></span> 
+  <span hidden class="dot"></span> 
+  <span hidden class="dot"></span>
+  <span hidden class="dot"></span> 
+  <span hidden class="dot"></span>
+</div>
+	</div>
 
       </div>
     </section><!-- End Cta Section -->
@@ -910,7 +1014,35 @@ b {
 
   <!-- Template Main JS File -->
   <script src="COMSTAR_INTERFACE_FIRST_SPRINT/Home/assets/js/main.js"></script>
+<script>
+var slideIndex = 0;
+showSlides();
 
+function showSlides() {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}    
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+  setTimeout(showSlides, 2000); // Change image every 2 seconds
+}
+window.onscroll = function() {myFunction()};
+
+function myFunction() {
+  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  var scrolled = (winScroll / height) * 100;
+  document.getElementById("myBar").style.width = scrolled + "%";
+}
+</script>
 </body>
 
 </html>

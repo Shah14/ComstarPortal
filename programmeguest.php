@@ -85,12 +85,12 @@ $con = new mysqli("localhost","root","","comstar_portal");
 
       <nav id="navbar" class="navbar">
        <ul>
-          <li><a class="nav-link scrollto active" href="guest.php#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="guest.php#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="guest.php#about">About</a></li>
           <li><a class="nav-link scrollto" href="guest.php#services">Services</a></li>
-          <li><a class="nav-link scrollto " href="guest.php#portfolio">Gallery</a></li>
+          <li><a class="nav-link scrollto" href="guest.php#portfolio">Gallery</a></li>
           <li><a class="nav-link scrollto" href="guest.php#team">Member</a></li>
-          <li class="dropdown"><a href="programmeguest.php"><span>Programme</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a class="nav-link scrollto active" href="programmeguest.php"><span>Programme</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="programmeguest.php#UTM">UTM</a></li>
               <li><a href="programmeguest.php#COMSTAR">COMSTAR</a></li>
@@ -98,7 +98,7 @@ $con = new mysqli("localhost","root","","comstar_portal");
             </ul>
           </li>
 		  <li><a href="login.html">Login</a></li>
-		  <li><a href="blog.html">Forum</a></li>
+		  <li><a href="forumguest.php">Forum</a></li>
           <li><a class="nav-link scrollto" href="guest.php#contact">Contact</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
