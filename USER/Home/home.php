@@ -41,7 +41,7 @@ session_start();
 <?php
 if(isset($_SESSION["login"]) === true){
 }else{
-	header("Location: login.html");
+	header("Location: ../../ACCOUNT/LOGIN/login.html");
 }
 print_r($_SESSION);
 $q=$_SESSION["User"];
