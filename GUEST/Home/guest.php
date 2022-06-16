@@ -13,7 +13,7 @@ session_start();
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link rel="icon" href="../../Assets/logo.png">
+  <link rel="icon" href="../../assets/logo/logo.png">
   <link href="../../COMSTAR_INTERFACE_FIRST_SPRINT/Home/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -40,7 +40,7 @@ session_start();
 <?php
 if(isset($_SESSION["guest"]) === true){
 }else{
-	header("Location: login.html");
+	header("Location: ../../ACCOUNT/LOGIN/login.php");
 }
 print_r($_SESSION);
 $q=$_SESSION["guest"];
@@ -73,6 +73,7 @@ b {
   background: black;
   color: white;
   font-size: 30px;
+  border-style:inset;
 }
 
 /* The dots/bullets/indicators */
@@ -93,23 +94,38 @@ b {
 /* Fading animation */
 .fade {
   -webkit-animation-name: fade;
-  -webkit-animation-duration: 1.5s;
+  -webkit-animation-duration: 0.5s;
   animation-name: fade;
-  animation-duration: 1.5s;
+  animation-duration: 5.5s;
 }
 
 @-webkit-keyframes fade {
-  from {opacity: 0.6} 
+  from {opacity: 0.4} 
   to {opacity: 1}
 }
 
 @keyframes fade {
-  from {opacity: 0.6} 
+  from {opacity: 0.4} 
   to {opacity: 1}
 }
 .align-right {
   text-align: right;
 }
+body {
+  background-color: white;
+  color: black;
+}
+
+.dark-mode {
+  background-color: #404040;
+  color: black;
+}
+.img-fluid {
+	max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 </style>
 <body>
 
@@ -128,16 +144,44 @@ b {
           <li><a class="nav-link scrollto" href="#services">Services</a></li>
           <li><a class="nav-link scrollto " href="#portfolio">Gallery</a></li>
           <li><a class="nav-link scrollto" href="#team">Member</a></li>
-          <li class="dropdown"><a href="../Programme/programmeguest.php"><span>Programme</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="../Programme/programme_guest.php"><span>Programme</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="../Programme/programmeguest.php#UTM">UTM</a></li>
-              <li><a href="../Programme/programmeguest.php#COMSTAR">COMSTAR</a></li>
-              <li><a href="../Programme/programmeguest.php#Public">Public</a></li>
+              <li><a href="../Programme/programme_guest.php#UTM">UTM</a></li>
+              <li><a href="../Programme/programme_guest.php#COMSTAR">COMSTAR</a></li>
+              <li><a href="../Programme/programme_guest.php#Public">Public</a></li>
             </ul>
           </li>
-		  <li><a href="../../ACCOUNT/LOGIN/login.html">Login</a></li>
-		  <li><a href="../Forum/forumguest.php">Forum</a></li>
+		  <li><a href="../../ACCOUNT/LOGIN/login.php">Login</a></li>
+		  <li><a href="../Forum/forum_guest.php">Forum</a></li>
           <li><a class="nav-link scrollto" href="../Home/guest.php#contact">Contact</a></li>
+		   <style>
+			body {
+			  background-color: white;
+			  color: black;
+			}
+
+			.dark-mode {
+			  background-color: #404040;
+			  color: black;
+			}
+			</style>
+			<li><button class="btn btn-danger" data-toggle="button" aria-pressed="false" autocomplete="off" onclick="Function()"><i class="bi bi-moon"></i>Dark Mode</button></li>
+			<li><br><div id="google_translate_element"></div></li>
+
+			<script type="text/javascript">
+			function googleTranslateElementInit() {
+			  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+			}
+			</script>
+
+			<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+			<script>
+			function Function() {
+			   var element = document.body;
+			   element.classList.toggle("dark-mode");
+			}
+			</script>
 		  
           
         </ul>
@@ -150,7 +194,7 @@ b {
   <!-- ======= Hero Section ======= -->
   <section id="hero">
     <div class="hero-container">
-      <h3>Welcome <strong>COMSTARIANS !</strong></h3>
+      <h3>Welcome <strong><?php echo $_SESSION["User"]; ?> !</strong></h3>
       <h1>COMSTAR PORTAL</h1>
       <h2>Get upcoming updates on our programme and event!</h2>
       <a href="#about" class="btn-get-started scrollto">Get Started</a>
@@ -196,7 +240,7 @@ b {
 			  UTM practices its own core value; Integrity, Synergy, Excellence and Sustainability. UTM is located 
 			  both in Kuala Lumpur, the capital city of Malaysia and Johor Bahru, the southern  city in Malaysia.
             </p>
-            <a href="https://www.utm.my/about/" class="btn-learn-more">Learn More</a>
+            <a target="_blank" href="https://www.utm.my/about/" class="btn-learn-more">Learn More</a>
           </div>
         </div>
 
@@ -234,7 +278,7 @@ b {
 
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
             <div class="icon-box">
-			  <a href="../Programme/programmeguest.php">
+			  <a href="../Programme/programme_guest.php">
               <div class="icon"><i class="bx bx-calendar-star"></i></div>
               <h4 class="title">Programme</a></h4>
               <p class="description">View ongoing and upcoming programme available to join. Browse anonymously or simply sign in and register!</p>
@@ -255,7 +299,7 @@ b {
 		<div class="row">
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
             <div class="icon-box">
-			  <a href="">
+			  <a href="../Forum/forum_guest.php">
               <div class="icon"><i class="bx bx-group"> </i></div>
               <h4 class="title">Forum</a></h4>
               <p class="description">Engage with other users in the community or browse informational posts.</p>
@@ -282,7 +326,7 @@ b {
 
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
             <div class="icon-box">
-			  <a href="../Support/supportguest.php">
+			  <a href="../Support/support_guest.php">
               <div class="icon"><i class="bx bx-support"> </i></div>
               <h4 class="title">Technical Support</a></h4>
               <p class="description">Found bugs? Glitches? Nonsense from your auntie? Report them here.</p>
@@ -309,28 +353,22 @@ b {
 
 <?php
 $con = new mysqli("localhost","root","","comstar_portal");
-$result=mysqli_query($con,"SELECT * FROM `advertisement` ");
+$result=mysqli_query($con,"SELECT * FROM `advertisement`WHERE Visibility='Visible' ");
 $count=0;
 if ($result->num_rows > 0) {
   while($row = $result->fetch_assoc()) {
 	  $count=$count+1;
 echo "<div class='mySlides fade'>";
 
-	  
-	  echo "<div class='header'>";
-	  echo "<h1>".$row["Title"]."</h1>";
-	  echo "<p>".$row["Description"]."</p>";
+	  echo "<a href='".$row["Link"]."'target='_blank'><img src='../../assets/advertisement/".$row["Banner"]."'style='width:100%'></a>";
+	  echo $row["Title"];
 							
 
 					
-	  echo "<div class='align-right'>
-	  <a href='' class='btn-learn-more'>Learn More</a>
-	  </div>
-	  
-	</div>
+	  echo "
 	</div>";
   }
-}
+}else echo "<h1>No <span>Advertisement</span> available at the moment</h1>";
 ?>
 
 </div>
@@ -358,113 +396,42 @@ echo "<div class='mySlides fade'>";
           <h3>Check our <span>Gallery</span></h3>
           <p>View pictures and photographic memories from our past programme and events.</p>
         </div>
-
-        <div class="row">
+		<div class="row">
           <div class="col-lg-12 d-flex justify-content-center">
             <ul id="portfolio-flters">
               <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-app">2021</li>
-              <li data-filter=".filter-card">2020</li>
-              <li data-filter=".filter-web">2019</li>
+			  <?php
+						$con = new mysqli("localhost","root","","comstar_portal");
+						$result=mysqli_query($con,"SELECT DISTINCT Year FROM `homepage` WHERE ID<>'1'");
+							while($row = $result->fetch_assoc()) {
+								echo "<li data-filter='.filter-".$row["Year"]."'>".$row["Year"]."</li>";
+							}
+							?>
             </ul>
           </div>
         </div>
 
         <div class="row portfolio-container">
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app filter-1">
-            <img src="../../COMSTAR_INTERFACE_FIRST_SPRINT/Home/assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>COMSPORT</h4>
-              <p>2021</p>
-              <a href="../../COMSTAR_INTERFACE_FIRST_SPRINT/Home/assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="COMSPORT 2021"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app filter-1">
-            <img src="../../COMSTAR_INTERFACE_FIRST_SPRINT/Home/assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>COMSTARIAN Day</h4>
-              <p>2021</p>
-              <a href="../../COMSTAR_INTERFACE_FIRST_SPRINT/Home/assets/img/portfolio/portfolio-2.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="COMSTARIAN Day 2021"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app filter-1">
-            <img src="../../COMSTAR_INTERFACE_FIRST_SPRINT/Home/assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>COMSTAR AGM</h4>
-              <p>2021</p>
-              <a href="../../COMSTAR_INTERFACE_FIRST_SPRINT/Home/assets/img/portfolio/portfolio-3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="COMSTAR AGM 2021"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card filter-1">
-            <img src="../../COMSTAR_INTERFACE_FIRST_SPRINT/Home/assets/img/portfolio/portfolio-4.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>COMSPORT</h4>
-              <p>2020</p>
-              <a href="../../COMSTAR_INTERFACE_FIRST_SPRINT/Home/assets/img/portfolio/portfolio-4.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="COMSPORT 2020"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card filter-1">
-            <img src="../../COMSTAR_INTERFACE_FIRST_SPRINT/Home/assets/img/portfolio/portfolio-5.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>COMSTARIAN Day</h4>
-              <p>2020</p>
-              <a href="../../COMSTAR_INTERFACE_FIRST_SPRINT/Home/assets/img/portfolio/portfolio-5.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="COMSTARIAN Day 2020"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card filter-1">
-            <img src="../../COMSTAR_INTERFACE_FIRST_SPRINT/Home/assets/img/portfolio/portfolio-6.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>COMSTAR AGM</h4>
-              <p>2020</p>
-              <a href="../../COMSTAR_INTERFACE_FIRST_SPRINT/Home/assets/img/portfolio/portfolio-6.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="COMSTAR AGM 2020"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web filter-1">
-            <img src="../../COMSTAR_INTERFACE_FIRST_SPRINT/Home/assets/img/portfolio/portfolio-7.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Adobe Photoshop Workshop</h4>
-              <p>2019</p>
-              <a href="../../COMSTAR_INTERFACE_FIRST_SPRINT/Home/assets/img/portfolio/portfolio-7.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Adobe Photoshop Workshop 2019"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web filter-1">
-            <img src="../../COMSTAR_INTERFACE_FIRST_SPRINT/Home/assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Hackathon</h4>
-              <p>2019</p>
-              <a href="../../COMSTAR_INTERFACE_FIRST_SPRINT/Home/assets/img/portfolio/portfolio-8.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Hackathon 2019"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web filter-1">
-            <img src="../../COMSTAR_INTERFACE_FIRST_SPRINT/Home/assets/img/portfolio/portfolio-9.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Framework Workshop</h4>
-              <p>2019</p>
-              <a href="../../COMSTAR_INTERFACE_FIRST_SPRINT/Home/assets/img/portfolio/portfolio-9.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Framework Workshop 2019"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
+						<?php
+						$con = new mysqli("localhost","root","","comstar_portal");
+						$result=mysqli_query($con,"SELECT * FROM `homepage` WHERE ID<>'1' ORDER BY Year DESC");
+							while($row = $result->fetch_assoc()) {
+								$id=$row["ID"];
+								
+								echo"
+								<div class='col-lg-4 col-md-6 portfolio-item filter-".$row["Year"]." filter-1'>
+								<img src='../../assets/event/".$row["Image"]."'class='img-fluid' alt=''>
+								<div class='portfolio-info'>
+								  <h4>".$row["About"]."</h4>
+								  <p>".$row["Year"]."</p>
+								  <a href='../../assets/event/".$row["Image"]."' data-gallery='portfolioGallery' class='portfolio-lightbox preview-link' title='".$row["About"]."'><i class='bi bi-zoom-in'></i></a>
+								</div>
+							  </div>";
+								
+							}
+						?>
 
         </div>
-		
-		
 
       </div>
     </section><!-- End Portfolio Section -->
@@ -486,44 +453,37 @@ echo "<div class='mySlides fade'>";
 		  <div class="col-lg-4 col-md-6 portfolio-item filter-app filter-1">
 		  <iframe width="420" height="345" src="https://www.youtube.com/embed/_rr1jJJuztQ" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="COMSPORT 2021"><i class="bx bx-plus"></i>>
 		  </iframe>
-            <div class="portfolio-info">
-            </div>
+
           </div>
 
 		  <div class="col-lg-4 col-md-6 portfolio-item filter-app filter-1">
 		  <iframe width="420" height="345" src="https://www.youtube.com/embed/JJbvIAiJe-0" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="COMSPORT 2021"><i class="bx bx-plus"></i>>
 		  </iframe>
-            <div class="portfolio-info">
-            </div>
+
           </div>
 		  
 		  <div class="col-lg-4 col-md-6 portfolio-item filter-app filter-1">
 		  <iframe width="420" height="345" src="https://www.youtube.com/embed/iiyctdcgMWo" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="COMSPORT 2021"><i class="bx bx-plus"></i>>
 		  </iframe>
-            <div class="portfolio-info">
-            </div>
+
           </div>
 		  
 		  <div class="col-lg-4 col-md-6 portfolio-item filter-app filter-1">
 		  <iframe width="420" height="345" src="https://www.youtube.com/embed/ELwNmy5u_Ug" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="COMSPORT 2021"><i class="bx bx-plus"></i>>
 		  </iframe>
-            <div class="portfolio-info">
-            </div>
+
           </div>
 
 		  <div class="col-lg-4 col-md-6 portfolio-item filter-app filter-1">
 		  <iframe width="420" height="345" src="https://www.youtube.com/embed/nJM4W7KcAfA" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="COMSPORT 2021"><i class="bx bx-plus"></i>>
 		  </iframe>
-            <div class="portfolio-info">
-              
-            </div>
+
           </div>
 
 		  <div class="col-lg-4 col-md-6 portfolio-item filter-app filter-1">
 		  <iframe width="420" height="345" src="https://www.youtube.com/embed/02RhnrLjTGQ" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="COMSPORT 2021"><i class="bx bx-plus"></i>>
 		  </iframe>
-            <div class="portfolio-info">
-            </div>
+
           </div>	
 		  
         </div>
@@ -557,7 +517,7 @@ echo "<div class='mySlides fade'>";
                 <li>COMSTARIAN Day</li>
               </ul>
               <div class="btn-wrap">
-                <a href="../../ACCOUNT/LOGIN/login.html" class="btn-buy">Pay Now</a>
+                <a href="../../ACCOUNT/LOGIN/login.php" class="btn-buy"> Login to Pay Now</a>
               </div>
             </div>
           </div>
@@ -574,7 +534,7 @@ echo "<div class='mySlides fade'>";
                 <li class="na">COMSTARIAN Day</li>
               </ul>
               <div class="btn-wrap">
-                <a href="../../ACCOUNT/LOGIN/login.html" class="btn-buy">Pay Now</a>
+                <a href="../../ACCOUNT/LOGIN/login.php" class="btn-buy">Login to Pay Now</a>
               </div>
             </div>
           </div>
@@ -591,7 +551,7 @@ echo "<div class='mySlides fade'>";
                 <li class="na">COMSTARIAN Day</li>
               </ul>
               <div class="btn-wrap">
-                <a href="../../ACCOUNT/LOGIN/login.html" class="btn-buy">Pay Now</a>
+                <a href="../../ACCOUNT/LOGIN/login.php" class="btn-buy">Login to Pay Now</a>
               </div>
             </div>
           </div>
@@ -675,125 +635,71 @@ echo "<div class='mySlides fade'>";
     <section id="team" class="team">
       <div class="container">
 
-        <div class="section-title">
+                <div class="section-title">
           <h2>Member</h2>
           <h3>Our Hardworking <span>COMSTAR Committee</span></h3>
           <p>These are the responsible committee members that administers and manage the COMSTAR Club and its activities.</p>
         </div>
-
         <div class="row">
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member">
-              <div class="member-img">
-                <img src="../../Assets/zuhair.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>Zuhair Isyraq</h4>
-                <span>Leader</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member">
-              <div class="member-img">
-                <img src="../../Assets/shah.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info" >
-                <h4>Shah Eq'mal</h4>
-                <span>Back-End Programmer</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member">
-              <div class="member-img">
-                <img src="../../Assets/danish.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>Danish Haqime</h4>
-                <span>Front-End Programmer</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member">
-              <div class="member-img">
-                <img src="../../Assets/abid.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>Nik Nur Abid</h4>
-                <span>Documentation</span>
-              </div>
-            </div>
-          </div>
-		  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-		  <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member">
-              <div class="member-img">
-                <img src="../../Assets/haziq.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>Muhammad Haziq</h4>
-                <span>Documentation</span>
-              </div>
-            </div>
-          </div>
-		  
-		  <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member">
-              <div class="member-img">
-                <img src="../../Assets/haiqal.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>Muhammad Haiqal</h4>
-                <span>Documentation</span>
-              </div>
-            </div>
-          </div>
+<?php
+          
+                
+						$con = new mysqli("localhost","root","","comstar_portal");
+						$result=mysqli_query($con,"SELECT * FROM `committee` WHERE `Role`='Club Advisor' ");
+							while($row = $result->fetch_assoc()) {
+								$image=$row["Picture"];
+								
+								echo"
+								<center>
+								<div class='col-lg-3 col-md-6 d-flex align-items-stretch'>
+									<div class='member'>
+									  <div class='member-img'>
+											<img src='../../COMSTAR Committee/MT BARU/".$image."' class='img-fluid' alt=''>
+										<div class='social'>
+										  <a target='_blank' href='".$row["Link 1"]."'><i class='bi bi-".$row["Social 1"]."'></i></a>
+										  <a target='_blank' href='".$row["Link 2"]."'><i class='bi bi-".$row["Social 2"]."'></i></a>
+										  <a target='_blank' href='".$row["Link 3"]."'><i class='bi bi-".$row["Social 3"]."'></i></a>
+										  <a target='_blank' href='".$row["Link 4"]."'><i class='bi bi-".$row["Social 4"]."'></i></a>
+										</div>
+									  </div>
+									  <div class='member-info' >
+										<h4>".$row["Name"]."</h4>
+										<span class='users-list-date'>".$row["Role"]."</span>
+									  </div>
+									</div>
+								  </div>
+								  </center>";
+							}
+						$result=mysqli_query($con,"SELECT * FROM `committee` WHERE `Role`<>'Club Advisor' ");
+							while($row = $result->fetch_assoc()) {
+								$image=$row["Picture"];
+								
+								echo"
+								<div class='col-lg-3 col-md-6 d-flex align-items-stretch'>
+									<div class='member'>
+									  <div class='member-img'>
+											<img src='../../COMSTAR Committee/MT BARU/".$image."' class='img-fluid' alt=''>
+										<div class='social'>
+										  <a target='_blank' href='".$row["Link 1"]."'><i class='bi bi-".$row["Social 1"]."'></i></a>
+										  <a target='_blank' href='".$row["Link 2"]."'><i class='bi bi-".$row["Social 2"]."'></i></a>
+										  <a target='_blank' href='".$row["Link 3"]."'><i class='bi bi-".$row["Social 3"]."'></i></a>
+										  <a target='_blank' href='".$row["Link 4"]."'><i class='bi bi-".$row["Social 4"]."'></i></a>
+										</div>
+									  </div>
+									  <div class='member-info' >
+										<h4>".$row["Name"]."</h4>
+										<span class='users-list-date'>".$row["Role"]."</span>
+									  </div>
+									</div>
+								  </div>";
+								
+							}
+						?>
 
         </div>
 
       </div>
+
     </section><!-- End Team Section -->
 
     <!-- ======= Contact Section ======= -->
@@ -806,10 +712,7 @@ echo "<div class='mySlides fade'>";
           <p>Have any enquiries? Suggestions? Want to tell someone about your grandparents' stories? Do submit them here. Maybe not the grandparents' stories.</p>
         </div>
 
-        <div>
-          <iframe style="border:0; width: 100%; height: 270px;" src="https://www.google.com/maps/place/UTM+Kuala+Lumpur/@3.1729407,101.7187344,17z/data=!3m1!4b1!4m5!3m4!1s0x31cc37e8de0a443f:0x9e772d5b7ac66d27!8m2!3d3.1729407!4d101.7209231" frameborder="0" allowfullscreen></iframe>
-        </div>
-
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3983.7040982064905!2d101.71935451475741!3d3.1723942476901215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc37e8de0a443f%3A0x9e772d5b7ac66d27!2sUTM%20Kuala%20Lumpur!5e0!3m2!1sen!2smy!4v1640920073992!5m2!1sen!2smy" width="100%" height="400px" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         <div class="row mt-5">
 
           <div class="col-lg-4">
@@ -823,13 +726,7 @@ echo "<div class='mySlides fade'>";
               <div class="email">
                 <i class="bi bi-envelope"></i>
                 <h4>Email:</h4>
-                <p>info@example.com</p>
-              </div>
-
-              <div class="phone">
-                <i class="bi bi-phone"></i>
-                <h4>Call:</h4>
-                <p>+60 10 5890509s</p>
+                <p>utmklcomstar@gmail.com</p>
               </div>
 
             </div>
@@ -838,7 +735,7 @@ echo "<div class='mySlides fade'>";
 
           <div class="col-lg-8 mt-5 mt-lg-0">
 
-            <form action="" method="post" role="form" class="php-email-form">
+            <form action="contact_process.php" method="post" role="form">
               <div class="row">
                 <div class="col-md-6 form-group">
                   <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
@@ -853,12 +750,7 @@ echo "<div class='mySlides fade'>";
               <div class="form-group mt-3">
                 <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
               </div>
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
+              <div class="text-center"><button class="btn btn-danger" type="submit">Send</button></div>
             </form>
 
           </div>
@@ -883,8 +775,7 @@ echo "<div class='mySlides fade'>";
                 Jalan Sultan Yahya Petra<br>
                 54100, Kuala Lumpur<br>
                 Malaysia <br><br>
-                <strong>Phone:</strong> +60 10 5890509<br>
-                <strong>Email:</strong> info@example.com<br>
+                <strong>Email:</strong> utmklcomstar@gmail.com<br>
             </p>
           </div>
 
@@ -894,7 +785,7 @@ echo "<div class='mySlides fade'>";
               <li><i class="bx bx-chevron-right"></i> <a href="#hero">Home</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#about">About us</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#services">Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="../../ACCOUNT/SIGNUP/Terms and Condition.html">Terms of service</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a target='_blank' href="../../ACCOUNT/SIGNUP/Terms and Condition.html">Terms of service</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
             </ul>
           </div>
@@ -902,20 +793,12 @@ echo "<div class='mySlides fade'>";
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>&emsp;</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="https://www.utm.my/">UTM</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="https://en.wikipedia.org/wiki/University_of_Technology_Malaysia">Wikipedia</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="https://sso.utm.my/login">MyUTM</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="https://utmspace.blackboard.com/">Blackboard</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="https://www.topuniversities.com/">QS Top University</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a target='_blank' href="https://www.utm.my/">UTM</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a target='_blank' href="https://en.wikipedia.org/wiki/University_of_Technology_Malaysia">Wikipedia</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a target='_blank' href="https://sso.utm.my/login">MyUTM</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a target='_blank' href="https://utmspace.blackboard.com/">Blackboard</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a target='_blank' href="https://www.topuniversities.com/">QS Top University</a></li>
             </ul>
-          </div>
-
-          <div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4>Join Our Community</h4>
-            <p>Subscribe to our newsletter to get updates and information regarding COMSTAR Club</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
-            </form>
           </div>
 
         </div>
@@ -937,11 +820,10 @@ echo "<div class='mySlides fade'>";
         </div>
       </div>
       <div class="social-links text-center text-md-right pt-3 pt-md-0">
-        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+        <a target='_blank' href="https://www.facebook.com/COMSTAR.UTMKL/" class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a target='_blank' href="https://www.instagram.com/comstar.utmkl/?hl=en" class="instagram"><i class="bx bxl-instagram"></i></a>
+		<a target='_blank' href="https://www.youtube.com/channel/UCkagvAQ9G15bj63Z9CUYL_g?view_as=subscriber" class="youtube"><i class="bx bxl-youtube"></i></a>
+		<a target='_blank' href="https://t.me/officialcomstar" class="telegram"><i class="bx bxl-telegram"></i></a>
       </div>
     </div>
   </footer><!-- End Footer -->

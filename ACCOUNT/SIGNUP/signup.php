@@ -1,21 +1,24 @@
 <?php
+session_start();
 $con = new mysqli("localhost","root","","comstar_portal");
 
 if ($con->connect_error) {
   die("Connection failed: " . $con->connect_error);
 }
 
-$sql="INSERT INTO `login`(`Email`,`Password`,`Name`,`Verification`,`User Type`,`Matric Number`,`Image`) 
-VALUES('$_POST[email]',MD5('$_POST[pass]'),'User','Unverified','Public','None','default')";
+$sql="INSERT INTO `login`(`Email`,`Password`,`Full Name`,`Name`,`Verification`,`User Type`,`Matric Number`,`Image`) 
+VALUES('$_POST[email]',MD5('$_POST[pass]'),'$_POST[fname]','$_POST[name]','Unverified','Public','None','default.png')";
 
 if (!mysqli_query($con,$sql)){
-	echo "This user already signed up!";
-	return;
-}echo "You have successfully signed up!";
+	$_SESSION["Alert"] = "Account creation failed!"; //for alert 
+}else{
+	$_SESSION["Alert"] = "Account creation successful!"; //for alert 
+}header("Location: ../login/login.php");
+
 mysqli_close($con);
 ?>
 <html>
-<head><link rel="icon" href="Assets/logo.png"></head>
+<head><link rel="icon" href="assets/logo/logo.png"></head>
 <body>
 <button onclick="document.location='../../USER/Home/home.php'">Log In</button>
 </body>

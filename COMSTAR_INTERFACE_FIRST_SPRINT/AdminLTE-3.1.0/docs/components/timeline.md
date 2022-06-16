@@ -33,7 +33,7 @@ The timeline component displays an event history. You can use it for description
       <!-- Placement of additional controls. Optional -->
       <div class="timeline-footer">
         <a class="btn btn-primary btn-sm">Read more</a>
-        <a class="btn btn-danger btn-sm">Delete</a>
+        <a class="btn btn-danger btn-sm"><i class='fas fa-trash'></i> Delete</a>
       </div>
     </div>
   </div>
