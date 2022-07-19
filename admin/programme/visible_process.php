@@ -7,7 +7,7 @@ if ($con->connect_error) {
 }
 session_start();
 $q=$_SESSION["Admin"];
-$sql="UPDATE `programme`SET `Attendance`='$_POST[visibility]',`Date Updated`=now() WHERE Name='$_POST[programme]'";
+$sql="UPDATE `programme`SET `Attendance`='$_POST[visibility]',`Date Updated`=now() WHERE `Programme ID`='$_POST[id]'";
 
 
 if (!mysqli_query($con,$sql)){

@@ -13,17 +13,25 @@
 
 <?php $forum = "active"; ?>
 
-<?php 
+<body class="hold-transition sidebar-mini">
 
-if(isset($_GET["name"])){
-  $body = "onload='flash()'";
-}else{
-  $body = " ";
-}
-
-?>
-
-<body <?php echo $body ?> class="hold-transition sidebar-mini">
+  <?php
+  if(isset($_GET["name"])){
+    echo "
+    <script>
+      function flash(){
+        setTimeout(function(){
+          const queryString = window.location.search;
+          const urlParams = new URLSearchParams(queryString);
+          const name = urlParams.get('name')
+          document.getElementById(name).classList.remove('blink_me');
+          console.log(name)
+        }, 5000)
+      }
+      flash();
+    </script>";
+  }
+  ?>
 
 <div class="wrapper">
   
@@ -76,10 +84,25 @@ if(isset($_GET["name"])){
                   </center>
                   <table id="example2" class="table m-0">	
                     <?php
-                    $result=mysqli_query($con,"SELECT * FROM `forum` LEFT JOIN login ON forum.Poster=login.Email LEFT JOIN admin ON forum.Poster=admin.Email");
+                    $result=mysqli_query($con,"SELECT *, 
+                                               admin.Image AS 'admin_image', 
+                                               login.Image AS 'user_image', 
+                                               admin2.Name AS 'admin_name2', 
+                                               login2.`Full Name` AS 'user_name2', 
+                                               admin2.Image AS 'admin_image2', 
+                                               login2.Image AS 'user_image2',
+                                               admin2.`User Type` AS 'admin_type2', 
+                                               login2.`User Type` AS 'user_type2'
+                                               FROM `forum` 
+                                               LEFT JOIN login ON forum.Poster=login.Email 
+                                               LEFT JOIN admin ON forum.Poster=admin.Email 
+                                               LEFT JOIN login AS login2 ON `User Update`=login2.Email 
+                                               LEFT JOIN admin AS admin2 ON `User Update`=admin2.Email 
+                                               ORDER BY `Date Updated` DESC");
                     ?>
                     <thead>
                       <tr>
+                        <th>#</th>
                         <th>TITLE</th>
                         <th>LAST UPDATED</th>
                         <th>POSTED</th>
@@ -93,17 +116,31 @@ if(isset($_GET["name"])){
                     <tbody>
                     <?php
                       if ($result->num_rows > 0) {
+                        $no = 0;
                         while($row = $result->fetch_assoc()) {
+                            $no++;
                             $title=$row["Title"];
                             $desc=$row["Description"];
                             $id=$row["Post ID"];
                             if($row["Poster"] == $q){
                               $poster = "<span hidden>aaaaaaaaaaaaaaaaaa</span>Me";
                               $color = "#28a745";
-                              
+                            }else if($row["Poster Type"] == "Admin"){
+                              $poster = $row["Poster"];
+                              $color = "#dc3545";
                             }else{
                               $poster = $row["Poster"];
                               $color = "#007bff";
+                            }
+                            if($row["User Update"] == $q){
+                              $updater = "Me";
+                              $update_color = "#28a745";
+                            }else if($row["admin_type2"] != NULL){
+                              $updater = $row["admin_name2"];
+                              $update_color = "#dc3545";
+                            }else{
+                              $updater = $row["user_name2"];
+                              $update_color = "#007bff";
                             }
                             $class = " ";
                             if(isset($_GET['name'])){
@@ -113,15 +150,43 @@ if(isset($_GET["name"])){
                                 $class = " ";
                               }
                             }
+                            if($row["Poster Type"]=="Admin"){
+                              $poster_image = $row["admin_image"];
+                            }else{
+                              $poster_image = $row["user_image"];
+                            }
+                            if($row["admin_type2"]!=NULL){
+                              $updater_image = $row["admin_image2"];
+                            }else{
+                              $updater_image = $row["user_image2"];
+                            }
                     ?>
                       <tr id="<?php echo $row["Title"]." ".$row["Date Updated"]?>"<?php echo $class ?>>
+                        <td><?php echo $no?></td>
                         <td><?php echo $row["Title"]?></td>
-                        <td><span hidden><?php echo $row["Date Updated"]?></span><?php echo get_time_ago(strtotime($row["Date Updated"])) ?></td>
-                        <td><span hidden><?php echo $row["Date"]?></span><?php echo get_time_ago(strtotime($row["Date"])) ?></td>
-                        <td><span style="color:<?php echo $color ?>"><?php echo $poster?></span> on <?php echo date("l, j/m/Y",strtotime($row["Date"]))?></td>
-                        <td><?php echo $row["Upvote"]?></td>
-                        <td><?php echo $row["Report"]?></td>
-                        <td><?php echo $row["Replies"]?></td>
+                        <td>
+                          <span hidden><?php echo $row["Date Updated"]?></span>
+                          <div class="user-block">
+                              <img class="img-circle img-bordered-sm" src="../../assets/profile picture/<?php echo $updater_image?>" alt="user image">
+                              <span class="username">
+                               <?php echo $row["Action Update"] ?> <a style="color:<?php echo $update_color?>"><?php echo $updater ?></a> 
+                              </span>
+                              <span class="description"><?php echo get_time_ago(strtotime($row["Date Updated"]),"long") ?></span>
+                            </div>
+                        </td>
+                        <td><span hidden><?php echo $row["Date"]?></span><?php echo  date("j F Y",strtotime($row["Date"])) ?></td>
+                        <td style="width:30%">
+                            <div class="user-block">
+                              <img class="img-circle img-bordered-sm" src="../../assets/profile picture/<?php echo $poster_image?>" alt="user image">
+                              <span class="username">
+                                <a style="color:<?php echo $color?>"><?php echo $poster ?></a>
+                              </span>
+                              <span class="description"><?php echo get_time_ago(strtotime($row["Date"]),"long") ?></span>
+                            </div>
+                          </td>
+                        <td><span class="badge badge-primary"><i class='fas fa-thumbs-up'></i> <?php echo $row["Upvote"]?> </span></td>
+                        <td><span class="badge badge-danger"><i class='fas fa-bullhorn'></i> <?php echo $row["Report"]?> </span></td>
+                        <td><span class="badge badge-success"><i class='fas fa-comment-dots'></i> <?php echo $row["Replies"]?> </span></td>
                         <td style='text-align:center'>
                           <a href='view_post.php?id=<?php echo $id ?>'>
                             <button class='btn btn-outline-danger' style='width:90px;margin-bottom:1%'><i class='fas fa-book-open'></i> View</button>
@@ -138,17 +203,6 @@ if(isset($_GET["name"])){
                       </tr>
                     <?php
                       }
-                    }else{
-                    ?>
-                      <tr>
-                        <td>No data</td>
-                        <td>No data</td>
-                        <td>No data</td>
-                        <td>No data</td>
-                        <td>No data</td>
-                        <td>No data</td>
-                      <tr>
-                    <?php
                     }
                     ?>                  
                     </tbody>

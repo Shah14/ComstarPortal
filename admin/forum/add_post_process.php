@@ -16,8 +16,8 @@ if ($result->num_rows > 0) {
 		$name=$row["Name"];		
 		}
 	}
-$sql="INSERT INTO `forum`(`Title`,`Description`,`Date`,`Poster`,`Poster Type`) 
-VALUES('$_POST[title]','$_POST[about]',now(),'$q','Admin')";
+$sql="INSERT INTO `forum`(`Title`,`Description`,`Date`,`Poster`,`Poster Type`,`User Update`,`Action Update`) 
+VALUES('$_POST[title]','$_POST[about]',now(),'$q','Admin', '$q', 'Posted By')";
 
 if (!mysqli_query($con,$sql)){
 }header("Location: admin_forum.php?name=$_POST[title] ".date('Y-m-d H:i:s')."");

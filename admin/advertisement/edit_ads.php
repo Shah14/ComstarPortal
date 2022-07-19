@@ -59,9 +59,15 @@
 									while($row = $result->fetch_assoc()) {
 										$id=$row["ID"];
 										$title=$row["Title"];
+										$image=$row["Banner"];
+
 								?>
 								<div class='card-body'>
 									<div class='tab-content'>
+										<div class="text-center">
+											<img src='../../assets/advertisement/<?php echo $row["Banner"] ?>' id="changeImage" style='border: 1px solid #ddd;border-radius: 4px;padding: 5px;width:500px;height:200px'>
+										</div>
+										<br>
 										<div class='active tab-pane' id='update'>
 											<form id="edit_ads" action='../advertisement/edit_ads_process.php' method='post'>
 												<div class='form-group row'>
@@ -88,13 +94,12 @@
 													<div class='offset-sm-2 col-sm-10'>
 														<button hidden id="edit">Test</button>
                           								<button onclick="validateForm('Are you sure?','Do you want to update this advertisement?','info','edit','edit_ads')" type='button' class='btn btn-danger'><i class='fas fa-pen'></i> Edit</button>
+														<button type='reset' class='btn btn-danger'><i class='fas fa-rotate-left'></i> Reset</button>
 													</div>
 												</div>
 											</form>
 										</div>
-												
 										<div class='tab-pane' id='image'>
-											<img src='../../assets/advertisement/<?php echo $row["Banner"] ?>'style='width:100%'>
 											<div class='alert alert-warning' role='alert'>
 												<center>
 													<i class='fa fa-exclamation-circle'></i>Important! Please select image with dimension of 1200x400! 
@@ -121,6 +126,7 @@
 													<div class='offset-sm-2 col-sm-10'>
 														<button hidden id="edit2">Test</button>
                           								<button onclick="validateForm('Are you sure?','Do you want to update this advertisement?','info','edit2','edit_banner')" type='button' class='btn btn-danger'><i class='fas fa-pen'></i> Edit</button>
+														<button type='reset' onclick="test()" class='btn btn-danger'><i class='fas fa-rotate-left'></i> Reset</button>
 													</div>
 												</div>
 											</form>
@@ -173,6 +179,16 @@
     }
   }
 
+  fileToUpload_edit2.onchange = evt => {
+  const [file] =fileToUpload_edit2.files
+    if (file) {
+      changeImage.src = URL.createObjectURL(file)
+    }
+  }
+
+  function test(){
+    document.getElementById("changeImage").src = "../../assets/advertisement/<?php echo $image ?>";
+  }
 </script>
 
 <?php require '../include/script.php';?>

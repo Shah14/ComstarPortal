@@ -61,23 +61,47 @@
                   <table id='example1' class='table m-0'>
                     <thead>
                         <tr>
-                          <th>E-MAIL</th>
-                          <th>STUDENT</th>
-                          <th>ATTEND STATUS</th>
+                          <th>PARTICIPANT</th>
                           <th>LAST UPDATED</th>
+                          <th>TIME UPDATED</th>
+                          <th>MATRIC NUMBER</th>
+                          <th>USER TYPE</th>
+                          <th>ATTEND STATUS</th>
                         </tr>
                     </thead>
                     <tbody>
                     <?php
-                    $result=mysqli_query($con,"SELECT * FROM `list` WHERE `Programme ID`='$id'");
+                    $result=mysqli_query($con,"SELECT * FROM `list` LEFT JOIN login ON list.Student = login.Email WHERE `Programme ID`='$id'");
                     if ($result->num_rows > 0) {
                       while($row = $result->fetch_assoc()) {
+                        if($row["Attend Status"] == "Present"){
+                          $badge = "success";
+                        }else{
+                          $badge = "warning";
+                        }
+                        if($row["User Type"]=="COMSTARIAN"){
+                          $type_badge = "dark";
+                        }else if($row["User Type"]=="UTM Student"){
+                          $type_badge = "danger";
+                        }else{
+                          $type_badge = "primary";
+                        }
                     ?>
                     <tr>
-                      <td><?php echo $row["Student"] ?></td>
-                      <td><?php echo $row["Name"] ?></td>
-                      <td><?php echo $row["Attend Status"] ?></td>
-                      <td><?php echo $row["Present Time"] ?></td>
+                      <td style="width:30%">
+                            <div class="user-block">
+                              <img class="img-circle img-bordered-sm" src="../../assets/profile picture/<?php echo $row["Image"]?>" alt="user image">
+                              <span class="username">
+                                <a href="#"><?php echo $row["Full Name"] ?></a>
+                              </span>
+                              <span class="description"><?php echo $row["Email"] ?></span>
+                            </div>
+                          </td>
+                      <td><span hidden><?php echo $row["Present Time"]?></span><span class="badge badge-success"><?php echo get_time_ago(strtotime($row["Present Time"]),"long") ?></span></td>
+                      <td><span hidden><?php echo $row["Present Time"]?></span><?php echo  date("j F Y h:i a",strtotime($row["Present Time"])) ?></td>
+                      <td><?php echo $row["Matric Number"] ?></td>
+                      <td><span class="badge badge-<?php echo $type_badge?>"><?php echo $row["User Type"] ?></span></td>
+                      <td><span class="badge badge-pill badge-<?php echo $badge ?>"><?php echo $row["Attend Status"] ?></span></td>
                     </tr>
                     <?php
                       }

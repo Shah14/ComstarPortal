@@ -14,20 +14,31 @@
 <?php
 if(isset($_GET["id"])){
   $tab = 'onload = changeTab("'.$_GET["id"].'")';
-  echo $tab;
 }else{
   $tab = "";
-}
-if(isset($_GET["name"])){
-  $body = ';flash()';
-}else{
-  $body = " ";
 }
 ?>
 
 <?php $edit = "active"; ?>
 
-<body <?php echo $tab,$body ?> class="hold-transition sidebar-mini">
+<body <?php echo $tab ?> class="hold-transition sidebar-mini">
+  <?php
+  if(isset($_GET["name"])){
+    echo "
+    <script>
+      function flash(){
+        setTimeout(function(){
+          const queryString = window.location.search;
+          const urlParams = new URLSearchParams(queryString);
+          const name = urlParams.get('name')
+          document.getElementById(name).classList.remove('blink_me');
+          console.log(name)
+        }, 5000)
+      }
+      flash();
+    </script>";
+  }
+  ?>
 
 <div class="wrapper">
   
@@ -92,10 +103,13 @@ if(isset($_GET["name"])){
               <div class="card-body">
                 <div class="tab-content" id="custom-tabs-one-tabContent">
                   <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="about-tab">
-                    <div class="d-flex justify-content-between">
-                      <h3 class="card-title">Edit About Us Section</h3>
-                      <h3 class="card-title">Last Updated : <span style="color:#007bff"><?php echo get_time_ago(strtotime($date)) ?></span></h3>
-                    </div>
+                    <div class="card-header">
+                        <h3 class="card-title">Edit About Us Section</h3>
+                        <div class="card-tools">
+                          <h3 class="card-title">Last Updated : <span style="color:#007bff"><span class="badge badge-success"><?php echo get_time_ago(strtotime($date),"long") ?></span></span></h3>
+                          
+                        </div>
+                      </div>
                     <div class="card-body">			 
                         <form id="edit_homepage" action="../Homepage/edit_homepage_process.php" class="form-horizontal" method="post">
                           <div class="form-group row">
@@ -137,7 +151,7 @@ if(isset($_GET["name"])){
                             <div class='col-lg-3 col-md-6 d-flex align-items-stretch'>
                               <div class='member'>
                                 <div class='member-img'>
-                                  <a href='add_image.php'><image src='../../assets/event/default.png' style='border: 1px solid #ddd;border-radius: 4px;padding: 5px;width: 350px;' alt='User Image'></a>
+                                  <a href='add_image.php'><image src='../../assets/event/default.png' style='border: 1px solid #ddd;border-radius: 4px;padding: 5px;width: 350px;height:200px' alt='User Image'></a>
                                 </div>
                                 <div class='member-info' >
                                   <center>
@@ -164,14 +178,14 @@ if(isset($_GET["name"])){
                                   <div class='member'>
                                     <div id="<?php echo $row['About']." ".$row["Date Updated"] ?>" class='member-img <?php echo $class1 ?>'>
                                       <a href='edit_image.php?id=<?php echo $id ?>'>
-                                        <img src='../../assets/event/<?php echo $row["Image"] ?>' style='border: 1px solid #ddd;border-radius: 4px;padding: 5px;width: 350px;' alt='User Image'>
+                                        <img src='../../assets/event/<?php echo $row["Image"] ?>' style='border: 1px solid #ddd;border-radius: 4px;padding: 5px;width: 350px;height:200px' alt='User Image'>
                                       </a>
-                                    </div>
-                                    <div class='member-info' >
-                                      <center>
-                                        <a class='users-list-name'><?php echo $row["About"] ?></a>
-                                        <span class='users-list-date'><?php echo $row["Year"] ?></span>
-                                      </center>
+                                      <div class='member-info' >
+                                        <center>
+                                          <a class='users-list-name'><?php echo $row["About"] ?></a>
+                                          <span class="badge badge-pill badge-primary"><?php echo $row["Year"] ?></span>
+                                        </center>
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
@@ -241,7 +255,7 @@ if(isset($_GET["name"])){
                                       <div class='member-info' >
                                           <center>
                                             <h1 class='users-list-name'><?php echo $row["About"] ?></h1>
-                                            <span class='users-list-date'><?php echo $row["Year"] ?></span>
+                                            <span class="badge badge-pill badge-primary"><?php echo $row["Year"] ?></span>
                                           </center>
                                         </div>
                                     </div>

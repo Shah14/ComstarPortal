@@ -105,11 +105,15 @@
                           </select>
                         </div>
                       </div>
+                      <div class="text-center">
+                        <img src='../../assets/programme/default.png' id="changeImage" style='border: 1px solid #ddd;border-radius: 4px;padding: 5px;width: 300px;height:400px'>
+                      </div>	
+                      <br>
                       <div class='alert alert-warning' role='alert'>
-                        <center>
+                      <div class="text-center">
                           <i class='fa fa-exclamation-circle'></i>Important! Please select image with dimension of 600x700!
                           <a href="https://www.iloveimg.com/resize-image" target="blank" >Resize image here!</a>
-                        </center>
+                      </div>
                       </div>
                       <div class='form-group row'>
 												<label for='fileToUpload_add_action' class='col-sm-2 col-form-label'>Select Image To Upload</label>
@@ -127,6 +131,7 @@
                         <div class="offset-sm-2 col-sm-10">
                           <button hidden id="add_action">Test</button>
                           <button onclick="validateForm('Are you sure?','Do you want to add this programme?','info','add_action','add_programme')" type='button' class='btn btn-danger'><i class='fas fa-plus-circle'></i> Add</button>
+                          <button type='reset' onclick="test()" class='btn btn-danger'><i class='fas fa-rotate-left'></i> Reset</button>
                         </div>
                       </div>
                     </form>
@@ -166,6 +171,16 @@
     }
   }
 
+  fileToUpload_add_action.onchange = evt => {
+  const [file] =fileToUpload_add_action.files
+    if (file) {
+      changeImage.src = URL.createObjectURL(file)
+    }
+  }
+
+  function test(){
+    document.getElementById("changeImage").src = "../../assets/programme/default.png";
+  }
 </script>
 
 <?php require '../include/script.php';?>

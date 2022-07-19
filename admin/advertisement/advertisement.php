@@ -15,14 +15,26 @@
 
 <?php
 
-if(isset($_GET["name"])){
-  $body = "onload='flash()'";
-}else{
-  $body = " ";
-}
-
 ?>
-<body <?php echo $body ?> class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini">
+  
+  <?php
+  if(isset($_GET["name"])){
+    echo "
+    <script>
+      function flash(){
+        setTimeout(function(){
+          const queryString = window.location.search;
+          const urlParams = new URLSearchParams(queryString);
+          const name = urlParams.get('name')
+          document.getElementById(name).classList.remove('blink_me');
+          console.log(name)
+        }, 5000)
+      }
+      flash();
+    </script>";
+  }
+  ?>
 
 <div class="wrapper">
   
@@ -76,6 +88,7 @@ if(isset($_GET["name"])){
                   <table id="example2" class="table m-0">	
                     <thead>
                       <tr>
+                        <th>#</th>
                         <th>TITLE</th>
                         <th>LAST UPDATED</th>
                         <th>DATE ADDED</th>
@@ -87,20 +100,24 @@ if(isset($_GET["name"])){
                     </thead>
                     <tbody>
                       <?php
-                      $result=mysqli_query($con,"SELECT * FROM `advertisement` ORDER BY ID");
+                      $result=mysqli_query($con,"SELECT * FROM `advertisement` ORDER BY `Date Updated` DESC");
                         if ($result->num_rows > 0) {
+                          $no = 0;
                           while($row = $result->fetch_assoc()) {
-                          $id=$row["ID"];
-                          if($row['Visibility']=="Hidden"){
-                            $value = "Visible";
-                            $icon = "eye";
-                            $text = "Show";
-                          }else{
-                            $value = "Hidden";
-                            $icon = "eye-slash";
-                            $text = "Hide";
-                          }
-                          $class = " ";
+                            $no++;
+                            $id=$row["ID"];
+                            if($row['Visibility']=="Hidden"){
+                              $value = "Visible";
+                              $icon = "eye";
+                              $text = "Show";
+                              $badge = "danger";
+                            }else{
+                              $value = "Hidden";
+                              $icon = "eye-slash";
+                              $text = "Hide";
+                              $badge = "success";
+                            }
+                            $class = " ";
                             if(isset($_GET['name'])){
                               if($_GET['name']==$row["Title"]." ".$row["Date Updated"] ){
                                 $class = "class='blink_me'";
@@ -110,14 +127,15 @@ if(isset($_GET["name"])){
                             }
                       ?>
                       <tr id="<?php echo $row["Title"]." ".$row["Date Updated"]  ?>" <?php echo $class ?>>
+                          <td><?php echo $no ?></td>
                           <td><?php echo $row["Title"] ?></td>
-                          <td><span hidden><?php echo $row["Date Updated"]?></span><?php echo get_time_ago(strtotime($row["Date Updated"])) ?></td>
-                          <td><span hidden><?php echo $row["Date"] ?></span><?php echo date("j/m/Y H:i:s",strtotime($row["Date"])) ?></td>
+                          <td><span hidden><?php echo $row["Date Updated"]?></span><span class="badge badge-success"><?php echo get_time_ago(strtotime($row["Date Updated"]),"long") ?></span></td>
+                          <td><span hidden><?php echo $row["Date"] ?></span><?php echo date("j F Y",strtotime($row["Date"])) ?></td>
                           <td>
                             <img src='../../assets/advertisement/<?php echo $row["Banner"]?>'style='border: 1px solid #ddd;border-radius: 4px;padding: 5px;width:500px;height:200px'>
                           </td>
-                          <td><?php echo $row["Link"] ?></td>
-                          <td><?php echo $row["Visibility"] ?></td>
+                          <td><small><a href="<?php echo $row["Link"] ?>"><u><?php echo $row["Link"] ?></u></a></small></td>
+                          <td><span class="badge badge-pill badge-<?php echo $badge?>"><?php echo $row["Visibility"] ?></span></td>
                           <td style='text-align:center'>
                               <a href="edit_ads.php?id=<?php echo $id ?>">
                                 <button class='btn btn-outline-danger form-control saiz'><i class='fas fa-pen'></i> Edit</button>
@@ -136,14 +154,8 @@ if(isset($_GET["name"])){
                       </tr>
                         <?php
                           }
-                        } else{
-                        ?>
-                            <tr>
-                              <td>No data</td>
-                            <tr>
-                          <?php
-                          }	
-                          ?>                  
+                        }
+                        ?>                  
                     </tbody>
                   </table>
                 </div>

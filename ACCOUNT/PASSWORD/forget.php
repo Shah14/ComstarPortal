@@ -1,27 +1,41 @@
-<?php
-session_start();
-$con = new mysqli("localhost","root","","comstar_portal");
+<?php require '../include/css.php';?>
 
-if ($con->connect_error) {
-  die("Connection failed: " . $con->connect_error);
-}
+<?php require '../include/config.php';?>
 
-
-$sql="UPDATE `login` SET `Password`=MD5('$_POST[pass]')
-WHERE `Email`='$_POST[email]'";
-
-$sql1="UPDATE `admin` SET `Password`=MD5('$_POST[pass]')
-WHERE `Email`='$_POST[email]'";
-
-if (!mysqli_query($con,$sql)){
-}header("Location: ../login/login.php");
-$_SESSION["Alert"] = "You have successfully reset the password!"; //for alert 
-$con->query($sql1);
-mysqli_close($con);
-?>
-<html>
-<head><link rel="icon" href="assets/logo/logo.png"></head>
-<body>
-<button onclick="document.location='../../USER/Home/home.php'">Log In</button>
+<body class="hold-transition login-page">
+<div class="login-box">
+  <div class="card card-outline card-primary">
+    <div class="card-header text-center">
+      <a href="../login/login.php" class="h1"><b>COMSTAR</b>Portal</a>
+    </div>
+    <div class="card-body">
+      <p class="login-box-msg">You forgot your password? Here you can easily reset your password.</p>
+      <form action="forget_process.php" id="quickForm" method="post">
+        <div class="input-group mb-3 form-group">
+          <input type="email" name="email" class="form-control" placeholder="Email">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary btn-block">Request new password</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+      <p class="mt-3 mb-1">
+        <a href="../login/login.php">Login</a>
+      </p>
+    </div>
+    <!-- /.login-card-body -->
+  </div>
+</div>
+<!-- /.login-box -->
 </body>
-</html>
+
+<?php require '../include/script.php';?>
+
+</html>  

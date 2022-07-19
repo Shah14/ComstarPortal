@@ -55,7 +55,9 @@
                   <div class='col-lg-3 col-md-6 d-flex align-items-stretch'>
                     <div class='member'>
                       <div class='member-img'>
-                        <a><img src='../../assets/video/default.png' width='100%'></a>
+                        <a>
+                          <iframe width='350' height='200' id="changeImage" src='https://www.youtube.com/embed/' data-gallery='portfolioGallery' class='portfolio-lightbox preview-link'><i class='bx bx-plus'></i></iframe>
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -79,7 +81,7 @@
 														<div class="input-group-prepend">
 															<span class="input-group-text"><i class="fas fa-calendar"></i></span>
 														</div>
-                            <input type='text' class='form-control' id="year_add" required name='year' placeholder='Example : 2022' oninvalid="this.setCustomValidity('Please Enter the Video Year')" oninput="this.setCustomValidity('')">
+                            <input type='number' min="2000" max="2100" step="1" class='form-control' id="year_add" required name='year' placeholder='Example : 2022' oninvalid="this.setCustomValidity('Please Enter the Video Year')" oninput="this.setCustomValidity('')">
                           </div>
                         </div>
                         <div class='form-group row'>
@@ -88,13 +90,14 @@
 														<div class="input-group-prepend">
 															<span class="input-group-text"><i class="fas fa-link"></i></span>
 														</div>
-                            <input type='text' class='form-control' id="video_add" required name='video' placeholder='Example : dQw4w9WgXcQ' oninvalid="this.setCustomValidity('Please Enter the Youtube Video ID')" oninput="this.setCustomValidity('')">
+                            <input type='text' onchange="changeThumbnail()" class='form-control' id="video_add" required name='video' placeholder='Example : dQw4w9WgXcQ' oninvalid="this.setCustomValidity('Please Enter the Youtube Video ID')" oninput="this.setCustomValidity('')">
                           </div>
                         </div>
                         <div class='form-group row'>
                           <div class='offset-sm-2 col-sm-10'>
                             <button hidden id="add">Test</button>
-                          <button onclick="validateForm('Are you sure?','Do you want to add this programme?','info','add','add_video')" type='button' class='btn btn-danger'><i class='fas fa-plus-circle'></i> Add</button>
+                            <button onclick="validateForm('Are you sure?','Do you want to add this programme?','info','add','add_video')" type='button' class='btn btn-danger'><i class='fas fa-plus-circle'></i> Add</button>
+                            <button type='reset' onclick="test()" class='btn btn-danger'><i class='fas fa-rotate-left'></i> Reset</button>
                           </div>
                         </div>
                       </form>
@@ -131,6 +134,13 @@
     }
   }
 
+  function changeThumbnail(){
+    document.getElementById("changeImage").src = 'https://www.youtube.com/embed/'+document.getElementById("video_add").value
+  }
+
+  function test(){
+    document.getElementById("changeImage").src = "https://www.youtube.com/embed/";
+  }
 </script>
 
 <?php require '../include/script.php';?>

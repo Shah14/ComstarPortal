@@ -1,41 +1,32 @@
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
-<script src="../../COMSTAR_INTERFACE_FIRST_SPRINT/AdminLTE-3.1.0/plugins/jquery/jquery.min.js"></script>
+<script src="../../template/AdminLTE-3.2.0/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap -->
-<script src="../../COMSTAR_INTERFACE_FIRST_SPRINT/AdminLTE-3.1.0/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../template/AdminLTE-3.2.0/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE -->
-<script src="../../COMSTAR_INTERFACE_FIRST_SPRINT/AdminLTE-3.1.0/dist/js/adminlte.js"></script>
+<script src="../../template/AdminLTE-3.2.0/dist/js/adminlte.js"></script>
 
-<!-- OPTIONAL SCRIPTS -->
-<script src="../../COMSTAR_INTERFACE_FIRST_SPRINT/AdminLTE-3.1.0/plugins/chart.js/Chart.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../../COMSTAR_INTERFACE_FIRST_SPRINT/AdminLTE-3.1.0/dist/js/demo.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="../../COMSTAR_INTERFACE_FIRST_SPRINT/AdminLTE-3.1.0/dist/js/pages/dashboard3.js"></script>
 <!-- SweetAlert2 -->
-<script src="../../COMSTAR_INTERFACE_FIRST_SPRINT/AdminLTE-3.1.0/plugins/sweetalert2/sweetalert2.min.js"></script>
+<script src="../../template/AdminLTE-3.2.0/plugins/sweetalert2/sweetalert2.min.js"></script>
 <!-- Toastr -->
-<script src="../../COMSTAR_INTERFACE_FIRST_SPRINT/AdminLTE-3.1.0/plugins/toastr/toastr.min.js"></script>
+<script src="../../template/AdminLTE-3.2.0/plugins/toastr/toastr.min.js"></script>
 <!-- bs-custom-file-input -->
-<script src="../../COMSTAR_INTERFACE_FIRST_SPRINT/AdminLTE-3.1.0/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../../COMSTAR_INTERFACE_FIRST_SPRINT/AdminLTE-3.1.0/dist/js/adminlte.min.js"></script>
-
+<script src="../../template/AdminLTE-3.2.0/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 
 <!-- DataTables  & Plugins -->
-<script src="../../COMSTAR_INTERFACE_FIRST_SPRINT/AdminLTE-3.1.0/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="../../COMSTAR_INTERFACE_FIRST_SPRINT/AdminLTE-3.1.0/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="../../COMSTAR_INTERFACE_FIRST_SPRINT/AdminLTE-3.1.0/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="../../COMSTAR_INTERFACE_FIRST_SPRINT/AdminLTE-3.1.0/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script src="../../COMSTAR_INTERFACE_FIRST_SPRINT/AdminLTE-3.1.0/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-<script src="../../COMSTAR_INTERFACE_FIRST_SPRINT/AdminLTE-3.1.0/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-<script src="../../COMSTAR_INTERFACE_FIRST_SPRINT/AdminLTE-3.1.0/plugins/jszip/jszip.min.js"></script>
-<script src="../../COMSTAR_INTERFACE_FIRST_SPRINT/AdminLTE-3.1.0/plugins/pdfmake/pdfmake.min.js"></script>
-<script src="../../COMSTAR_INTERFACE_FIRST_SPRINT/AdminLTE-3.1.0/plugins/pdfmake/vfs_fonts.js"></script>
-<script src="../../COMSTAR_INTERFACE_FIRST_SPRINT/AdminLTE-3.1.0/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-<script src="../../COMSTAR_INTERFACE_FIRST_SPRINT/AdminLTE-3.1.0/plugins/datatables-buttons/js/buttons.print.min.js"></script>
-<script src="../../COMSTAR_INTERFACE_FIRST_SPRINT/AdminLTE-3.1.0/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<script src="../../template/AdminLTE-3.2.0/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../../template/AdminLTE-3.2.0/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="../../template/AdminLTE-3.2.0/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="../../template/AdminLTE-3.2.0/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="../../template/AdminLTE-3.2.0/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="../../template/AdminLTE-3.2.0/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="../../template/AdminLTE-3.2.0/plugins/jszip/jszip.min.js"></script>
+<script src="../../template/AdminLTE-3.2.0/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="../../template/AdminLTE-3.2.0/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="../../template/AdminLTE-3.2.0/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="../../template/AdminLTE-3.2.0/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="../../template/AdminLTE-3.2.0/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
 <script>
 $(function () {
@@ -46,6 +37,7 @@ $(function () {
 <script>
   $(function () {
     $("#example1").DataTable({ //attendance table
+      "order": [[1, 'desc']],
       "responsive": true, "lengthChange": false, "autoWidth": false,
       "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');

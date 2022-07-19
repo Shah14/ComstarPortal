@@ -63,6 +63,8 @@
 								$id=$row["ID"];
 								$name=$row["Name"];
 								$role=$row["Role"];
+								$session=$row["Session"];
+								$image=$row["Picture"];
 									if($id==1){
 										$hide="hidden";
 										$show="";
@@ -76,7 +78,7 @@
 									<div class='member'>
 									  	<div class='member-img'>
 											<a>
-												<img src='../../COMSTAR Committee/MT BARU/<?php echo $row["Picture"] ?>' width='160px'class='img-circle elevation-2' alt='User Image'>
+												<img src='../../COMSTAR Committee/MT BARU/<?php echo $row["Picture"] ?>' id="changeProfile" width='160px'class='img-circle elevation-2' alt='User Image'>
 											</a>
 									  	</div>
 										<div class='member-info' >
@@ -106,6 +108,26 @@
 																	<span class="input-group-text"><i class="fas fa-briefcase"></i></span>
 																</div>
 																<input type='text' class='form-control' id="role_edit" required name='role' value='<?php echo $row["Role"] ?>' oninvalid="this.setCustomValidity('Please Provide a Role')" oninput="this.setCustomValidity('')"/>
+															</div>
+														</div>
+														<div class='form-group row'>
+															<label for='session' class='col-sm-2 col-form-label'>Session <small class="text-primary"></small></label>
+															<div class='col-sm-10 input-group'>
+																<div class="input-group-prepend">
+																	<span class="input-group-text"><i class="fas fa-calendar"></i></span>
+																</div>
+																<select class='form-control a' required name='session' id='session_edit'>
+																	<option disabled <?php if($row["Session"] == NULL){echo "selected";}?> value="">Select One</option>
+																	<?php 
+																	for ($x = 0; $x <= 10; $x++){
+																		$session1 = date("Y")-$x ;
+																		$session1 .= "/".date("Y")-$x+1 ;
+																	?>
+																		<option <?php if($row["Session"] == $session1){echo "selected";}?> value='<?php echo $session1 ?>'> <?php echo $session1 ?></option>
+																	<?php 
+																	}
+																	?>
+																</select>
 															</div>
 														</div>
 														<div class='form-group row'>
@@ -220,6 +242,7 @@
 															<div class='offset-sm-2 col-sm-10'>
 																<button hidden id="edit">Test</button>
                                 								<button onclick="validateForm('Are you sure?','Do you want to save changes?','info','edit','edit_committee')" type='button' class='btn btn-danger'><i class='fas fa-pen'></i> Edit</button>
+																<button type='reset' class='btn btn-danger'><i class='fas fa-rotate-left'></i> Reset</button>
 															</div>
 														</div>
 													</form>
@@ -237,6 +260,7 @@
 														<div class='form-group row'>
 															<input type='hidden' id='name_edit_image' value='<?php echo $name ?>' name='name'>
 															<input type='hidden' id='role_edit_image' value='<?php echo $role ?>' name='role'>
+															<input type='hidden' id='session_edit_image' value='<?php echo $session ?>' name='session'>
 															<input type='hidden' id='id_edit_image' value=<?php echo $id ?> name='id'>
 															<label for='fileToUpload_edit_image' class='col-sm-2 col-form-label'>Select Image To Upload</label>
 															<div class="col-sm-10 input-group">
@@ -253,6 +277,7 @@
 															<div class='offset-sm-2 col-sm-10'>
 																<button hidden id="edit_image">Test</button>
 																<button onclick="validateForm('Are you sure?','Do you want to save changes?','info','edit_image','edit_pic')" type='button' class='btn btn-danger'><i class='fas fa-pen'></i> Edit</button>
+																<button type='reset' onclick="resetPic()" class='btn btn-danger'><i class='fas fa-rotate-left'></i> Reset</button>
 															</div>
 														</div>
 													</form>
@@ -307,14 +332,26 @@
 <script>
 
   function validateForm(title,text,icon,action,form) { //alert title, alert text, alert icon, action id and form id
-    let x = document.forms[form]["name_"+action].value;
-    let y = document.forms[form]["role_"+action].value;
+    let w = document.forms[form]["name_"+action].value;
+    let x = document.forms[form]["role_"+action].value;
+    let y = document.forms[form]["session_"+action].value;
     let z = document.forms[form]["fileToUpload_"+action].value;
-    if (x == "" || y == "" || z == "") {
+    if (w == "" || x == "" || y == "" || z == "") {
       document.getElementById(action).click();
     }else{
       alert(title,text,icon,action)
     }
+  }
+
+  fileToUpload_edit_image.onchange = evt => {
+  const [file] =fileToUpload_edit_image.files
+    if (file) {
+      changeProfile.src = URL.createObjectURL(file)
+    }
+  }
+
+  function resetPic(){
+    document.getElementById("changeProfile").src = "../../COMSTAR Committee/MT BARU/<?php echo $image ?>";
   }
 
 </script>

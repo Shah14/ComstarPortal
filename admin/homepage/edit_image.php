@@ -69,7 +69,7 @@
 								<div class='col-lg-3 col-md-6 d-flex align-items-stretch'>
 									<div class='member'>
 										<div class='member-img'>
-											<a><img src='../../assets/event/<?php echo $image ?>' width='100%'></a>
+											<a><img src='../../assets/event/<?php echo $image ?>' id="changeImage" style='border: 1px solid #ddd;border-radius: 4px;padding: 5px;width: 350px;height:200px'></a>
 										</div>
 								  	<div class='member-info' >
 										<center>
@@ -100,13 +100,14 @@
 														<div class="input-group-prepend">
 														  <span class="input-group-text"><i class="fas fa-calendar"></i></span>
 														</div>
-													<input type='text' class='form-control' id="year_edit" required name='year' value='<?php echo $year ?>' oninvalid="this.setCustomValidity('Please Enter the Image Year')" oninput="this.setCustomValidity('')">
+													<input type='number' min="2000" max="2100" step="1" class='form-control' id="year_edit" required name='year' value='<?php echo $year ?>' oninvalid="this.setCustomValidity('Please Enter the Image Year')" oninput="this.setCustomValidity('')">
 													</div>
 												</div>
 												<div class='form-group row'>
 													<div class='offset-sm-2 col-sm-10'>
 														<button hidden id="edit">Test</button>
 														<button onclick="validateForm('Are you sure?','Do you want to update this image?','info','edit','edit_image')" type='button' class='btn btn-danger'><i class='fas fa-pen'></i> Edit</button>										  
+														<button type='reset' class='btn btn-danger'><i class='fas fa-rotate-left'></i> Reset</button>
 													</div>
 												</div>
 											</form>										 
@@ -139,6 +140,7 @@
 													<div class='offset-sm-2 col-sm-10'>
 														<button hidden id="edit2">Test</button>
                           								<button onclick="validateForm('Are you sure?','Do you want to update this image?','info','edit2','edit_image2')" type='button' class='btn btn-danger'><i class='fas fa-pen'></i> Edit</button>										  
+														<button type='reset' onclick="test()" class='btn btn-danger'><i class='fas fa-rotate-left'></i> Reset</button>
 													</div>
 												</div>										  
 											</form>
@@ -160,7 +162,7 @@
 							</div>         
                     	</ul>
                   		<div class="card-footer text-center">
-						  Last Updated : <span style="color:#007bff"><?php echo get_time_ago(strtotime($date)) ?></span>
+						  Last Updated : <span style="color:#007bff"><span class="badge badge-success"><?php echo get_time_ago(strtotime($date),"long") ?></span></span>
 						</div>
 					</div>
 				</div>
@@ -191,6 +193,16 @@
     }
   }
 
+  fileToUpload_edit2.onchange = evt => {
+  const [file] =fileToUpload_edit2.files
+    if (file) {
+      changeImage.src = URL.createObjectURL(file)
+    }
+  }
+
+  function test(){
+    document.getElementById("changeImage").src = "../../assets/event/<?php echo $image ?>";
+  }
 </script>
 
 <?php require '../include/script.php';?>

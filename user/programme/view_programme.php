@@ -15,7 +15,7 @@ session_start();
 
   <!-- Favicons -->
   <link rel="icon" href="../../assets/logo/logo.png">
-  <link rel="stylesheet" href="../../COMSTAR_INTERFACE_FIRST_SPRINT/AdminLTE-3.1.0/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="../../template/AdminLTE-3.2.0/plugins/fontawesome-free/css/all.min.css">
   <link href="../../COMSTAR_INTERFACE_FIRST_SPRINT/Home/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->

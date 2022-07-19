@@ -63,9 +63,10 @@
                   <table id="example2" class="table m-0">
                     <thead>
                       <tr>
+                        <th>#</th>
                         <th>NAME</th>
                         <th>DATE RECEIVED</th>
-                        <th>EMAIL</th>
+                        <th>TIME RECEIVED</th>
                         <th>SUBJECT</th>
                         <th>MESSAGE</th>
                         <th style='text-align:center'>ACTION</th>
@@ -73,16 +74,28 @@
                     </thead>
                     <tbody>
                       <?php
-                      $result=mysqli_query($con,"SELECT * FROM `contact`");
+                      $result=mysqli_query($con,"SELECT * FROM `contact` ORDER BY `Date` DESC");
                       if ($result->num_rows > 0) {
+                        $no = 0;
                         while($row = $result->fetch_assoc()) {
+                          $no++;
                           $id=$row["ID"];
                       ?>
                 
                         <tr>
-                          <td><?php echo $row["Name"] ?></td>
-                          <td><span hidden><?php echo $row["Date"] ?></span><?php echo date("j/m/Y H:i:s",strtotime($row["Date"])) ?></td>
-                          <td><?php echo $row["Email"] ?></td>
+                          <td><?php echo $no ?></td>
+                          <td style="width:20%">
+                            <div class="user-block">
+                              <img class="img-circle img-bordered-sm" src="../../template/AdminLTE-3.2.0/dist/img/AdminLTELogo.png" alt="user image">
+                              <span class="username">
+                                <a href="#"><?php echo $row["Name"] ?></a>
+                              </span>
+                              <span class="description"><?php echo $row["Email"] ?></span>
+                            </div>
+                        </td>
+                          <td><span hidden><?php echo $row["Date"] ?></span><?php echo date("j F Y",strtotime($row["Date"])) ?></td>
+                          <td><span hidden><?php echo $row["Date"] ?></span><?php echo date("h:i:s a",strtotime($row["Date"])) ?></td>
+
                           <td><?php echo $row["Subject"] ?></td>
                           <td><?php echo $row["Message"] ?></td>
                           <td style='text-align:center'>
@@ -94,12 +107,6 @@
                         </tr>
                       <?php
                         }
-                      }else{
-                      ?>
-                        <tr>
-                          <td>No data</td>
-                        <tr>
-                      <?php
                       }
                       ?>
                     </tbody>

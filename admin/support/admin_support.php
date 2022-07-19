@@ -61,26 +61,45 @@
                 <div class="table-responsive">
                   <table id="example2" class="table m-0">			  
                     <?php
-                    $result=mysqli_query($con,"SELECT * FROM `technical`");
+                    $result=mysqli_query($con,"SELECT * FROM `technical` LEFT JOIN `login` ON login.Email=technical.email  ORDER BY `Date` DESC");
                     ?>
                     <thead>
                       <tr>
-                      <th>USER</th>
-                      <th>REQUESTED DATE</th>
-                      <th>SUPPORT TYPE</th>
-                      <th>DESCRIPTION</th>
-                      <th style='text-align:center'>ACTION</th>
+                        <th>#</th>
+                        <th>USER</th>
+                        <th>REQUESTED DATE</th>
+                        <th>SUPPORT TYPE</th>
+                        <th>DESCRIPTION</th>
+                        <th style='text-align:center'>ACTION</th>
                       </tr>
                     </thead>
                     <tbody>
                     <?php
                     if ($result->num_rows > 0) {
+                      $no = 0;
                       while($row = $result->fetch_assoc()) {
+                        if($row["Type"]=="Suggestion"){
+                          $badge = "success";
+                        }else if($row["Type"]=="Feedback"){
+                          $badge = "primary";
+                        }else{
+                          $badge = "dark";
+                        }
+                        $no++;
                     ?>
                       <tr>
-                        <td><?php echo $row["Email"] ?></td>
-                        <td><span hidden><?php echo $row["Date"] ?></span><?php echo date("j/m/Y H:i:s",strtotime($row["Date"])) ?></td>
-                        <td><?php echo $row["Type"] ?></td>
+                        <td><?php echo $no ?></td>
+                        <td style="width:20%">
+                            <div class="user-block">
+                              <img class="img-circle img-bordered-sm" src="../../assets/profile picture/<?php echo $row["Image"]?>" alt="user image">
+                              <span class="username">
+                                <a href="#"><?php echo $row["Full Name"] ?></a>
+                              </span>
+                              <span class="description"><?php echo $row["Email"] ?></span>
+                            </div>
+                        </td>
+                        <td><span hidden><?php echo $row["Date"] ?></span><?php echo date("j F Y",strtotime($row["Date"])) ?></td>
+                        <td><span class="badge badge-pill badge-<?php echo $badge?>"><?php echo $row["Type"] ?></span></td>
                         <td><?php echo $row["Description"] ?></td>
                         <td style='text-align:center'>
                           <form id="delete" action='../Support/delete_support_process.php' class='form-horizontal' method='post'>
@@ -91,15 +110,8 @@
                         </td>
                       </tr>
 						        <?php }
-					          }else{
+					          }
                     ?>
-                      <tr>
-                        <td>No data</td>
-                        <td>No data</td>
-                        <td>No data</td>
-                        <td>No data</td>
-                      <tr>
-			               <?php } ?>
                     </tbody>
                   </table>
                 </div>

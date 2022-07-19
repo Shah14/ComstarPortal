@@ -15,7 +15,7 @@ if ($result->num_rows > 0) {
 		}
 	}
 $sql="UPDATE `forum` 
-SET `Title`='$_POST[title]',`Description`='$_POST[about]',`Date Updated`=now()
+SET `Title`='$_POST[title]',`Description`='$_POST[about]',`Date Updated`=now(),`User Update`='$q',`Action Update`='Edited By'
 WHERE `Post ID`='$_POST[id]'";
 
 $sql1="UPDATE `reply` 

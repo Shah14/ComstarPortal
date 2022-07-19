@@ -72,6 +72,10 @@
                           <input type="text" class="form-control" id="link_add_action" required name="link" placeholder="www.comstarevent/portal.com" oninvalid="this.setCustomValidity('Please Provide a Page Link')" oninput="this.setCustomValidity('')">
                         </div>
                       </div>
+                      <div class="text-center">
+                        <img src='../../assets/advertisement/default.png' id="changeImage" style='border: 1px solid #ddd;border-radius: 4px;padding: 5px;width:500px;height:200px'>
+                      </div>
+                      <br>
                       <div class='alert alert-warning' role='alert'>
                         <center>
                           <i class='fa fa-exclamation-circle'></i>Important! Please select image with dimension of 1200x320! 
@@ -94,6 +98,7 @@
                         <div class="offset-sm-2 col-sm-10">
                           <button hidden id="add_action">Test</button>
                           <button onclick="validateForm('Are you sure?','Do you want to add this programme?','info','add_action','add_ads')" type='button' class='btn btn-danger'><i class='fas fa-plus-circle'></i> Add</button>
+                          <button type='reset' onclick="test()" class='btn btn-danger'><i class='fas fa-rotate-left'></i> Reset</button>
                         </div>
                       </div>
                     </form>
@@ -129,6 +134,16 @@
     }
   }
 
+  fileToUpload_add_action.onchange = evt => {
+  const [file] =fileToUpload_add_action.files
+    if (file) {
+      changeImage.src = URL.createObjectURL(file)
+    }
+  }
+
+  function test(){
+    document.getElementById("changeImage").src = "../../assets/advertisement/default.png";
+  }
 </script>
 
 <?php require '../include/script.php';?>

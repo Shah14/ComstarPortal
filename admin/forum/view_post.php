@@ -13,17 +13,25 @@
 
 <?php $forum = "active"; ?>
 
-<?php 
+<body class="hold-transition sidebar-mini">
 
-if(isset($_GET["name"])){
-  $body = "onload='flash()'";
-}else{
-  $body = " ";
-}
-
-?>
-
-<body <?php echo $body ?> class="hold-transition sidebar-mini">
+	<?php
+	if(isset($_GET["name"])){
+	echo "
+	<script>
+		function flash(){
+		setTimeout(function(){
+			const queryString = window.location.search;
+			const urlParams = new URLSearchParams(queryString);
+			const name = urlParams.get('name')
+			document.getElementById(name).classList.remove('blink_me');
+			console.log(name)
+		}, 5000)
+		}
+		flash();
+	</script>";
+	}
+	?>
 
 <div class="wrapper">
   
@@ -63,13 +71,17 @@ if(isset($_GET["name"])){
 				$date=$row["Date"];
 				$id=$row["Post ID"];
 				$type=$row["Poster Type"];
+				$upvote=$row["Upvote"];
+				$report=$row["Report"];
+				$replies=$row["Replies"];
 				if($type == "User"){
 					$name = $row["Username"];
 					$image = $row["User_image"];
-
+					$badge = "success";
 				}else{
 					$name = $row["Admin_name"];
 					$image = $row["Admin_image"];
+					$badge = "danger";
 				}
 				$class = " ";
 				if(isset($_GET['name'])){
@@ -113,21 +125,26 @@ if(isset($_GET["name"])){
 										<th>Poster</th>
 										<th>Description</th>
 									</tr>
-										<th><?php echo $date ?></th>
 										<th>
-											<?php echo $report ?> user(s) reported this as spam, 
-											<?php echo $report1 ?> user(s) reported this as controversional, 
-											<?php echo $report2 ?> user(s) reported this as misinformational.
+											<span class="badge badge-primary"><i class='fas fa-thumbs-up'></i> <?php echo $upvote?> </span>
+											<span class="badge badge-danger"><i class='fas fa-bullhorn'></i> <?php echo $report?> </span>
+											<span class="badge badge-success"><i class='fas fa-comment-dots'></i> <?php echo $replies?> </span>
+										</th>
+										<th>
+										<?php echo $report ?> user(s) reported this as <span class="badge badge-dark">spam</span> , 
+										<?php echo $report1 ?> user(s) reported this as <span class="badge badge-warning">controversional</span>, 
+										<?php echo $report2 ?></span> user(s) reported this as <span class="badge badge-danger">misinformational</span>.
 										</th>
 								</thead>
 								<tbody>
 									<tr id="<?php echo $title ?>" <?php echo $class ?>>
 										<td style="width:200px">
-											<center>
-												<img src="../../assets/profile picture/<?php echo $image ?>" class="img-circle elevation-2" style="width:100px">
-												<br><?php echo $name ?>
-												<br><?php echo $type ?>
-											</center>
+											<div class="text-center">
+												<img class="profile-user-img img-fluid img-circle" alt="User profile picture" src="../../assets/profile picture/<?php echo $image ?>" >
+												<br><?php echo $name ?><br>
+												<span class="badge badge-<?php echo $badge?>"><?php echo $type ?></span>
+												<p class="text-muted"><?php echo date("j F Y h:i a",strtotime($date)) ?></p>
+											</div>
 										</td>
 										<td>
 											<p style="background-color: #eee;text-align:justify;padding:10px;width: 100%;height: 400px;border: 1px solid gray;overflow: auto;">
@@ -141,18 +158,22 @@ if(isset($_GET["name"])){
 															LEFT JOIN admin ON reply.Poster=admin.Email 
 															WHERE `Post ID`='$_GET[id]'ORDER BY Date ASC"); //display replies
 										if ($result->num_rows > 0) {
+											$no = 0;
 											while($row = $result->fetch_assoc()) {
 												$date=$row["Date"];
 												$email=$row["Poster"];
 												$reply=$row["Reply"];
 												$type=$row["Poster Type"];
+												$no ++;
 												if($type == "User"){
 													$name = $row["Username"];
 													$image = $row["User_image"];
+													$badge = "success";
 								
 												}else{
 													$name = $row["Admin_name"];
 													$image = $row["Admin_image"];
+													$badge = "danger";
 												}
 												$class = " ";
 												if(isset($_GET['name'])){
@@ -164,15 +185,16 @@ if(isset($_GET["name"])){
 													}
 												}
 									?>
-										<th><?php echo $date ?></th>
+										<th>Reply #<?php echo $no?></th>
 										<th></th>
 									<tr id="<?php echo $row["Reply"].$row["Reply Number"]; ?>" <?php echo $class ?>>
 										<td style="width:200px">
-											<center>
-												<img src="../../assets/profile picture/<?php echo $image ?>" class="img-circle elevation-2" style="width:100px">
-												<br><?php echo $name; ?>
-												<br><?php echo $type; ?>
-											</center>
+											<div class="text-center">
+												<img class="profile-user-img img-fluid img-circle" alt="User profile picture" src="../../assets/profile picture/<?php echo $image ?>" >
+												<br><?php echo $name ?><br>
+												<span class="badge badge-<?php echo $badge?>"><?php echo $type ?></span>
+												<p class="text-muted"><?php echo date("j F Y h:i a",strtotime($date)) ?></p>
+											</div>
 										</td>
 										<td>
 											<p style="background-color: #eee;text-align:justify;padding:10px;width: 100%;height: 400px;border: 1px solid gray;overflow: auto;">
@@ -200,7 +222,7 @@ if(isset($_GET["name"])){
 												<img src="../../assets/profile picture/<?php echo $image ?>" class="img-circle elevation-2" style="width:100px">
 												<br>
 												<?php echo $name ?>
-												<br>Admin
+												<br><span class="badge badge-danger">Admin</span>
 											</center>
 										</td>
 										<td>

@@ -55,7 +55,7 @@
                   <div class='col-lg-3 col-md-6 d-flex align-items-stretch'>
                     <div class='member'>
                       <div class='member-img'>
-                        <a><img src='../../assets/event/default.png' width='100%'></a>
+                        <a><img src='../../assets/event/default.png' id="changeImage" style='border: 1px solid #ddd;border-radius: 4px;padding: 5px;width: 350px;height:200px'></a>
                       </div>
                     </div>
                   </div>
@@ -79,7 +79,7 @@
 														<div class="input-group-prepend">
 														  <span class="input-group-text"><i class="fas fa-calendar"></i></span>
 														</div>
-                            <input type='text' class='form-control' id="year_add" required name='year' placeholder='Example : 2022' oninvalid="this.setCustomValidity('Please Enter the Image Year')" oninput="this.setCustomValidity('')">
+                            <input type="number" min="2000" max="2100" step="1" class='form-control' id="year_add" required name='year' placeholder='Example : 2022' oninvalid="this.setCustomValidity('Please Enter the Image Year')" oninput="this.setCustomValidity('')">
                           </div>
                         </div>
                         <div class='alert alert-warning' role='alert'>
@@ -104,6 +104,7 @@
                           <div class='offset-sm-2 col-sm-10'>
                             <button hidden id="add">Test</button>
                             <button onclick="validateForm('Are you sure?','Do you want to add this image?','info','add','add_image')" type='button' class='btn btn-danger'><i class='fas fa-plus-circle'></i> Add</button>
+                            <button type='reset' onclick="test()" class='btn btn-danger'><i class='fas fa-rotate-left'></i> Reset</button>
                         </div>
                       </form>
 										</div>
@@ -137,6 +138,16 @@
     }
   }
 
+  fileToUpload_add.onchange = evt => {
+  const [file] =fileToUpload_add.files
+    if (file) {
+      changeImage.src = URL.createObjectURL(file)
+    }
+  }
+
+  function test(){
+    document.getElementById("changeImage").src = "../../assets/event/default.png";
+  }
 </script>
 
 <?php require '../include/script.php';?>

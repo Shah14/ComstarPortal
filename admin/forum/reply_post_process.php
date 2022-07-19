@@ -26,7 +26,7 @@ $sql="INSERT INTO `reply`(`Post ID`,`Reply`,`Reply Number`,`Date`,`Poster`,`Post
 VALUES('$_POST[id]','$_POST[reply]','$num',now(),'$q','Admin')";
 
 $sql1="UPDATE `forum` 
-SET `Replies`='$num',`Date Updated`=now()
+SET `Replies`='$num',`Date Updated`=now(),`User Update`='$q',`Action Update`='Replied By'
 WHERE `Post ID`='$_POST[id]'";
 
 

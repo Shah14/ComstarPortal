@@ -13,17 +13,25 @@
 
 <?php $programme = "active"; ?>
 
-<?php 
+<body class="hold-transition sidebar-mini">
 
-if(isset($_GET["name"])){
-  $body = "onload='flash()'";
-}else{
-  $body = " ";
-}
-
-?>
-
-<body <?php echo $body ?> class="hold-transition sidebar-mini">
+  <?php
+  if(isset($_GET["name"])){
+    echo "
+    <script>
+      function flash(){
+        setTimeout(function(){
+          const queryString = window.location.search;
+          const urlParams = new URLSearchParams(queryString);
+          const name = urlParams.get('name')
+          document.getElementById(name).classList.remove('blink_me');
+          console.log(name)
+        }, 5000)
+      }
+      flash();
+    </script>";
+  }
+  ?>
 
 <div class="wrapper">
   
@@ -84,7 +92,7 @@ if(isset($_GET["name"])){
                         <th>VENUE</th>
                         <th>FEE PRICE</th>
                         <th>STATUS</th>
-                        <th>Attendance</th>
+                        <th>ATTENDANCE</th>
                         <th style='text-align:center'>ACTION</th>
                       </tr>
                     </thead>
@@ -120,7 +128,7 @@ if(isset($_GET["name"])){
                     <tr id="<?php echo $row["Name"]." ".$row["Date Updated"] ?>"<?php echo $class ?> >
                       <td><?php echo $no ?></td>
                       <td><?php echo $row["Name"] ?></td>
-                      <td><span hidden><?php echo $row["Date Updated"] ?></span><?php echo get_time_ago(strtotime($row["Date Updated"])) ?></td>
+                      <td><span hidden><?php echo $row["Date Updated"] ?></span><span class="badge badge-success"><?php echo get_time_ago(strtotime($row["Date Updated"]),"long") ?></span></td>
                       <td><span hidden><?php echo $row["Date Created"] ?></span><?php echo date("j F Y",strtotime($row["Date Created"])) ?></td>
 
                       <td>
@@ -140,6 +148,7 @@ if(isset($_GET["name"])){
                         </a>
                         <form id="visible" action='../Programme/visible_process.php' method='post'>
                           <input type='hidden' name='programme' value='<?php echo $programme ?>'>
+                          <input type='hidden' name='id' value='<?php echo $row["Programme ID"] ?>'>
                           <?php if($row['Attendance']=="Hidden"){ ?>
                             <button hidden id="visible_<?php echo $programme ?>" name='visibility' value='Visible'></button>
                             <button onclick="alert('Are you sure?','Do you want to enable attendance?','info','visible_<?php echo $programme ?>','visible')" type='button' class='btn btn-danger form-control' name='visibility' style='width:70%;margin:1%'><i class='fas fa-eye'></i> Show</button>
@@ -155,18 +164,10 @@ if(isset($_GET["name"])){
                         </form>
                       </td>
                     </tr>
-                      <?php } ?>
-                    <?php }else{ ?>
-                    <tr>
-                      <td>No data</td>
-                      <td>No data</td>
-                      <td>No data</td>
-                      <td>No data</td>
-                      <td>No data</td>
-                      <td>No data</td>
-                      <td>No data</td>
-                    </tr>
-                    <?php } ?>
+                      <?php
+                      }
+                    } 
+                      ?>
                     </tbody>
                   </table>
                 </div>

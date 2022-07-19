@@ -89,6 +89,10 @@
               ?>
               <div class="card-body">
                 <div class="tab-content">
+                  <div class="text-center">
+                    <img src='../../assets/programme/<?php echo $image;?>' id="changeImage" style='border: 1px solid #ddd;border-radius: 4px;padding: 5px;width: 300px;height:400px'>
+                  </div>
+                  <br>
 				          <div class=" active tab-pane" id="update">
                     <form id="edit_programme" action="../Programme/edit_programme_process.php" class="form-horizontal" method="post">
                       <input type='hidden' id='fileToUpload_edit' value='fileToUpload' name='fileToUpload'>
@@ -147,19 +151,18 @@
                         <div class="offset-sm-2 col-sm-10">
                           <button hidden id="edit">Test</button>
                           <button onclick="validateForm('Are you sure?','Do you want to update this programme?','info','edit','edit_programme')" type='button' class='btn btn-danger'><i class='fas fa-pen'></i> Edit</button>
+                          <button type='reset' class='btn btn-danger'><i class='fas fa-rotate-left'></i> Reset</button>
                         </div>
                       </div>
                     </form>
                   </div>
                   <div class="tab-pane" id="image">
-                    <center>
-                      <img src='../../assets/programme/<?php echo $image;?>'style='border: 1px solid #ddd;border-radius: 4px;padding: 5px;width: 300px;height:400px'>
-                    </center>	
+                    	
                     <div class='alert alert-warning' role='alert'>
-                      <center>
+                      <div class="text-center">
                         <i class='fa fa-exclamation-circle'></i>Important! Please select image with dimension of 600x700! 
                         <a href="https://www.iloveimg.com/resize-image" target="blank" >Resize image here!</a>
-                      </center>
+                      </div>
                     </div>
                     <form id="edit_image" action="../Programme/edit_image_process.php" class="form-horizontal" method="post" enctype='multipart/form-data'>
                       <input type="hidden" class="form-control" required name="id" value="<?php echo $id;?>">	
@@ -184,6 +187,7 @@
                         <div class="offset-sm-2 col-sm-10">
                           <button hidden id="edit_pic">Test</button>
                           <button onclick="validateForm('Are you sure?','Do you want to update this programme?','info','edit_pic','edit_image')" type='button' class='btn btn-danger'><i class='fas fa-pen'></i> Edit</button>
+                          <button type='reset' onclick="test()" class='btn btn-danger'><i class='fas fa-rotate-left'></i> Reset</button>
                         </div>
                       </div>
                     </form>
@@ -222,6 +226,16 @@
     }
   }
 
+  fileToUpload_edit_pic.onchange = evt => {
+  const [file] =fileToUpload_edit_pic.files
+    if (file) {
+      changeImage.src = URL.createObjectURL(file)
+    }
+  }
+
+  function test(){
+    document.getElementById("changeImage").src = "../../assets/programme/<?php echo $image;?>";
+  }
 </script>
 
 <?php require '../include/script.php';?>

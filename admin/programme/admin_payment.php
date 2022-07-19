@@ -13,11 +13,11 @@ session_start();
   <link rel="icon" href="../../assets/logo/logo.png">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="../../COMSTAR_INTERFACE_FIRST_SPRINT/AdminLTE-3.1.0/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="../../template/AdminLTE-3.2.0/plugins/fontawesome-free/css/all.min.css">
   <!-- IonIcons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../../COMSTAR_INTERFACE_FIRST_SPRINT/AdminLTE-3.1.0/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="../../template/AdminLTE-3.2.0/dist/css/adminlte.min.css">
 
 </head>
 <!--
@@ -311,18 +311,18 @@ $q=$_SESSION["Admin"];
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
-<script src="../../COMSTAR_INTERFACE_FIRST_SPRINT/AdminLTE-3.1.0/plugins/jquery/jquery.min.js"></script>
+<script src="../../template/AdminLTE-3.2.0/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap -->
-<script src="../../COMSTAR_INTERFACE_FIRST_SPRINT/AdminLTE-3.1.0/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../template/AdminLTE-3.2.0/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE -->
-<script src="../../COMSTAR_INTERFACE_FIRST_SPRINT/AdminLTE-3.1.0/dist/js/adminlte.js"></script>
+<script src="../../template/AdminLTE-3.2.0/dist/js/adminlte.js"></script>
 
 <!-- OPTIONAL SCRIPTS -->
-<script src="../../COMSTAR_INTERFACE_FIRST_SPRINT/AdminLTE-3.1.0/plugins/chart.js/Chart.min.js"></script>
+<script src="../../template/AdminLTE-3.2.0/plugins/chart.js/Chart.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="../../COMSTAR_INTERFACE_FIRST_SPRINT/AdminLTE-3.1.0/dist/js/demo.js"></script>
+<script src="../../template/AdminLTE-3.2.0/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="../../COMSTAR_INTERFACE_FIRST_SPRINT/AdminLTE-3.1.0/dist/js/pages/dashboard3.js"></script>
+<script src="../../template/AdminLTE-3.2.0/dist/js/pages/dashboard3.js"></script>
 
 
 </body>

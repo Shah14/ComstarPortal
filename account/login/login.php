@@ -1,133 +1,89 @@
-<?php
-session_start();
-if(isset($_SESSION["login"]) == true){
-  header("Location: ../../USER/Home/home.php");
-}else if(isset($_SESSION["admin"]) == true){
-  header("Location: ../../admin/Home/admin.php");
-}
-?>
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+<?php require '../include/css.php';?>
 
-    <link rel="stylesheet" href="../../COMSTAR_INTERFACE_FIRST_SPRINT/Login/Login_interface_1/fonts/icomoon/style.css">
+<?php require '../include/config.php';?>
 
-    <link rel="stylesheet" href="../../COMSTAR_INTERFACE_FIRST_SPRINT/Login/Login_interface_1/css/owl.carousel.min.css">
+  <body class="hold-transition login-page">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../../COMSTAR_INTERFACE_FIRST_SPRINT/Login/Login_interface_1/css/bootstrap.min.css">
+    <?php echo '<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>';?>
+    <?php
+    if(isset($_SESSION['Alert'])){
+        if($_SESSION['Alert']=="Account successfully verified!"){
+          echo "<script>Swal.fire('$_SESSION[Alert]','Please login to procceed!','success');</script>";
+        }
+        else if($_SESSION['Alert']=="You have successfully reset the password!"){
+          echo "<script>Swal.fire('Success','$_SESSION[Alert]','success');</script>";
+        }
+        else{
+            echo "<script>Swal.fire('Error','$_SESSION[Alert]','error');</script>";
+        }
+        unset($_SESSION['Alert']);
+    }
+    ?>
     
-    <!-- Style -->
-    <link rel="stylesheet" href="../../COMSTAR_INTERFACE_FIRST_SPRINT/Login/Login_interface_1/css/style.css">
-	<link rel="icon" href="../../assets/logo/logo.png">
-    <title>COMSTAR Portal Login</title>
-  </head>
-  <body>
-  
-  
-
-  <div class="d-lg-flex half">
-    <div class="bg order-1 order-md-2" style="background-image: url('../../COMSTAR_INTERFACE_FIRST_SPRINT/Login/Login_interface_1/images/bg_1.jpg');"></div>
-    <div class="contents order-2 order-md-1">
-
-      <div class="container">
-        <div class="row align-items-center justify-content-center">
-          <div class="col-md-7">
-            <div class="mb-4">
-              <h3>Login to COMSTAR Portal</h3>
-              <p class="mb-4">Welcome to COMSTAR UTMKL Official Website. Get updates on our upcoming programme and events!</p>
-            </div>
-			
-<fieldset>  
-        <form name="f1" action = "authentication.php" onsubmit = "return validation()" method = "POST">  
-				<div class="form-group first">           
-					<label for="email">E-mail </label>
-					<input type = "email" id ="email"  class="form-control" name  = "email" />  
-				</div>
-				<div class="form-group last mb-3">
-					<label for="password">Password </label>
-					<input type = "password" id ="pass" class="form-control"  name  = "pass" />  
-				</div>        
-</fieldset>
-		 <span class="ml-auto"><a href="../PASSWORD/forget.html" class="forgot-pass">Forgot Password</a></span><br>
-		 <span id = "message" style="color:red"> </span> 
-		 <input type =  "submit" id = "btn" value = "Login" class="btn btn-block btn-primary" />  
-           
-              <span class="d-block text-center my-4 text-muted">&mdash; or &mdash;</span>
-              
-              <div class="social-login">
-                <a href="../SIGNUP/signup.html" class="btn btn-block btn-primary">Create Account</a>       
-				<span class="d-block text-center my-4 text-muted">&mdash; or &mdash;</span>		
-				<a href="guestlogin.php" class="btn btn-block btn-primary">Continue As Guest</a>    		
-              </div>
-            </form>
+    <div class="login-box">
+      <!-- /.login-logo -->
+      <div class="card card-outline card-primary">
+        <div class="card-header text-center">
+          <a class="h1"><b>COMSTAR</b>Portal</a>
         </div>
+        <div class="card-body">
+          <p class="login-box-msg">Welcome to COMSTAR UTMKL Official Website. Please log in to proceed</p>
+
+          <form name="f1" id="quickForm" action = "login_process.php" method = "POST">  
+            <div class="input-group mb-3 form-group">
+              <input type = "email" id ="email"  class="form-control" name  = "email" placeholder = "E-mail" value="<?php if(isset($_GET["email"])){echo $_GET["email"];} ?>" />  
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-envelope"></span>
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3 form-group">
+              <input oninput="visiblePassword('pass')" type = "password" id ="pass" class="form-control"  name  = "pass" placeholder = "Password" />  
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-lock"></span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-8">
+                <div class="icheck-primary">
+                  <input onchange="visiblePassword('pass')" type="checkbox" id="remember">
+                  <label for="remember">
+                    Show Password
+                  </label>
+                </div>
+              </div>
+              <!-- /.col -->
+              <div class="col-4">
+                <button type="submit" class="btn btn-success btn-block">Log In</button>
+              </div>
+              <!-- /.col -->
+            </div>
+          </form>
+
+          <div class="social-auth-links text-center mt-2 mb-3">
+            <a href="../signup/signup.php" class="btn btn-block btn-primary">
+              <i class="fa-solid fa-user-plus"></i> Create New Account
+            </a>
+            <a href="guestlogin.php" class="btn btn-block btn-info">
+              <i class="fa-solid fa-user-clock"></i> Continue As Guest
+            </a>
+          </div>
+          <!-- /.social-auth-links -->
+
+          <p class="mb-1">
+            <a href="../password/forget.php">I forgot my password</a>
+          </p>
+        </div>
+        <!-- /.card-body -->
       </div>
+      <!-- /.card -->
     </div>
-
-    
-  </div>
-    
-    
-
-    <script src="../../COMSTAR_INTERFACE_FIRST_SPRINT/Login/Login_interface_1/js/jquery-3.3.1.min.js"></script>
-    <script src="../../COMSTAR_INTERFACE_FIRST_SPRINT/Login/Login_interface_1/js/popper.min.js"></script>
-    <script src="../../COMSTAR_INTERFACE_FIRST_SPRINT/Login/Login_interface_1/js/bootstrap.min.js"></script>
-    <script src="../../COMSTAR_INTERFACE_FIRST_SPRINT/Login/Login_interface_1/js/main.js"></script>
+    <!-- /.login-box -->
   </body>
-</html>
 
-<html>  
-<head>  
-	   
-	<script src="jquery-3.3.1.min.js"></script>
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-</head> 
-<style>
-h1 {text-align: center;}
-p {text-align: center;}
-div {text-align: center;}
-</style> 
-<body>  
-   
-    <script>  
-            function validation()  
-            {  
-                var id=document.f1.email.value;  
-                var ps=document.f1.pass.value;  
-                if(id.length=="" && ps.length=="") {  
-				swal ( "Oops" ,  "E-mail and Password fields are empty!" ,  "error" )
-                    return false;  
-                }  
-                else  
-                {  
-                    if(id.length=="") {  
-						swal ( "Oops" ,  "E-mail field is empty!" ,  "error" )
-                        return false;  
-                    }   
-                    if (ps.length=="") {  
-						swal ( "Oops" ,  "Password field is empty!" ,  "error" )
-						return false;  
-                    }  
-                } 
-				
-var pw = document.getElementById("pass").value; 
- //minimum password length validation  
-  if(pw.length < 8) {  
-     document.getElementById("message").innerHTML = "**Password length must be at least 8 characters";  
-     return false;  
-  }
-  
-//maximum length of password validation  
-  if(pw.length > 15) {  
-     document.getElementById("message").innerHTML = "**Password length must not exceed 15 characters";  
-     return false;  
-  } 				
-            }  
-</script>  
-</body>     
+<?php require '../include/script.php';?>
+
 </html>  

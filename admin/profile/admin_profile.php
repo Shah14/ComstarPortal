@@ -209,6 +209,8 @@ if(isset($_GET["id"])){
                         <div class="offset-sm-2 col-sm-10">
                           <button hidden id="edit" type="submit">Test</button>
                           <button onclick="validateForm('Are you sure?','Do you want to save changes?','info','edit','edit_details')" type='button' class='btn btn-danger'><i class='fas fa-pen'></i> Edit</button>
+                          <button type='reset' onclick="test()" class='btn btn-danger'><i class='fas fa-rotate-left'></i> Reset</button>
+
                         </div>
                       </div>
                     </form>
@@ -216,6 +218,9 @@ if(isset($_GET["id"])){
                   <!-- /.tab-pane -->
 				  
                   <div class="tab-pane" id="image">
+                  <div class="text-center">
+					          <img class="profile-user-img img-fluid img-circle" id="changeProfile" alt="User profile picture" src="../../assets/profile picture/<?php echo $image ?>" >
+                  </div>
                     <div class='alert alert-warning' role='alert'>
                       <center><i class='fa fa-exclamation-circle'></i>Important! Please select image with dimension of 500x500! <a href='https://www.iloveimg.com/resize-image' target='blank' >Resize image here!</a></center>
                     </div>
@@ -241,6 +246,7 @@ if(isset($_GET["id"])){
                         <div class="offset-sm-2 col-sm-10">
                           <button hidden id="edit_pic">Test</button>
                           <button onclick="validateForm('Are you sure?','Do you want to save changes?','info','edit_pic','edit_image')" type='button' class='btn btn-danger'><i class='fas fa-pen'></i> Edit</button>
+                          <button type='reset' onclick="test()" class='btn btn-danger'><i class='fas fa-rotate-left'></i> Reset</button>
                         </div>
                       </div>
                     </form>
@@ -330,6 +336,16 @@ if(isset($_GET["id"])){
       return false;  
     } 
   } 
+ fileToUpload_edit_pic.onchange = evt => {
+  const [file] =fileToUpload_edit_pic.files
+    if (file) {
+      changeProfile.src = URL.createObjectURL(file)
+    }
+  }
+
+  function test(){
+    document.getElementById("changeProfile").src = "../../assets/profile picture/<?php echo $image ?>";
+  }
 </script>
 
 <?php require '../include/script.php';?>

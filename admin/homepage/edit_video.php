@@ -68,7 +68,7 @@
 									<div class='col-lg-3 col-md-6 d-flex align-items-stretch'>
 										<div class='member'>
 											<div class='member-img'>
-												<iframe width='350' height='200' src='https://www.youtube.com/embed/<?php echo $image ?>' data-gallery='portfolioGallery' class='portfolio-lightbox preview-link'><i class='bx bx-plus'></i></iframe>
+												<iframe width='350' height='200' id="changeImage" src='https://www.youtube.com/embed/<?php echo $image ?>' data-gallery='portfolioGallery' class='portfolio-lightbox preview-link'><i class='bx bx-plus'></i></iframe>
 											</div>
 											<div class='member-info' >
 												<center>
@@ -99,7 +99,7 @@
 														<div class="input-group-prepend">
 															<span class="input-group-text"><i class="fas fa-calendar"></i></span>
 														</div>
-													<input type='text' class='form-control' id="year_edit" required name='year' value='<?php echo $year ?>' oninvalid="this.setCustomValidity('Please Enter the Video Year')" oninput="this.setCustomValidity('')">
+													<input type='number'  min="2000" max="2100" step="1" class='form-control' id="year_edit" required name='year' value='<?php echo $year ?>' oninvalid="this.setCustomValidity('Please Enter the Video Year')" oninput="this.setCustomValidity('')">
 													</div>
 												</div>
 												<div class='form-group row'>
@@ -108,13 +108,14 @@
 														<div class="input-group-prepend">
 															<span class="input-group-text"><i class="fas fa-link"></i></span>
 														</div>
-													<input type='text' class='form-control' id="video_edit" required name='image' value='<?php echo $image ?>' oninvalid="this.setCustomValidity('Please Enter the Youtube Video ID')" oninput="this.setCustomValidity('')">
+													<input type='text' onchange="changeThumbnail()" class='form-control' id="video_edit" required name='image' value='<?php echo $image ?>' oninvalid="this.setCustomValidity('Please Enter the Youtube Video ID')" oninput="this.setCustomValidity('')">
 													</div>
 												</div>
 												<div class='form-group row'>
 													<div class='offset-sm-2 col-sm-10'>
-													<button hidden id="edit">Test</button>
-                          							<button onclick="validateForm('Are you sure?','Do you want to update this video?','info','edit','edit_video')" type='button' class='btn btn-danger'><i class='fas fa-pen'></i> Edit</button>										  									  
+														<button hidden id="edit">Test</button>
+                          								<button onclick="validateForm('Are you sure?','Do you want to update this video?','info','edit','edit_video')" type='button' class='btn btn-danger'><i class='fas fa-pen'></i> Edit</button>										  									  
+														<button type='reset' onclick="test()" class='btn btn-danger'><i class='fas fa-rotate-left'></i> Reset</button>
 													</div>
 												</div>
 											</form>										 
@@ -135,7 +136,7 @@
 								</div>      
                     	</ul>
                   		<div class="card-footer text-center">
-							Last Updated : <span style="color:#007bff"><?php echo get_time_ago(strtotime($date)) ?></span>
+							Last Updated : <span style="color:#007bff"><span class="badge badge-success"><?php echo get_time_ago(strtotime($date),"long") ?></span></span>
 						</div>
                 	</div>
               	</div>
@@ -166,6 +167,13 @@
     }
   }
 
+  function changeThumbnail(){
+    document.getElementById("changeImage").src = 'https://www.youtube.com/embed/'+document.getElementById("video_edit").value
+  }
+
+  function test(){
+    document.getElementById("changeImage").src = "https://www.youtube.com/embed/<?php echo $image ?>";
+  }
 </script>
 
 <?php require '../include/script.php';?>

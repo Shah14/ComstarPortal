@@ -59,7 +59,7 @@
 									<div class='member'>
 									  <div class='member-img'>
 											<a>
-                        <img src='../../COMSTAR Committee/MT BARU/default1.png' width='160px'class='img-circle elevation-2' alt='User Image'>
+                        <img src='../../COMSTAR Committee/MT BARU/default1.png' id="changeProfile" width='160px'class='img-circle elevation-2' alt='User Image'>
                       </a>
 									  </div>
 							  	  </center>	  
@@ -107,6 +107,7 @@
                               <div class='offset-sm-2 col-sm-10'>
                                 <button hidden id="add">Test</button>
                                 <button onclick="validateForm('Are you sure?','Do you want to add this committee?','info','add','add_committee')" type='button' class='btn btn-danger'><i class='fas fa-plus-circle'></i> Add</button>
+                                <button type='reset' onclick="resetPic()" class='btn btn-danger'><i class='fas fa-rotate-left'></i> Reset</button>
                               </div>
                             </div>   
                           </form>
@@ -144,6 +145,17 @@
     }else{
       alert(title,text,icon,action)
     }
+  }
+
+  fileToUpload_add.onchange = evt => {
+  const [file] =fileToUpload_add.files
+    if (file) {
+      changeProfile.src = URL.createObjectURL(file)
+    }
+  }
+
+  function resetPic(){
+    document.getElementById("changeProfile").src = "../../COMSTAR Committee/MT BARU/default1.png";
   }
 
 </script>
