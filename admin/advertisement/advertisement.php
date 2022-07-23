@@ -134,7 +134,7 @@
                           <td>
                             <img src='../../assets/advertisement/<?php echo $row["Banner"]?>'style='border: 1px solid #ddd;border-radius: 4px;padding: 5px;width:500px;height:200px'>
                           </td>
-                          <td><small><a href="<?php echo $row["Link"] ?>"><u><?php echo $row["Link"] ?></u></a></small></td>
+                          <td><small><a target="_blank" href="<?php echo $row["Link"] ?>"><u><?php echo $row["Link"] ?></u></a></small></td>
                           <td><span class="badge badge-pill badge-<?php echo $badge?>"><?php echo $row["Visibility"] ?></span></td>
                           <td style='text-align:center'>
                               <a href="edit_ads.php?id=<?php echo $id ?>">

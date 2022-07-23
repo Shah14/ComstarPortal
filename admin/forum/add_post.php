@@ -54,28 +54,29 @@
                 <div class="tab-content">
                   <div class="active tab-pane" id="add">
                     <form id="add_post" action="../Forum/add_post_process.php" class="form-horizontal" method="post" enctype='multipart/form-data'>
-                      <div class="form-group row">
+                      <div class="row">
                         <label for="title_add_action" class="col-sm-2 col-form-label">Enter Post Title</label>
-                        <div class='col-sm-10 input-group'>
+                        <div class='col-sm-10 input-group form-group'>
 													<div class="input-group-prepend">
 														<span class="input-group-text"><i class="fas fa-font"></i></span>
 													</div>
                           <input type="text" class="form-control" id="title_add_action" required name="title" placeholder="COMSTAR Event" oninvalid="this.setCustomValidity('Please Enter the Post Title')" oninput="this.setCustomValidity('')">
                         </div>
                       </div>
-					            <div class="form-group row">
+					            <div class="row">
                         <label for="about_add_action" class="col-sm-2 col-form-label">Enter Post Description</label>
-                        <div class='col-sm-10 input-group'>
+                        <div class='col-sm-10 input-group form-group'>
 													<div class="input-group-prepend">
 														<span class="input-group-text"><i class="fas fa-keyboard"></i></span>
 													</div>
                           <textarea class="form-control" id="about_add_action" required name="about" rows="10" cols="50" placeholder="COMSTAR Event Description" oninvalid="this.setCustomValidity('Please Enter the Post Description')" oninput="this.setCustomValidity('')"></textarea>
                         </div>
                       </div>
-                      <div class="form-group row">
+                      <div class="row">
                         <div class="offset-sm-2 col-sm-10">
                           <button hidden id="add_action">Test</button>
                           <button onclick="validateForm('Are you sure?','Do you want to add this post?','info','add_action','add_post')" type='button' class='btn btn-danger'><i class='fas fa-plus-circle'></i> Add</button>
+                          <button type='reset' class='btn btn-danger'><i class='fas fa-rotate-left'></i> Reset</button>
                         </div>
                       </div>
                     </form>
@@ -113,5 +114,40 @@
 </script>
 
 <?php require '../include/script.php';?>
+
+<script>
+  $(function () {
+    $('#add_post').validate({
+      rules: {
+        title: {
+          required: true,
+        },
+        about: {
+          required: true,
+        },
+      },
+      messages: {
+        title: {
+          required: "Please enter the post title",
+        },
+        about: {
+          required: "Please select the post description",
+        },
+      },
+      errorElement: 'span',
+      errorPlacement: function (error, element) {
+        error.addClass('invalid-feedback');
+        element.closest('.form-group').append(error);
+      },
+      highlight: function (element, errorClass, validClass) {
+        $(element).addClass('is-invalid');
+      },
+      unhighlight: function (element, errorClass, validClass) {
+        $(element).removeClass('is-invalid');
+      }
+    });
+  });
+</script>
+
 </html>
 

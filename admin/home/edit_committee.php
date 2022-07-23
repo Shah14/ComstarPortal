@@ -90,29 +90,48 @@
 											<div class='tab-content'>
 												<div class='active tab-pane' id='update'>
 													<form id="edit_committee" action='edit_committee_process.php' class='form-horizontal' method='post'>
-														<div class='form-group row'>
+														<div class='row'>
 															<input type='hidden' id='id_edit' value=<?php echo $id ?> name='id'>
 															<input type='hidden' id='fileToUpload_edit' value='fileToUpload' name='fileToUpload'>
 															<label for='name_edit' class='col-sm-2 col-form-label'>Name</label>
-															<div class='col-sm-10 input-group'>
+															<div class='col-sm-10 input-group form-group'>
 																<div class="input-group-prepend">
 																	<span class="input-group-text"><i class="fas fa-user-circle"></i></span>
 																</div>
 																<input type='text' class='form-control' id="name_edit" required name='name' value='<?php echo $row["Name"] ?>' oninvalid="this.setCustomValidity('Please Enter the Committee Name')" oninput="this.setCustomValidity('')"/>
 															</div>
 														</div>
-														<div class='form-group row'>
+														<div class='row'>
 															<label for='role_edit' class='col-sm-2 col-form-label'>Role</label>
-															<div class='col-sm-10 input-group'>
+															<div class='col-sm-10 input-group form-group'>
 																<div class="input-group-prepend">
 																	<span class="input-group-text"><i class="fas fa-briefcase"></i></span>
 																</div>
-																<input type='text' class='form-control' id="role_edit" required name='role' value='<?php echo $row["Role"] ?>' oninvalid="this.setCustomValidity('Please Provide a Role')" oninput="this.setCustomValidity('')"/>
+																<select class='form-control a' required name='role' id='role_edit' oninvalid="this.setCustomValidity('Please Select the Committee Role')" oninput="this.setCustomValidity('')">
+																	<option disabled value="">Select One</option>
+																	<option <?php if($row["Role"]=="Club Advisor") {echo "selected";} ?> value='01Club Advisor'> Club Advisor</option>
+																	<option <?php if($row["Role"]=="President") {echo "selected";} ?> value='02President'> President</option>
+																	<option <?php if($row["Role"]=="Vice President (Management)") {echo "selected";} ?> value='03Vice President (Management)'> Vice President (Management)</option>
+																	<option <?php if($row["Role"]=="Vice President (External Relation Affairs)") {echo "selected";} ?> value='04Vice President (External Relation Affairs)'> Vice President (External Relation Affairs)</option>
+																	<option <?php if($row["Role"]=="Secretary") {echo "selected";} ?> value='05Secretary'> Secretary</option>
+																	<option <?php if($row["Role"]=="Vice Secretary") {echo "selected";} ?> value='06Vice Secretary'> Vice Secretary</option>
+																	<option <?php if($row["Role"]=="Treasurer") {echo "selected";} ?> value='07Treasurer'> Treasurer</option>
+																	<option <?php if($row["Role"]=="Vice Treasurer") {echo "selected";} ?> value='08Vice Treasurer'> Vice Treasurer</option>
+																	<option <?php if($row["Role"]=="Exco Academic") {echo "selected";} ?> value='09Exco Academic'> Exco Academic</option>
+																	<option <?php if($row["Role"]=="Exco Multimedia 1") {echo "selected";} ?> value='10Exco Multimedia 1'> Exco Multimedia 1</option>
+																	<option <?php if($row["Role"]=="Exco Multimedia 2") {echo "selected";} ?> value='11Exco Multimedia 2'> Exco Multimedia 2</option>
+																	<option <?php if($row["Role"]=="Exco Publicity") {echo "selected";} ?> value='12Exco Publicity'> Exco Publicity</option>
+																	<option <?php if($row["Role"]=="Exco Sports & Activity") {echo "selected";} ?> value='13Exco Sports & Activity'> Exco Sports & Activity</option>
+																	<option <?php if($row["Role"]=="Exco Welfare & Spiritual") {echo "selected";} ?> value='14Exco Welfare & Spiritual'> Exco Welfare & Spiritual</option>
+																	<option <?php if($row["Role"]=="Exco Protocol") {echo "selected";} ?> value='15Exco Protocol'> Exco Protocol</option>
+																	<option <?php if($row["Role"]=="Exco Website Manager 1") {echo "selected";} ?> value='16Exco Website Manager 1'> Exco Website Manager 1</option>
+																	<option <?php if($row["Role"]=="Exco Website Manager 2") {echo "selected";} ?> value='17Exco Website Manager 2'> Exco Website Manager 2</option>
+																</select>
 															</div>
 														</div>
-														<div class='form-group row'>
+														<div class='row'>
 															<label for='session' class='col-sm-2 col-form-label'>Session <small class="text-primary"></small></label>
-															<div class='col-sm-10 input-group'>
+															<div class='col-sm-10 input-group form-group'>
 																<div class="input-group-prepend">
 																	<span class="input-group-text"><i class="fas fa-calendar"></i></span>
 																</div>
@@ -130,9 +149,9 @@
 																</select>
 															</div>
 														</div>
-														<div class='form-group row'>
+														<div class='row'>
 															<label for='social1' class='col-sm-2 col-form-label'>Social Media 1 <small class="text-primary">[Optional]</small></label>
-															<div class='col-sm-10 input-group'>
+															<div class='col-sm-10 input-group form-group'>
 																<div class="input-group-prepend">
 																	<span class="input-group-text"><i class="fas fa-paper-plane"></i></span>
 																</div>
@@ -148,18 +167,18 @@
 																</select>
 															</div>
 														</div>
-														<div class='form-group row'>
+														<div class='row'>
 															<label for='link1' class='col-sm-2 col-form-label'>Social Media Link 1 <small class="text-primary">[Optional]</small></label>
-															<div class='col-sm-10 input-group'>
+															<div class='col-sm-10 input-group form-group'>
 																<div class="input-group-prepend">
 																	<span class="input-group-text"><i class="fas fa-link"></i></span>
 																</div>
 																<input type='text' class='form-control' name='link1' id="link1" value=<?php echo $row["Link 1"] ?>>
 															</div>
 														</div>
-														<div class='form-group row'>
+														<div class='row'>
 															<label for='social2' class='col-sm-2 col-form-label'>Social Media 2 <small class="text-primary">[Optional]</small></label>
-															<div class='col-sm-10 input-group'>
+															<div class='col-sm-10 input-group form-group'>
 																<div class="input-group-prepend">
 																	<span class="input-group-text"><i class="fas fa-paper-plane"></i></span>
 																</div>
@@ -175,18 +194,18 @@
 																</select>
 															</div>
 														</div>
-														<div class='form-group row'>
+														<div class='row'>
 															<label for='link2' class='col-sm-2 col-form-label'>Social Media Link 2 <small class="text-primary">[Optional]</small></label>
-															<div class='col-sm-10 input-group'>
+															<div class='col-sm-10 input-group form-group'>
 																<div class="input-group-prepend">
 																	<span class="input-group-text"><i class="fas fa-link"></i></span>
 																</div>
 																<input type='text' class='form-control' name='link2' id="link2" value=<?php echo $row["Link 2"] ?>>
 															</div>
 														</div>
-														<div class='form-group row'>
+														<div class='row'>
 															<label for='social3' class='col-sm-2 col-form-label'>Social Media 3 <small class="text-primary">[Optional]</small></label>
-															<div class='col-sm-10 input-group'>
+															<div class='col-sm-10 input-group form-group'>
 																<div class="input-group-prepend">
 																	<span class="input-group-text"><i class="fas fa-paper-plane"></i></span>
 																</div>
@@ -202,18 +221,18 @@
 																</select>
 															</div>
 														</div>
-														<div class='form-group row'>
+														<div class='row'>
 															<label for='link3' class='col-sm-2 col-form-label'>Social Media Link 3 <small class="text-primary">[Optional]</small></label>
-															<div class='col-sm-10 input-group'>
+															<div class='col-sm-10 input-group form-group'>
 																<div class="input-group-prepend">
 																	<span class="input-group-text"><i class="fas fa-link"></i></span>
 																</div>
 																<input type='text' class='form-control' name='link3' id="link3" value=<?php echo $row["Link 3"] ?>>
 															</div>
 														</div>
-														<div class='form-group row'>
+														<div class='row'>
 															<label for='social4' class='col-sm-2 col-form-label'>Social Media 4 <small class="text-primary">[Optional]</small></label>
-															<div class='col-sm-10 input-group'>
+															<div class='col-sm-10 input-group form-group'>
 																<div class="input-group-prepend">
 																	<span class="input-group-text"><i class="fas fa-paper-plane"></i></span>
 																</div>
@@ -229,16 +248,16 @@
 																</select>
 															</div>
 														</div>
-														<div class='form-group row'>
+														<div class='row'>
 															<label for='link4' class='col-sm-2 col-form-label'>Social Media Link 4 <small class="text-primary">[Optional]</small></label>
-															<div class='col-sm-10 input-group'>
+															<div class='col-sm-10 input-group form-group'>
 																<div class="input-group-prepend">
 																	<span class="input-group-text"><i class="fas fa-link"></i></span>
 																</div>
 																<input type='text' class='form-control' name='link4' id="link4" value=<?php echo $row["Link 4"] ?>>
 															</div>
 														</div>
-														<div class='form-group row'>
+														<div class='row'>
 															<div class='offset-sm-2 col-sm-10'>
 																<button hidden id="edit">Test</button>
                                 								<button onclick="validateForm('Are you sure?','Do you want to save changes?','info','edit','edit_committee')" type='button' class='btn btn-danger'><i class='fas fa-pen'></i> Edit</button>
@@ -257,13 +276,13 @@
 														</center>
 													</div>
 													<form id="edit_pic" action='edit_pic_process.php'class='form-horizontal' method='post' enctype='multipart/form-data'>
-														<div class='form-group row'>
+														<div class='row'>
 															<input type='hidden' id='name_edit_image' value='<?php echo $name ?>' name='name'>
 															<input type='hidden' id='role_edit_image' value='<?php echo $role ?>' name='role'>
 															<input type='hidden' id='session_edit_image' value='<?php echo $session ?>' name='session'>
 															<input type='hidden' id='id_edit_image' value=<?php echo $id ?> name='id'>
 															<label for='fileToUpload_edit_image' class='col-sm-2 col-form-label'>Select Image To Upload</label>
-															<div class="col-sm-10 input-group">
+															<div class="col-sm-10 input-group form-group">
 																<div class="input-group-prepend">
 																	<span class="input-group-text"><i class="fas fa-file-image"></i></span>
 																</div>
@@ -273,7 +292,7 @@
 																</div>
 															</div>
 														</div>
-														<div class='form-group row'>
+														<div class='row'>
 															<div class='offset-sm-2 col-sm-10'>
 																<button hidden id="edit_image">Test</button>
 																<button onclick="validateForm('Are you sure?','Do you want to save changes?','info','edit_image','edit_pic')" type='button' class='btn btn-danger'><i class='fas fa-pen'></i> Edit</button>
@@ -292,7 +311,7 @@
 													</div>
 													<form id="delete_committee" action='delete_committee_process.php' class='form-horizontal' method='post' <?php echo $hide ?>>
 														<input type='hidden' id='id_delete_action' value=<?php echo $id ?> name='id'>											
-														<div class='form-group row'>
+														<div class='row'>
 															<div class='offset-sm-2 col-sm-10'>
 																<button hidden id="delete_action">Test</button>
                                 								<button onclick="alert('Are you sure?','Do you want to delete this committee?','warning','delete_action','delete_committee')" type='button' class='btn btn-danger'><i class='fas fa-trash'></i> Delete</button>
@@ -357,6 +376,70 @@
 </script>
 
 <?php require '../include/script.php';?>
+
+<script>
+$(function () {
+    $('#edit_committee').validate({
+      rules: {
+        name: {
+          required: true,
+        },
+        role: {
+          required: true,
+        },
+        session: {
+          required: true,
+        },
+      },
+      messages: {
+        name: {
+          required: "Please enter the committee name",
+        },
+        role: {
+          required: "Please select the committee role",
+        },
+        session: {
+          required: "Please select the committee session",
+        },
+      },
+      errorElement: 'span',
+      errorPlacement: function (error, element) {
+        error.addClass('invalid-feedback');
+        element.closest('.form-group').append(error);
+      },
+      highlight: function (element, errorClass, validClass) {
+        $(element).addClass('is-invalid');
+      },
+      unhighlight: function (element, errorClass, validClass) {
+        $(element).removeClass('is-invalid');
+      }
+    });
+	
+	$('#edit_pic').validate({
+      rules: {
+        fileToUpload: {
+          required: true,
+        },
+      },
+      messages: {
+        fileToUpload: {
+          required: "Please select an image file",
+        },
+      },
+      errorElement: 'span',
+      errorPlacement: function (error, element) {
+        error.addClass('invalid-feedback');
+        element.closest('.form-group').append(error);
+      },
+      highlight: function (element, errorClass, validClass) {
+        $(element).addClass('is-invalid');
+      },
+      unhighlight: function (element, errorClass, validClass) {
+        $(element).removeClass('is-invalid');
+      }
+    });
+});
+</script>
 </body>
 </html>
 

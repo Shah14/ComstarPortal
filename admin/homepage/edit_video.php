@@ -83,35 +83,35 @@
 									<div class='tab-content'>
 										<div class='active tab-pane' id='update'>
 											<form id="edit_video" action='edit_video_process.php' class='form-horizontal' method='post'>
-												<div class='form-group row'>
+												<div class='row'>
 													<input type='hidden' id='id' value='<?php echo $id ?>' name='id'>
 													<label for='name_edit' class='col-sm-2 col-form-label'>Name</label>
-													<div class='col-sm-10 input-group'>
+													<div class='col-sm-10 input-group form-group'>
 														<div class="input-group-prepend">
 															<span class="input-group-text"><i class="fas fa-video"></i></span>
 														</div>
 													<input type='text' class='form-control' id="name_edit" required name='about' value='<?php echo $about ?>' oninvalid="this.setCustomValidity('Please Enter the Video Name')" oninput="this.setCustomValidity('')">
 													</div>
 												</div>
-												<div class='form-group row'>
+												<div class='row'>
 													<label for='year_edit' class='col-sm-2 col-form-label'>Year</label>
-													<div class='col-sm-10 input-group'>
+													<div class='col-sm-10 input-group form-group'>
 														<div class="input-group-prepend">
 															<span class="input-group-text"><i class="fas fa-calendar"></i></span>
 														</div>
 													<input type='number'  min="2000" max="2100" step="1" class='form-control' id="year_edit" required name='year' value='<?php echo $year ?>' oninvalid="this.setCustomValidity('Please Enter the Video Year')" oninput="this.setCustomValidity('')">
 													</div>
 												</div>
-												<div class='form-group row'>
+												<div class='row'>
 													<label for='video_edit' class='col-sm-2 col-form-label'>Video ID</label>
-													<div class='col-sm-10 input-group'>
+													<div class='col-sm-10 input-group form-group'>
 														<div class="input-group-prepend">
 															<span class="input-group-text"><i class="fas fa-link"></i></span>
 														</div>
 													<input type='text' onchange="changeThumbnail()" class='form-control' id="video_edit" required name='image' value='<?php echo $image ?>' oninvalid="this.setCustomValidity('Please Enter the Youtube Video ID')" oninput="this.setCustomValidity('')">
 													</div>
 												</div>
-												<div class='form-group row'>
+												<div class='row'>
 													<div class='offset-sm-2 col-sm-10'>
 														<button hidden id="edit">Test</button>
                           								<button onclick="validateForm('Are you sure?','Do you want to update this video?','info','edit','edit_video')" type='button' class='btn btn-danger'><i class='fas fa-pen'></i> Edit</button>										  									  
@@ -124,7 +124,7 @@
 										<div class='tab-pane' id='delete'>
 											<form id="delete" action='delete_video_process.php' class='form-horizontal' method='post'>
 												<input type='hidden' id='id' value='<?php echo $id ?>' name='id'>											
-												<div class='form-group row'>
+												<div class='row'>
 													<div class='offset-sm-2 col-sm-10'>
 														<button hidden id="delete_action"></button>
                           								<button onclick="alert('Are you sure?','Do you want to delete this image?','warning','delete_action','delete')" type='button' class='btn btn-danger'><i class='fas fa-trash'></i> Delete</button>
@@ -177,6 +177,47 @@
 </script>
 
 <?php require '../include/script.php';?>
+
+<script>
+$(function () {
+    $('#edit_video').validate({
+      rules: {
+        about: {
+          required: true,
+        },
+        year: {
+          required: true,
+        },
+        image: {
+          required: true,
+        },
+      },
+      messages: {
+        about: {
+          required: "Please enter the video name",
+        },
+        year: {
+          required: "Please enter the image year",
+        },
+        image: {
+          required: "Please enter the video ID",
+        },
+      },
+      errorElement: 'span',
+      errorPlacement: function (error, element) {
+        error.addClass('invalid-feedback');
+        element.closest('.form-group').append(error);
+      },
+      highlight: function (element, errorClass, validClass) {
+        $(element).addClass('is-invalid');
+      },
+      unhighlight: function (element, errorClass, validClass) {
+        $(element).removeClass('is-invalid');
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
 

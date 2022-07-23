@@ -64,18 +64,18 @@
 									<div class='tab-content'>
 									  <div class='active tab-pane' id='update'>
                       <form id="add_image" action='add_image_process.php'class='form-horizontal' method='post' enctype='multipart/form-data'>
-                        <div class='form-group row'>
+                        <div class='row'>
                           <label for='name_add' class='col-sm-2 col-form-label'>Name</label>
-                          <div class='col-sm-10 input-group'>
+                          <div class='col-sm-10 input-group form-group'>
 														<div class="input-group-prepend">
 														  <span class="input-group-text"><i class="fas fa-image"></i></span>
 														</div>
                             <input type='text' class='form-control' id="name_add" required name='name' placeholder='Example : COMSTARIAN Day' oninvalid="this.setCustomValidity('Please Enter the Image Title')" oninput="this.setCustomValidity('')">
                           </div>
                         </div>
-                        <div class='form-group row'>
+                        <div class='row'>
                           <label for='year_add' class='col-sm-2 col-form-label'>Year</label>
-                          <div class='col-sm-10 input-group'>
+                          <div class='col-sm-10 input-group form-group'>
 														<div class="input-group-prepend">
 														  <span class="input-group-text"><i class="fas fa-calendar"></i></span>
 														</div>
@@ -88,9 +88,9 @@
                             <a href='https://www.iloveimg.com/resize-image' target='blank' >Resize image here!</a>
                           </center>
                         </div>
-                        <div class='form-group row'>
+                        <div class='row'>
                           <label for='fileToUpload_add' class='col-sm-2 col-form-label'>Select Image To Upload</label>
-                          <div class="col-sm-10 input-group">
+                          <div class="col-sm-10 input-group form-group">
                             <div class="input-group-prepend">
                               <span class="input-group-text"><i class="fas fa-file-image"></i></span>
                             </div>
@@ -100,7 +100,7 @@
                             </div>
                           </div>
                         </div>
-                        <div class='form-group row'>
+                        <div class='row'>
                           <div class='offset-sm-2 col-sm-10'>
                             <button hidden id="add">Test</button>
                             <button onclick="validateForm('Are you sure?','Do you want to add this image?','info','add','add_image')" type='button' class='btn btn-danger'><i class='fas fa-plus-circle'></i> Add</button>
@@ -151,6 +151,47 @@
 </script>
 
 <?php require '../include/script.php';?>
+
+<script>
+    $(function () {
+    $('#add_image').validate({
+      rules: {
+        name: {
+          required: true,
+        },
+        year: {
+          required: true,
+        },
+        fileToUpload: {
+          required: true,
+        },
+      },
+      messages: {
+        name: {
+          required: "Please enter the image name",
+        },
+        year: {
+          required: "Please enter the image year",
+        },
+        fileToUpload: {
+          required: "Please select an image file",
+        },
+      },
+      errorElement: 'span',
+      errorPlacement: function (error, element) {
+        error.addClass('invalid-feedback');
+        element.closest('.form-group').append(error);
+      },
+      highlight: function (element, errorClass, validClass) {
+        $(element).addClass('is-invalid');
+      },
+      unhighlight: function (element, errorClass, validClass) {
+        $(element).removeClass('is-invalid');
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
 

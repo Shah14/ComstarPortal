@@ -112,9 +112,9 @@ if(isset($_GET["id"])){
                       </div>
                     <div class="card-body">			 
                         <form id="edit_homepage" action="../Homepage/edit_homepage_process.php" class="form-horizontal" method="post">
-                          <div class="form-group row">
+                          <div class="row">
                             <label for="aboutus" class="col-sm-2 col-form-label">Description</label>
-                            <div class='col-sm-10 input-group'>
+                            <div class='col-sm-10 input-group form-group'>
                               <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-font"></i></span>
                               </div>
@@ -125,6 +125,7 @@ if(isset($_GET["id"])){
                             <div class="offset-sm-2 col-sm-10">
                               <button hidden id="edit_action"></button>
                               <button onclick="alert('Are you sure?','Do you want to edit the description?','info','edit_action','edit_homepage')" type='button' class="btn btn-danger"><i class='fas fa-pen'></i> Edit</button>
+                              <button type='reset' class='btn btn-danger'><i class='fas fa-rotate-left'></i> Reset</button>
                             </div>
                           </div>
                         </form>
@@ -297,5 +298,33 @@ if(isset($_GET["id"])){
 <?php require '../include/footer.php';?>
 
 <?php require '../include/script.php';?>
+
+<script>
+    $(function () {
+    $('#edit_homepage').validate({
+      rules: {
+        about: {
+          required: true,
+        },
+      },
+      messages: {
+        about: {
+          required: "Please enter the description",
+        },
+      },
+      errorElement: 'span',
+      errorPlacement: function (error, element) {
+        error.addClass('invalid-feedback');
+        element.closest('.form-group').append(error);
+      },
+      highlight: function (element, errorClass, validClass) {
+        $(element).addClass('is-invalid');
+      },
+      unhighlight: function (element, errorClass, validClass) {
+        $(element).removeClass('is-invalid');
+      }
+    });
+  });
+</script>
 </html>
 

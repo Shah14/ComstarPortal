@@ -66,34 +66,34 @@
 									<div class='tab-content'>
 									  <div class='active tab-pane' id='update'>
                       <form id="add_video" action='add_video_process.php'class='form-horizontal' method='post' enctype='multipart/form-data'>
-                        <div class='form-group row'>
+                        <div class='row'>
                           <label for='name_add' class='col-sm-2 col-form-label'>Name</label>
-                          <div class='col-sm-10 input-group'>
+                          <div class='col-sm-10 input-group form-group'>
 														<div class="input-group-prepend">
 															<span class="input-group-text"><i class="fas fa-video"></i></span>
 														</div>
                             <input type='text' class='form-control' id="name_add" required name='name' placeholder='Example : COMSTARIAN Day' oninvalid="this.setCustomValidity('Please Enter the Video Name')" oninput="this.setCustomValidity('')">
                           </div>
                         </div>
-                        <div class='form-group row'>
+                        <div class='row'>
                           <label for='year_add' class='col-sm-2 col-form-label'>Year</label>
-                          <div class='col-sm-10 input-group'>
+                          <div class='col-sm-10 input-group form-group'>
 														<div class="input-group-prepend">
 															<span class="input-group-text"><i class="fas fa-calendar"></i></span>
 														</div>
                             <input type='number' min="2000" max="2100" step="1" class='form-control' id="year_add" required name='year' placeholder='Example : 2022' oninvalid="this.setCustomValidity('Please Enter the Video Year')" oninput="this.setCustomValidity('')">
                           </div>
                         </div>
-                        <div class='form-group row'>
+                        <div class='row'>
                           <label for='video_add' class='col-sm-2 col-form-label'>Video ID</label>
-                          <div class='col-sm-10 input-group'>
+                          <div class='col-sm-10 input-group form-group'>
 														<div class="input-group-prepend">
 															<span class="input-group-text"><i class="fas fa-link"></i></span>
 														</div>
                             <input type='text' onchange="changeThumbnail()" class='form-control' id="video_add" required name='video' placeholder='Example : dQw4w9WgXcQ' oninvalid="this.setCustomValidity('Please Enter the Youtube Video ID')" oninput="this.setCustomValidity('')">
                           </div>
                         </div>
-                        <div class='form-group row'>
+                        <div class='row'>
                           <div class='offset-sm-2 col-sm-10'>
                             <button hidden id="add">Test</button>
                             <button onclick="validateForm('Are you sure?','Do you want to add this programme?','info','add','add_video')" type='button' class='btn btn-danger'><i class='fas fa-plus-circle'></i> Add</button>
@@ -144,6 +144,47 @@
 </script>
 
 <?php require '../include/script.php';?>
+
+<script>
+    $(function () {
+    $('#add_video').validate({
+      rules: {
+        name: {
+          required: true,
+        },
+        year: {
+          required: true,
+        },
+        video: {
+          required: true,
+        },
+      },
+      messages: {
+        name: {
+          required: "Please enter the video name",
+        },
+        year: {
+          required: "Please enter the image year",
+        },
+        video: {
+          required: "Please enter the video ID",
+        },
+      },
+      errorElement: 'span',
+      errorPlacement: function (error, element) {
+        error.addClass('invalid-feedback');
+        element.closest('.form-group').append(error);
+      },
+      highlight: function (element, errorClass, validClass) {
+        $(element).addClass('is-invalid');
+      },
+      unhighlight: function (element, errorClass, validClass) {
+        $(element).removeClass('is-invalid');
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
 

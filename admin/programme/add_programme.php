@@ -54,45 +54,45 @@
                 <div class="tab-content">
                   <div class="active tab-pane" id="add">
                     <form id="add_programme" action="../Programme/add_programme_process.php" class="form-horizontal" method="post" enctype='multipart/form-data'>
-					            <div class="form-group row">
+					            <div class="row">
                         <label for="name_add_action" class="col-sm-2 col-form-label">Name</label>
-                          <div class='col-sm-10 input-group'>
+                          <div class='col-sm-10 input-group form-group'>
 														<div class="input-group-prepend">
 													  	<span class="input-group-text"><i class="fas fa-calendar-plus"></i></span>
 														</div>
                           <input type="text" class="form-control" id="name_add_action" required name="name" placeholder="Example : Unity Workshop" oninvalid="this.setCustomValidity('Please Enter the Programme Name')" oninput="this.setCustomValidity('')">
                         </div>
                       </div>
-                      <div class="form-group row">
+                      <div class="row">
                         <label for="date_add_action" class="col-sm-2 col-form-label">Date</label>
-                          <div class='col-sm-10 input-group'>
+                          <div class='col-sm-10 input-group form-group'>
 														<div class="input-group-prepend">
 													  	<span class="input-group-text"><i class="fas fa-calendar"></i></span>
 														</div>
                           <input type="date" class="form-control" id="date_add_action" required name="date" oninvalid="this.setCustomValidity('Please Enter the Programme Date')" oninput="this.setCustomValidity('')">
                         </div>
                       </div>
-                      <div class="form-group row">
+                      <div class="row">
                         <label for="venue_add_action" class="col-sm-2 col-form-label">Venue</label>
-                          <div class='col-sm-10 input-group'>
+                          <div class='col-sm-10 input-group form-group'>
 														<div class="input-group-prepend">
 													  	<span class="input-group-text"><i class="fas fa-building"></i></span>
 														</div>
                           <input type="text" class="form-control" id="venue_add_action" required name="venue" placeholder="Example : Menara Razak" oninvalid="this.setCustomValidity('Please Enter the Programme Venue')" oninput="this.setCustomValidity('')">
                         </div>
                       </div>
-                      <div class="form-group row">
+                      <div class="row">
                         <label for="fee_add_action" class="col-sm-2 col-form-label">Fee Price (RM)</label>
-                          <div class='col-sm-10 input-group'>
+                          <div class='col-sm-10 input-group form-group'>
 														<div class="input-group-prepend">
 													  	<span class="input-group-text"><i class="fa-solid fa-sack-dollar"></i></span>
 														</div>
                             <input type="number" class="form-control" id="fee_add_action" required name="fee" step='any' placeholder="Example : 5.00" oninvalid="this.setCustomValidity('Please Enter the Programme Fee')" oninput="this.setCustomValidity('')">
                         </div>
                       </div>
-                      <div class="form-group row">
+                      <div class="row">
                         <label for="status_add_action" class="col-sm-2 col-form-label">Status</label>
-                          <div class='col-sm-10 input-group'>
+                          <div class='col-sm-10 input-group form-group'>
 														<div class="input-group-prepend">
 													  	<span class="input-group-text"><i class="fas fa-check-circle"></i></span>
 														</div>
@@ -115,9 +115,9 @@
                           <a href="https://www.iloveimg.com/resize-image" target="blank" >Resize image here!</a>
                       </div>
                       </div>
-                      <div class='form-group row'>
+                      <div class='row'>
 												<label for='fileToUpload_add_action' class='col-sm-2 col-form-label'>Select Image To Upload</label>
-												<div class="col-sm-10 input-group">
+												<div class="col-sm-10 input-group form-group">
 													<div class="input-group-prepend">
 														<span class="input-group-text"><i class="fas fa-file-image"></i></span>
 													</div>
@@ -127,7 +127,7 @@
                           </div>
 												</div>
 											</div>		  
-                      <div class="form-group row">
+                      <div class="row">
                         <div class="offset-sm-2 col-sm-10">
                           <button hidden id="add_action">Test</button>
                           <button onclick="validateForm('Are you sure?','Do you want to add this programme?','info','add_action','add_programme')" type='button' class='btn btn-danger'><i class='fas fa-plus-circle'></i> Add</button>
@@ -184,5 +184,64 @@
 </script>
 
 <?php require '../include/script.php';?>
+
+<script>
+    $(function () {
+    $('#add_programme').validate({
+      rules: {
+        name: {
+          required: true,
+        },
+        date: {
+          required: true,
+        },
+        venue: {
+          required: true,
+        },
+        fee: {
+          required: true,
+        },
+        status: {
+          required: true,
+        },
+        fileToUpload: {
+          required: true,
+        },
+      },
+      messages: {
+        name: {
+          required: "Please enter the programme name",
+        },
+        date: {
+          required: "Please select the programme date",
+        },
+        venue: {
+          required: "Please enter the programme venue",
+        },
+        fee: {
+          required: "Please enter the programme fee price",
+        },
+        status: {
+          required: "Please select the programme status",
+        },
+        fileToUpload: {
+          required: "Please select an image file",
+        },
+      },
+      errorElement: 'span',
+      errorPlacement: function (error, element) {
+        error.addClass('invalid-feedback');
+        element.closest('.form-group').append(error);
+      },
+      highlight: function (element, errorClass, validClass) {
+        $(element).addClass('is-invalid');
+      },
+      unhighlight: function (element, errorClass, validClass) {
+        $(element).removeClass('is-invalid');
+      }
+    });
+  });
+</script>
+
 </html>
 

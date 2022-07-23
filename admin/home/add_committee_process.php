@@ -56,10 +56,10 @@ if ($uploadOk == 0) {
 
 rename("../../COMSTAR Committee/MT BARU/".$_FILES["fileToUpload"]["name"],"../../COMSTAR Committee/MT BARU/".$_POST['name'].".".$imageFileType);
 $filename= $_POST['name'].".".$imageFileType;
-$sql="INSERT INTO `committee` (`Name`,`Role`,`Picture`)  VALUES('$_POST[name]','$_POST[role]','$filename')";
+$sql="INSERT INTO `committee` (`Name`,`Role`,`Session`,`Position`,`Picture`)  VALUES('$_POST[name]','".substr($_POST["role"],2)."','$_POST[session]','".substr($_POST["role"],0,2)."','$filename')";
 
 if (!mysqli_query($con,$sql)){
-}header("Location: admin.php?name=$_POST[name]#$_POST[name]");
+}header("Location: admin.php?name=$_POST[name]&id=custom-tabs-four-".substr($_POST["session"],0,4)."#$_POST[name]");
 $_SESSION["Alert"] = "You have successfully added a committee member!"; //for alert 
 mysqli_close($con);
 ?>

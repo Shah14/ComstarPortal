@@ -1,907 +1,340 @@
-<?php
-session_start();
-?>
-<!DOCTYPE html>
-<html lang="en">
+<?php require '../include/css.php';?>
 
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <?php $page = "Home"; ?>
 
-  <title>COMSTAR Portal Home</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+  <title><?php echo $page; ?> | COMSTAR Portal</title>
 
-  <!-- Favicons -->
   <link rel="icon" href="../../assets/logo/logo.png">
-  <link href="../../COMSTAR_INTERFACE_FIRST_SPRINT/Home/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-  <!-- Vendor CSS Files -->
-  <link href="../../COMSTAR_INTERFACE_FIRST_SPRINT/Home/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../../COMSTAR_INTERFACE_FIRST_SPRINT/Home/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="../../COMSTAR_INTERFACE_FIRST_SPRINT/Home/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="../../COMSTAR_INTERFACE_FIRST_SPRINT/Home/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="../../COMSTAR_INTERFACE_FIRST_SPRINT/Home/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="../../COMSTAR_INTERFACE_FIRST_SPRINT/Home/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
-  <link href="../../COMSTAR_INTERFACE_FIRST_SPRINT/Home/assets/css/style.css" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: Tempo - v4.3.0
-  * Template URL: https://bootstrapmade.com/tempo-free-onepage-bootstrap-theme/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
-<?php
-if(isset($_SESSION["login"]) === true){
-}else{
-	header("Location: ../../ACCOUNT/LOGIN/login.php");
-}
-print_r($_SESSION);
-$q=$_SESSION["User"];
-$con = new mysqli("localhost","root","","comstar_portal");
-$result=mysqli_query($con,"SELECT * FROM `login` WHERE Email='$q'");
-if ($result->num_rows > 0) {
-	while($row = $result->fetch_assoc()) {
-		$name=$row["Name"];
-						
-		}
-	}
-?>
-<style>
-b {
-  text-align: justify;
-  text-justify: inter-word;
-}
-* {
-  box-sizing: border-box;
-}
-/* Create four equal columns that floats next to each other */
-.column {
-  float: left;
-  width: 20%;
-}
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-/* Header/Logo Title */
-.header {
-  padding: 60px;
-  text-align: center;
-  background: black;
-  color: white;
-  font-size: 30px;
-  border-style:inset;
-}
 
-/* The dots/bullets/indicators */
-.dot {
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
-}
-
-.active1 {
-  background-color: #717171;
-}
-
-/* Fading animation */
-.fade {
-  -webkit-animation-name: fade;
-  -webkit-animation-duration: 0.5s;
-  animation-name: fade;
-  animation-duration: 5.5s;
-}
-
-@-webkit-keyframes fade {
-  from {opacity: 0.4} 
-  to {opacity: 1}
-}
-
-@keyframes fade {
-  from {opacity: 0.4} 
-  to {opacity: 1}
-}
-.align-right {
-  text-align: right;
-}
-body {
-  background-color: white;
-  color: black;
-}
-
-.dark-mode {
-  background-color: #404040;
-  color: black;
-}
-.img-fluid {
-	max-width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-</style>
-
-<body>
-
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top ">
-    <div class="container d-flex align-items-center justify-content-between">
-
-      <h1 class="logo"><a href="../Home/home.php">COMSTAR UTMKL</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="#services">Services</a></li>
-          <li><a class="nav-link scrollto " href="#portfolio">Gallery</a></li>
-          <li><a class="nav-link scrollto" href="#team">Member</a></li>
-          <li class="dropdown "><a class="nav-link scrollto" href="../Programme/programme.php"><span>Programme</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="../Programme/programme.php#UTM">UTM</a></li>
-              <li><a href="../Programme/programme.php#COMSTAR">COMSTAR</a></li>
-              <li><a href="../Programme/programme.php#Public">Public</a></li>
-            </ul>
-          </li>
-		 <li class="dropdown"><a class="nav-link scrollto" href="../Profile/profile.php"><span>Profile</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-               <li><center><b><?php echo $name; ?></b></center></li>
-               <li><a class="nav-link scrollto" href="../Profile/profile.php">View Profile</a></li>
-			   <li><a class="nav-link scrollto" href="https://www.sandbox.paypal.com/myaccount/transactions/?free_text_search=&filter_id=&currency=ALL&issuance_product_name=&asset_names=&asset_symbols=&type=&status=&start_date=2021-07-23&end_date=2021-10-21">View Payment History</a></li>
-               <li><a class="nav-link scrollto" href="../../ACCOUNT/Login/logout.php">Logout</a></li>
-            </ul>
-          </li>
-		  <li><a class="nav-link scrollto" href="../Forum/forum.php">Forum</a></li>
-          <li><a class="nav-link scrollto" href="../Home/home.php#contact">Contact</a></li>
-		  <li><button class="btn btn-danger" data-toggle="button" aria-pressed="false" autocomplete="off" onclick="Function()"><i class="bi bi-moon"></i>Dark Mode</button> </li>
-		  <li><br><div id="google_translate_element"></div></li>
-
-			<script type="text/javascript">
-			function googleTranslateElementInit() {
-			  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-			}
-			</script>
-
-			<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-		  
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
-    </div>
-  </header><!-- End Header -->
-
-  <!-- ======= Hero Section ======= -->
-  <section id="hero">
-    <div class="hero-container">
-      <h3>Welcome <strong><?php echo $name; ?> !</strong></h3>
-      <h1>COMSTAR PORTAL</h1>
-      <h2>Get upcoming updates on our programme and event!</h2>
-      <a href="#about" class="btn-get-started scrollto">Get Started</a>
-    </div>
-  </section><!-- End Hero -->
-
-  <main id="main">
-
-    <!-- ======= About Section ======= -->
-    <section id="about" class="about">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>About Comstar</h2>
-          <h3>Learn More <span>About Us</span></h3>
-          <p style="text-align: justify"><?php 
-						$con = new mysqli("localhost","root","","comstar_portal");
-						$result=mysqli_query($con,"SELECT * FROM `homepage` WHERE ID='1'");
-						while($row = $result->fetch_assoc()) {
-						
-						echo $row["About"];
-						}
-						?></p>
-        </div>
-
-        <div class="row content">
-          <div class="col-lg-6">
-            <p>
-              As part of realizing COMSTAR Vision and Mission, club members also enjoy several benefits offered by the club such as;
-            </p>
-            <ul>
-              <li><i class="ri-check-double-line"></i> Being one of the biggest club in UTMKL</li>
-              <li><i class="ri-check-double-line"></i> Consisting of many successful alumni</li>
-              <li><i class="ri-check-double-line"></i> Plenty of interactive programme</li>
-			  <li><i class="ri-check-double-line"></i> More opportunities to skill-up</li>
-			  <li><i class="ri-check-double-line"></i> Provide valuable certifications</li>
-            </ul>
-          </div>
-          <div class="col-lg-6 pt-4 pt-lg-0">
-            <p style="text-align: justify">
-              Universiti Teknologi Malaysia (UTM) is a leading innovation-driven entrepreneurial research university in 
-			  engineering science and technology. Ranked 187th in the world by QS University rankings and fifth in Malaysia, 
-			  UTM practices its own core value; Integrity, Synergy, Excellence and Sustainability. UTM is located 
-			  both in Kuala Lumpur, the capital city of Malaysia and Johor Bahru, the southern  city in Malaysia.
-            </p>
-            <a target="_blank" href="https://www.utm.my/about/" class="btn-learn-more">Learn More</a>
-          </div>
-        </div>
-
-      </div>
-    </section><!-- End About Section -->
-
-    <!-- ======= Services Section ======= -->
-    <section id="services" class="services">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Services</h2>
-          <h3>We do indeed offer awesome <span>Services</span></h3>
-          <p>COMSTAR Portal provides access to several services at the tip of your gaming fingertip or a single click of your gaming mouse.</p>
-        </div>
-
-        <div class="row">
-		<div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-            <div class="icon-box">
-			  <a href="#cta">
-              <div class="icon"><i class="bx bx-dollar-circle"></i></div>
-              <h4 class="title">Advertisement</a></h4>
-              <p class="description">View promotions and offers provided by COMSTAR members.</p>
-            </div>
-          </div>
-		
-          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-            <div class="icon-box">
-			  <a href="#portfolio">
-              <div class="icon"><i class="bx bx-photo-album"></i></div>
-              <h4 class="title">Gallery</a></h4>
-              <p class="description">View pictures and photographic memories from our past programme and events.</p>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-            <div class="icon-box">
-			  <a href="../Programme/programme.php">
-              <div class="icon"><i class="bx bx-calendar-star"></i></div>
-              <h4 class="title">Programme</a></h4>
-              <p class="description">View ongoing and upcoming programme available to join. Browse anonymously or simply sign in and register!</p>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-            <div class="icon-box">
-			  <a href="#video">
-              <div class="icon"><i class="bx bx-movie-play"></i></div>
-              <h4 class="title">Video</a></h4>
-              <p class="description">View moving pictures provided by our committee or tune in to our tutorials.</p>
-            </div>
-          </div>
-
-        </div>
-		<br>
-		<div class="row">
-          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-            <div class="icon-box">
-			  <a href="../Forum/forum.php">
-              <div class="icon"><i class="bx bx-group"> </i></div>
-              <h4 class="title">Forum</a></h4>
-              <p class="description">Engage with other users in the community or browse informational posts.</p>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-            <div class="icon-box">
-			  <a href="#pricing">
-              <div class="icon"><i class="bx bx-coin-stack"></i></div>
-              <h4 class="title">Fee</a></h4>
-              <p class="description">View and pay COMSTAR membership fee.</p>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-            <div class="icon-box">
-			  <a href="#faq">
-              <div class="icon"><i class="bx bx-question-mark"></i></div>
-              <h4 class="title">Frequently Asked Questions</a></h4>
-              <p class="description">View questions COMSTARIANS asked the most daily.</p>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-            <div class="icon-box">
-			  <a href="../Support/add_support.php">
-              <div class="icon"><i class="bx bx-support"> </i></div>
-              <h4 class="title">Technical Support</a></h4>
-              <p class="description">Found bugs? Glitches? Nonsense from your auntie? Report them here.</p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section><!-- End Services Section -->
-
-    <!-- ======= Cta Section ======= -->
-
-    <section id="cta" class="blog">
-	 <div class="section-title">
-          <h2>Advertisements</h2>
-          <h3>Check out our <span>Advertisements</span></h3>
-          <p>View promotions and offers provided by COMSTAR members.</p>
-        </div>
-	<div class="container">
-
-        <div class="text-center">
-          
-<div class="slideshow-container">
-
-<?php
-$con = new mysqli("localhost","root","","comstar_portal");
-$result=mysqli_query($con,"SELECT * FROM `advertisement`WHERE Visibility='Visible' ");
-$count=0;
-if ($result->num_rows > 0) {
-  while($row = $result->fetch_assoc()) {
-	  $count=$count+1;
-echo "<div class='mySlides fade'>";
-
-	  echo "<a href='".$row["Link"]."'target='_blank'><img src='../../assets/advertisement/".$row["Banner"]."'style='width:100%;height:250px'></a>";
-	  echo $row["Title"];
-							
-
-					
-	  echo "
-	</div>";
-  }
-}else echo "<h1>No <span>Advertisement</span> available at the moment</h1>";
-?>
-
-</div>
-
-<br>
-
-<div style="text-align:center">
-  <span hidden class="dot"></span> 
-  <span hidden class="dot"></span> 
-  <span hidden class="dot"></span>
-  <span hidden class="dot"></span> 
-  <span hidden class="dot"></span>
-</div>
-	</div>
-
-      </div>
-    </section><!-- End Cta Section -->
-
-    <!-- ======= Portfolio Section ======= -->
-    <section id="portfolio" class="portfolio">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Gallery</h2>
-          <h3>Check our <span>Gallery</span></h3>
-          <p>View pictures and photographic memories from our past programme and events.</p>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-12 d-flex justify-content-center">
-            <ul id="portfolio-flters">
-              <li data-filter="*" class="filter-active">All</li>
-                <?php
-                $con = new mysqli("localhost","root","","comstar_portal");
-                $result=mysqli_query($con,"SELECT DISTINCT Year FROM `homepage` WHERE `Type`= 'Image'");
-                  while($row = $result->fetch_assoc()) {
-                    echo "<li data-filter='.filter-".$row["Year"]."'>".$row["Year"]."</li>";
-                  }
-                ?>
-            </ul>
-          </div>
-        </div>
-
-        <div class="row portfolio-container">
-						<?php
-						$con = new mysqli("localhost","root","","comstar_portal");
-						$result=mysqli_query($con,"SELECT * FROM `homepage` WHERE `Type`= 'Image' ORDER BY Year DESC");
-							while($row = $result->fetch_assoc()) {
-								$id=$row["ID"];
-								
-								echo"
-								<div class='col-lg-4 col-md-6 portfolio-item filter-".$row["Year"]." filter-1'>
-                  <img src='../../assets/event/".$row["Image"]."'class='img-fluid' alt=''>
-                  <div class='portfolio-info'>
-                    <h4>".$row["About"]."</h4>
-                    <p>".$row["Year"]."</p>
-                    <a href='../../assets/event/".$row["Image"]."' data-gallery='portfolioGallery' class='portfolio-lightbox preview-link' title='".$row["About"]."'><i class='bi bi-zoom-in'></i></a>
-                  </div>
-							  </div>";
-								
-							}
-						?>
-
-        </div>
-		
-		
-
-      </div>
-    </section><!-- End Portfolio Section -->
-	
-	   <!-- ======= Portfolio Section ======= -->
-    <section id="video" class="portfolio">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Video</h2>
-          <h3>Check our <span>Video</span></h3>
-          <p>View moving pictures provided by our committee or tune in to our tutorials. More on our <a href="https://www.youtube.com/channel/UCkagvAQ9G15bj63Z9CUYL_g/videos">Youtube</a>.</p>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-12 d-flex justify-content-center">
-            <ul id="portfolio-flters">
-              <li data-filter="*" class="filter-active">All</li>
-                <?php
-                $con = new mysqli("localhost","root","","comstar_portal");
-                $result=mysqli_query($con,"SELECT DISTINCT Year FROM `homepage` WHERE `Type`= 'Video'");
-                  while($row = $result->fetch_assoc()) {
-                    echo "<li data-filter='.filter-".$row["Year"]."'>".$row["Year"]."</li>";
-                  }
-                ?>
-            </ul>
-          </div>
-        </div>
-        
-
-        <div class="row portfolio-container">
-
-        <?php
-						$con = new mysqli("localhost","root","","comstar_portal");
-						$result=mysqli_query($con,"SELECT * FROM `homepage` WHERE `Type`= 'Video' ORDER BY Year DESC");
-							while($row = $result->fetch_assoc()) {
-								$id=$row["ID"];
-								
-								echo"<div class='col-lg-4 col-md-6 portfolio-item filter-".$row["Year"]." filter-1'>
-                      <iframe width='420' height='345' src='https://www.youtube.com/embed/".$row["Image"]."' data-gallery='portfolioGallery' class='portfolio-lightbox preview-link' title='COMSPORT 2021'><i class='bx bx-plus'></i>>
-                      </iframe>
-                    </div>";
-								
-							}
-						?>
-        </div>
-		
-
-      </div>
-    </section><!-- End Portfolio Section -->
-
-    <!-- ======= Pricing Section ======= -->
-    <section id="pricing" class="pricing">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Fees</h2>
-          <h3>Our COMSTAR <span>Fees</span></h3>
-          <p>View and pay COMSTAR membership fee.</p>
-        </div>
-
-        <div class="row">
-
-          <div class="col-lg-4 col-md-6">
-		  <div class="box recommended">
-          <span class="recommended-badge">First-Year Only</span>
-              <h3>Fee Package A</h3>
-              <h4><sup>RM</sup>90-100<span> / year</span></h4>
-              <ul>
-                <li>COMSTAR AGM Dinner</li>
-                <li>COMSTAR T-Shirt</li>
-                <li>COMSTAR Corporate Shirt	</li>
-                <li>COMSTAR Lanyard</li>
-                <li>COMSTARIAN Day</li>
-              </ul>
-              <div class="btn-wrap">
-                <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
-				<input type="hidden" name="cmd" value="_s-xclick">
-				<input type="hidden" name="hosted_button_id" value="UQ2JUVGPN7BAG">
-				<center><table>Category
-				<tr><td><input type="hidden" name="on0" value="Category"></td></tr><tr><td><select name="os0">
-					<option value="Male">Male RM90.00 MYR</option>
-					<option value="Female">Female RM100.00 MYR</option>
-				</select> </td></tr>
-				</table></center>
-				<input type="hidden" name="currency_code" value="MYR">
-				<input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_paynow_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-				<img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
-				</form>
-
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mt-4 mt-md-0">
-            <div class="box">            
-              <h3>Fee Package B</h3>
-              <h4><sup>RM</sup>60-70<span> / year</span></h4>
-              <ul>
-                <li>COMSTAR AGM Dinner</li>
-                <li>COMSTAR T-Shirt</li>
-                <li>COMSTAR Corporate Shirt</li>
-                <li>COMSTAR Lanyard</li>
-                <li class="na">COMSTARIAN Day</li>
-              </ul>
-              <div class="btn-wrap">
-                <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
-				<input type="hidden" name="cmd" value="_s-xclick">
-				<input type="hidden" name="hosted_button_id" value="6YZVGAHT8E5SJ">
-				<center><table>Category
-				<tr><td><input type="hidden" name="on0" value="Category"></td></tr><tr><td><select name="os0">
-					<option value="Male">Male RM60.00 MYR</option>
-					<option value="Female">Female RM70.00 MYR</option>
-				</select> </td></tr>
-				</table></center>
-				<input type="hidden" name="currency_code" value="MYR">
-				<input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_paynow_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-				<img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
-				</form>
-
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mt-4 mt-lg-0">
-            <div class="box">
-              <h3>Fee Package C</h3>
-              <h4><sup>RM</sup>30-35<span> / year</span></h4>
-              <ul>
-                <li>COMSTAR AGM Dinner</li>
-                <li >COMSTAR T-Shirt</li>
-                <li class="na">COMSTAR Corporate Shirt</li>
-                <li class="na">COMSTAR Lanyard</li>
-                <li class="na">COMSTARIAN Day</li>
-              </ul>
-              <div class="btn-wrap">
-                <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
-				<input type="hidden" name="cmd" value="_s-xclick">
-				<input type="hidden" name="hosted_button_id" value="VR5MXSNQEX9Q4">
-				<center><table>Category
-				<tr><td><input type="hidden" name="on0" value="Category"></td></tr><tr><td><select name="os0">
-					<option value="Male">Male RM30.00 MYR</option>
-					<option value="Female">Female RM35.00 MYR</option>
-				</select> </td></tr>
-				</table></center>
-				<input type="hidden" name="currency_code" value="MYR">
-				<input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_paynow_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-				<img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
-				</form>
-
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Pricing Section -->
-
-    <!-- ======= F.A.Q Section ======= -->
-    <section id="faq" class="faq">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>F.A.Q</h2>
-          <h3>Frequently Asked <span>Questions</span></h3>
-        </div>
-
-        <ul class="faq-list">
-
-          <li>
-            <div data-bs-toggle="collapse" class="collapsed question" href="#faq1">How do I register for COMSTAR-exclusive programme or event? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
-            <div id="faq1" class="collapse" data-bs-parent=".faq-list">
-              <p>
-                You need to be verified as a COMSTAR student first. Proceed to your profile and click Request Verification. Enter YOUR valid Matric Number and wait for admin verification.
-              </p>
-            </div>
-          </li>
-
-          <li>
-            <div data-bs-toggle="collapse" href="#faq2" class="collapsed question">How long do I have to wait for my account to be verified? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
-            <div id="faq2" class="collapse" data-bs-parent=".faq-list">
-              <p>
-                Usually within 1 to 5 working days depending on the verification request traffic.
-              </p>
-            </div>
-          </li>
-
-          <li>
-            <div data-bs-toggle="collapse" href="#faq3" class="collapsed question"> Why have I been verified but listed as a Public user? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
-            <div id="faq3" class="collapse" data-bs-parent=".faq-list">
-              <p>
-                 Either you have entered an invalid matric card or you are neither a UTM student nor a COMSTARIAN.
-              </p>
-            </div>
-          </li>
-
-          <li>
-            <div data-bs-toggle="collapse" href="#faq4" class="collapsed question">Are my family and friends outside of UTM allowed to join any programme or events by COMSTAR? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
-            <div id="faq4" class="collapse" data-bs-parent=".faq-list">
-              <p>
-                Only programme or events open to public are available for them to join. To register, they are required to create an account on this website.
-              </p>
-            </div>
-          </li>
-
-          <li>
-            <div data-bs-toggle="collapse" href="#faq5" class="collapsed question">Can I share my personal login details with friends and family? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
-            <div id="faq5" class="collapse" data-bs-parent=".faq-list">
-              <p>
-                Risk of losing your account is not OUR RESPONSIBILITY. No ban would be applied to the stolen account unless requested.
-              </p>
-            </div>
-          </li>
-
-          <li>
-            <div data-bs-toggle="collapse" href="#faq6" class="collapsed question">Am I able to become a COMSTAR member if I was from another university or club within UTM? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
-            <div id="faq6" class="collapse" data-bs-parent=".faq-list">
-              <p>
-                No, COMSTARIAN membership is only for Computer Science UTM students only.
-              </p>
-            </div>
-          </li>
-
-        </ul>
-
-      </div>
-    </section><!-- End F.A.Q Section -->
-
-    <!-- ======= Team Section ======= -->
-    <section id="team" class="team">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Member</h2>
-          <h3>Our Hardworking <span>COMSTAR Committee</span></h3>
-          <p>These are the responsible committee members that administers and manage the COMSTAR Club and its activities.</p>
-        </div>
-        <div class="row">
-<?php
-          
-                
-						$con = new mysqli("localhost","root","","comstar_portal");
-						$result=mysqli_query($con,"SELECT * FROM `committee` WHERE `Role`='Club Advisor' ");
-							while($row = $result->fetch_assoc()) {
-								$image=$row["Picture"];
-								
-								echo"
-								<center>
-								<div class='col-lg-3 col-md-6 d-flex align-items-stretch'>
-									<div class='member'>
-									  <div class='member-img'>
-											<img src='../../COMSTAR Committee/MT BARU/".$image."' class='img-fluid' alt=''>
-										<div class='social'>
-										  <a target='_blank' href='".$row["Link 1"]."'><i class='bi bi-".$row["Social 1"]."'></i></a>
-										  <a target='_blank' href='".$row["Link 2"]."'><i class='bi bi-".$row["Social 2"]."'></i></a>
-										  <a target='_blank' href='".$row["Link 3"]."'><i class='bi bi-".$row["Social 3"]."'></i></a>
-										  <a target='_blank' href='".$row["Link 4"]."'><i class='bi bi-".$row["Social 4"]."'></i></a>
-										</div>
-									  </div>
-									  <div class='member-info' >
-										<h4>".$row["Name"]."</h4>
-										<span class='users-list-date'>".$row["Role"]."</span>
-									  </div>
-									</div>
-								  </div>
-								  </center>";
-							}
-						$result=mysqli_query($con,"SELECT * FROM `committee` WHERE `Role`<>'Club Advisor' ");
-							while($row = $result->fetch_assoc()) {
-								$image=$row["Picture"];
-								
-								echo"
-								<div class='col-lg-3 col-md-6 d-flex align-items-stretch'>
-									<div class='member'>
-									  <div class='member-img'>
-											<img src='../../COMSTAR Committee/MT BARU/".$image."' class='img-fluid' alt=''>
-										<div class='social'>
-										  <a target='_blank' href='".$row["Link 1"]."'><i class='bi bi-".$row["Social 1"]."'></i></a>
-										  <a target='_blank' href='".$row["Link 2"]."'><i class='bi bi-".$row["Social 2"]."'></i></a>
-										  <a target='_blank' href='".$row["Link 3"]."'><i class='bi bi-".$row["Social 3"]."'></i></a>
-										  <a target='_blank' href='".$row["Link 4"]."'><i class='bi bi-".$row["Social 4"]."'></i></a>
-										</div>
-									  </div>
-									  <div class='member-info' >
-										<h4>".$row["Name"]."</h4>
-										<span class='users-list-date'>".$row["Role"]."</span>
-									  </div>
-									</div>
-								  </div>";
-								
-							}
-						?>
-
-        </div>
-
-      </div>
-    </section><!-- End Team Section -->
-
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Contact</h2>
-          <h3>Contact <span>Us</span></h3>
-          <p>Have any enquiries? Suggestions? Want to tell someone about your grandparents' stories? Do submit them here. Maybe not the grandparents' stories.</p>
-        </div>
-
-		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3983.7040982064905!2d101.71935451475741!3d3.1723942476901215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc37e8de0a443f%3A0x9e772d5b7ac66d27!2sUTM%20Kuala%20Lumpur!5e0!3m2!1sen!2smy!4v1640920073992!5m2!1sen!2smy" width="100%" height="400px" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-        <div class="row mt-5">
-
-          <div class="col-lg-4">
-            <div class="info">
-              <div class="address">
-                <i class="bi bi-geo-alt"></i>
-                <h4>Location:</h4>
-                <p>Jalan Sultan Yahya Petra, Kampung Datuk Keramat, 54100 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur</p>
-              </div>
-
-              <div class="email">
-                <i class="bi bi-envelope"></i>
-                <h4>Email:</h4>
-                <p>utmklcomstar@gmail.com</p>
-              </div>
-
-
-            </div>
-
-          </div>
-
-          <div class="col-lg-8 mt-5 mt-lg-0">
-
-            <form action="contact_process.php" method="post" role="form">
-              <div class="row">
-                <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+<?php require '../include/config.php';?>
+
+<?php $home = "active"; ?>
+
+    <body>
+       <?php require '../include/header.php';?>
+
+        <!-- start slider section --> 
+        <section id="home" class="wow fadeIn example no-padding no-transition">
+            <article class="content">
+                <div id="rev_slider_1078_1_wrapper" class="rev_slider_wrapper fullwidthbanner-container" data-alias="classic4export" data-source="gallery" style="margin:0px auto;background-color:transparent;padding:0px;margin-top:0px;margin-bottom:0px;">
+                    <!-- start revolution slider 5.4.1 fullwidth mode -->
+                    <div id="rev_slider_1078_1" class="rev_slider fullwidthabanner" style="display:none;" data-version="5.4.1">
+                        <ul><!-- slide  -->
+                            <li data-index="rs-3045" data-transition="fade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="200"  data-thumb="../../assets/logo/raiden.gif"  data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="100" data-fsslotamount="0" data-saveperformance="off"  data-title="" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+                                <div class="opacity-extra-medium bg-black position-relative z-index-1"></div>
+                                <!-- main image -->
+                                <img src="../../assets/logo/raiden.gif"  alt="Ocean"  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="1" class="rev-slidebg">
+                                <!-- layer nr. 3 -->
+                                <div class="tp-caption NotGeneric-Title tp-resizeme" 
+                                     data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 
+                                     data-y="['middle','middle','middle','middle']" data-voffset="['-115','-110','-90','-90']"
+                                     data-fontsize="['12','12','12','12']"
+                                     data-lineheight="['20','20','20','20']"
+                                     data-width="none"
+                                     data-height="none"
+                                     data-whitespace="['nowrap','nowrap','nowrap','normal']" 
+                                     data-type="text" 
+                                     data-responsive_offset="on" 
+                                     data-frames='[{"from":"y:50px;opacity:0;","speed":1000,"to":"o:1;","delay":300,"ease":"Power4.easeInOut"},{"delay":"wait","speed":1000,"to":"y:[175%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"},{"frame":"hover","speed":"300","ease":"Power1.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(255, 255, 255, 1.00);bc:rgba(255, 255, 255, 1.00);bw:2px 2px 2px 2px;"}]'
+                                     data-textAlign="['center','center','center','center']"
+                                     data-paddingtop="[10,10,10,10]"
+                                     data-paddingright="[0,0,0,0]"
+                                     data-paddingbottom="[10,10,10,10]"
+                                     data-paddingleft="[0,0,0,0]"
+                                     style="z-index: 7; white-space: nowrap; text-transform: uppercase; font-family:'Montserrat', sans-serif !important; font-weight: 500; letter-spacing:2px;">Welcome, <?php echo $name ?></div>
+                                <!-- layer nr. 4 -->
+                                <div class="tp-caption NotGeneric-SubTitle tp-resizeme " 
+                                     data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 
+                                     data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" 
+                                     data-fontsize="['70','70','60','50']"
+                                     data-lineheight="['75','75','60','60']"
+                                     data-width="none"
+                                     data-height="none"
+                                     data-whitespace="['nowrap','nowrap','nowrap','normal']" 
+                                     data-type="text" 
+                                     data-responsive_offset="on" 
+                                     data-frames='[{"from":"y:50px;opacity:0;","speed":1000,"to":"o:1;","delay":600,"ease":"Power4.easeInOut"},{"delay":"wait","speed":1000,"to":"y:[175%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"},{"frame":"hover","speed":"300","ease":"Power1.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(255, 255, 255, 1.00);bc:rgba(255, 255, 255, 1.00);bw:2px 2px 2px 2px;"}]'
+                                     data-textAlign="['center','center','center','center']"
+                                     data-paddingtop="[10,10,10,10]"
+                                     data-paddingright="[0,0,0,0]"
+                                     data-paddingbottom="[10,10,10,10]"
+                                     data-paddingleft="[0,0,0,0]"
+                                     style="z-index: 8; white-space: nowrap; font-family:'Montserrat', sans-serif !important; font-weight: 600; letter-spacing: -1px;">Get upcoming updates<br>on our programme and events</div>
+
+                                <!-- layer nr. 5 -->
+                                <a href="#about" class="tp-caption btn btn-transparent-white btn-medium border-radius-4 z-index-5" 
+                                   data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 
+                                   data-y="['middle','middle','middle','middle']" data-voffset="['130','130','110','110']" 
+                                   data-fontsize="['12','14','14','14']"
+                                   data-whitespace="['nowrap','nowrap','nowrap','normal']" 
+                                   data-visibility="['on', 'on', 'on', 'on']"
+                                   data-type="text"
+                                   data-color="['#FFFFFF']"
+                                   data-responsive_offset="on" 
+                                   data-responsive="on"
+                                   data-frames='[{"from":"y:150px;opacity:0;","speed":1500,"to":"o:1;","delay":900,"ease":"Power4.easeInOut"},{"delay":"wait","speed":1000,"to":"y:[175%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"},{"frame":"hover","speed":"300","ease":"Power1.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(0, 0, 0, 1.00);bc:rgba(255, 255, 255, 1.00);bw:2px 2px 2px 2px;"}]'
+                                   data-textAlign="['inherit', 'inherit', 'right', 'center']" 
+                                   data-paddingtop="[6,6,6,6]"
+                                   data-paddingright="[26,26,26,26]"
+                                   data-paddingbottom="[6,6,6,6]"
+                                   data-paddingleft="[26,26,26,26]"
+                                   data-basealign="slide">Explore</a>
+                                <!-- LAYER NR. 6 -->
+                            </li>
+                            <!-- slide  -->
+                            <li data-index="rs-2" data-transition="fade" data-slotamount="3" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="500"  data-thumb="../../assets/logo/test.gif"  data-rotate="0"  data-saveperformance="off"  data-title="" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+                                <div class="opacity-extra-medium bg-black position-relative z-index-1"></div>
+                                <!-- main image -->
+                                <img src="../../assets/logo/test.gif"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="1" class="rev-slidebg" data-no-retina>
+                                <!-- layer nr. 3 -->
+                                <div class="tp-caption NotGeneric-Title tp-resizeme" 
+                                     data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 
+                                     data-y="['middle','middle','middle','middle']" data-voffset="['-115','-110','-90','-90']"
+                                     data-fontsize="['12','12','12','12']"
+                                     data-lineheight="['20','20','20','20']"
+                                     data-width="none"
+                                     data-height="none"
+                                     data-whitespace="['nowrap','nowrap','nowrap','normal']" 
+                                     data-visibility="['on', 'on', 'on', 'on']"
+                                     data-type="text"
+                                     data-color="['#FFF']"
+                                     data-responsive_offset="on" 
+                                     data-responsive="on"
+                                     data-frames='[{"from":"y:50px;opacity:0;","speed":1000,"to":"o:1;","delay":300,"ease":"Power4.easeInOut"},{"delay":"wait","speed":1000,"to":"y:[175%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"},{"frame":"hover","speed":"300","ease":"Power1.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(255, 255, 255, 1.00);bc:rgba(255, 255, 255, 1.00);bw:2px 2px 2px 2px;"}]'
+                                     data-textAlign="['inherit', 'inherit', 'right', 'center']"
+                                     data-paddingtop="[10,10,10,10]"
+                                     data-paddingright="[30,30,30,30]"
+                                     data-paddingbottom="[10,10,10,10]"
+                                     data-paddingleft="[30,30,30,30]"
+                                     data-basealign="slide" 
+                                     style="z-index: 7; white-space: nowrap; text-transform: uppercase; font-family:'Montserrat', sans-serif !important; font-weight: 500; letter-spacing:2px;">Welcome, <?php echo $name ?></div>
+
+                                <!-- layer nr. 4 -->
+                                <div class="tp-caption NotGeneric-SubTitle tp-resizeme " 
+                                     data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 
+                                     data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" 
+                                     data-fontsize="['70','70','60','50']"
+                                     data-lineheight="['75','75','60','60']"
+                                     data-width="none"
+                                     data-height="none"
+                                     data-whitespace="['nowrap','nowrap','nowrap','normal']" 
+                                     data-visibility="['on', 'on', 'on', 'on']"
+                                     data-type="button"
+                                     data-color="['#FFF']"
+                                     data-responsive_offset="on" 
+                                     data-responsive="on"
+                                     data-frames='[{"from":"y:50px;opacity:0;","speed":1500,"to":"o:1;","delay":600,"ease":"Power4.easeInOut"},{"delay":"wait","speed":1000,"to":"y:[175%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"},{"frame":"hover","speed":"300","ease":"Power1.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(255, 255, 255, 1.00);bc:rgba(255, 255, 255, 1.00);bw:2px 2px 2px 2px;"}]'
+                                     data-textAlign="['center', 'center', 'center', 'center']"
+                                     data-paddingtop="[10,10,10,10]"
+                                     data-paddingright="[30,30,30,30]"
+                                     data-paddingbottom="[10,10,10,10]"
+                                     data-paddingleft="[30,30,30,30]"
+                                     data-basealign="slide" 
+                                     style="z-index: 8; white-space: nowrap; font-family:'Montserrat', sans-serif !important; font-weight: 600; letter-spacing: -1px;">Relive memories of the previous<br>members and activities</div>
+                                <!-- layer nr. 5 -->
+                                <a href="#about" class="tp-caption btn btn-transparent-white btn-medium border-radius-4 z-index-5" 
+                                   data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 
+                                   data-y="['middle','middle','middle','middle']" data-voffset="['130','130','110','110']" 
+                                   data-fontsize="['12','14','14','14']"
+                                   data-whitespace="['nowrap','nowrap','nowrap','normal']" 
+                                   data-visibility="['on', 'on', 'on', 'on']"
+                                   data-type="text"
+                                   data-color="['#FFFFFF']"
+                                   data-responsive_offset="on" 
+                                   data-responsive="on"
+                                   data-frames='[{"from":"y:150px;opacity:0;","speed":1500,"to":"o:1;","delay":900,"ease":"Power4.easeInOut"},{"delay":"wait","speed":1000,"to":"y:[175%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"},{"frame":"hover","speed":"300","ease":"Power1.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(0, 0, 0, 1.00);bc:rgba(255, 255, 255, 1.00);bw:2px 2px 2px 2px;"}]'
+                                   data-textAlign="['inherit', 'inherit', 'right', 'center']" 
+                                   data-paddingtop="[6,6,6,6]"
+                                   data-paddingright="[26,26,26,26]"
+                                   data-paddingbottom="[6,6,6,6]"
+                                   data-paddingleft="[26,26,26,26]"
+                                   data-basealign="slide">Explore</a>
+                                <!-- layer nr. 6 -->
+                            </li>
+                            <li data-index="rs-3" data-transition="fade" data-slotamount="3" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="500"  data-thumb="../../assets/logo/gif.gif"  data-rotate="0"  data-saveperformance="off"  data-title="" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+                                <div class="opacity-extra-medium bg-black position-relative z-index-1"></div>
+                                <!-- main image -->
+                                <img src="../../assets/logo/gif.gif"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="1" class="rev-slidebg" data-no-retina>
+                                <!-- layer nr. 3 -->
+                                <div class="tp-caption NotGeneric-Title tp-resizeme" 
+                                     data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 
+                                     data-y="['middle','middle','middle','middle']" data-voffset="['-115','-110','-90','-90']"
+                                     data-fontsize="['12','12','12','12']"
+                                     data-lineheight="['20','20','20','20']"
+                                     data-width="none"
+                                     data-height="none"
+                                     data-whitespace="['nowrap','nowrap','nowrap','normal']" 
+                                     data-visibility="['on', 'on', 'on', 'on']"
+                                     data-type="text"
+                                     data-color="['#FFF']"
+                                     data-responsive_offset="on" 
+                                     data-responsive="on"
+                                     data-frames='[{"from":"y:50px;opacity:0;","speed":1000,"to":"o:1;","delay":300,"ease":"Power4.easeInOut"},{"delay":"wait","speed":1000,"to":"y:[175%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"},{"frame":"hover","speed":"300","ease":"Power1.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(255, 255, 255, 1.00);bc:rgba(255, 255, 255, 1.00);bw:2px 2px 2px 2px;"}]'
+                                     data-textAlign="['inherit', 'inherit', 'right', 'center']"
+                                     data-paddingtop="[10,10,10,10]"
+                                     data-paddingright="[30,30,30,30]"
+                                     data-paddingbottom="[10,10,10,10]"
+                                     data-paddingleft="[30,30,30,30]"
+                                     data-basealign="slide" 
+                                     style="z-index: 7; white-space: nowrap; text-transform: uppercase; font-family:'Montserrat', sans-serif !important; font-weight: 500; letter-spacing:2px;">Welcome, <?php echo $name ?></div>
+
+                                <!-- layer nr. 4 -->
+                                <div class="tp-caption NotGeneric-SubTitle tp-resizeme " 
+                                     data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 
+                                     data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" 
+                                     data-fontsize="['70','70','60','50']"
+                                     data-lineheight="['75','75','60','60']"
+                                     data-width="none"
+                                     data-height="none"
+                                     data-whitespace="['nowrap','nowrap','nowrap','normal']" 
+                                     data-visibility="['on', 'on', 'on', 'on']"
+                                     data-type="button"
+                                     data-color="['#FFF']"
+                                     data-responsive_offset="on" 
+                                     data-responsive="on"
+                                     data-frames='[{"from":"y:50px;opacity:0;","speed":1500,"to":"o:1;","delay":600,"ease":"Power4.easeInOut"},{"delay":"wait","speed":1000,"to":"y:[175%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"},{"frame":"hover","speed":"300","ease":"Power1.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(255, 255, 255, 1.00);bc:rgba(255, 255, 255, 1.00);bw:2px 2px 2px 2px;"}]'
+                                     data-textAlign="['center', 'center', 'center', 'center']"
+                                     data-paddingtop="[10,10,10,10]"
+                                     data-paddingright="[30,30,30,30]"
+                                     data-paddingbottom="[10,10,10,10]"
+                                     data-paddingleft="[30,30,30,30]"
+                                     data-basealign="slide" 
+                                     style="z-index: 8; white-space: nowrap; font-family:'Montserrat', sans-serif !important; font-weight: 600; letter-spacing: -1px;">Browse several selective<br>services we provide</div>
+
+                                <!-- layer nr. 5 -->
+                                <!-- layer nr. 5 -->
+                                <a href="#about" class="tp-caption btn btn-transparent-white btn-medium border-radius-4 z-index-5" 
+                                   data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 
+                                   data-y="['middle','middle','middle','middle']" data-voffset="['130','130','110','110']" 
+                                   data-fontsize="['12','14','14','14']"
+                                   data-whitespace="['nowrap','nowrap','nowrap','normal']" 
+                                   data-visibility="['on', 'on', 'on', 'on']"
+                                   data-type="text"
+                                   data-color="['#FFFFFF']"
+                                   data-responsive_offset="on" 
+                                   data-responsive="on"
+                                   data-frames='[{"from":"y:150px;opacity:0;","speed":1500,"to":"o:1;","delay":900,"ease":"Power4.easeInOut"},{"delay":"wait","speed":1000,"to":"y:[175%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"},{"frame":"hover","speed":"300","ease":"Power1.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(0, 0, 0, 1.00);bc:rgba(255, 255, 255, 1.00);bw:2px 2px 2px 2px;"}]'
+                                   data-textAlign="['inherit', 'inherit', 'right', 'center']" 
+                                   data-paddingtop="[6,6,6,6]"
+                                   data-paddingright="[26,26,26,26]"
+                                   data-paddingbottom="[6,6,6,6]"
+                                   data-paddingleft="[26,26,26,26]"
+                                   data-basealign="slide">Explore</a>
+                                <!-- layer nr. 6 -->
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                <!-- end revolution slider -->
+            </article>
+        </section>
+        <!-- end slider section -->
+
+        <!-- start about section --> 
+        <section id="about" class="wow fadeIn cover-background md-no-background-img bg-medium-light-gray" style="background-image: url('../../assets/logo/logo-bg.png')">
+            <div class="container">
+                <div class="row"> 
+                    <div class="col-12 col-lg-6 offset-lg-6 wow fadeIn">
+                        <div class="row m-0">
+                            <div class="col-12 text-center text-lg-left sm-no-padding-lr last-paragraph-no-margin margin-60px-bottom md-margin-30px-bottom"> 
+                                <span class="text-medium text-deep-pink alt-font margin-10px-bottom d-inline-block">About COMSTAR</span>
+                                <h5 class="alt-font text-extra-dark-gray font-weight-600">Learn More About Us</h5>
+                                <p class="width-90 md-width-100"><?php echo $about ?></p>
+                            </div>                          
+                            <!-- star feature box item -->
+                            <div class="col-12 col-md-6 sm-margin-30px-bottom last-paragraph-no-margin sm-no-padding-lr text-center text-lg-left">
+                                <i class="icon-tools text-deep-pink icon-extra-medium margin-20px-bottom md-margin-15px-bottom"></i>
+                                <div class="feature-content">
+                                    <div class="alt-font font-weight-600 text-extra-dark-gray margin-5px-bottom">Vision and Mission</div>
+                                    <p class="width-80 lg-width-90 md-width-100">Provide skill-up opportunities and valuable certifications through interactive programme.</p>
+                                </div>
+                            </div>
+                            <!-- end feature box item -->
+                            <!-- star feature box item -->
+                            <div class="col-12 col-md-6 last-paragraph-no-margin sm-no-padding-lr text-center text-lg-left">
+                                <i class="icon-trophy text-deep-pink icon-extra-medium margin-20px-bottom md-margin-15px-bottom"></i>
+                                <div class="feature-content">
+                                    <div class="alt-font font-weight-600 text-extra-dark-gray margin-5px-bottom">Prestigious University</div>
+                                    <p class="width-80 lg-width-90 md-width-100">Universiti Teknologi Malaysia (UTM) is a leading innovation-driven entrepreneurial research university in engineering science and technology</p>
+                                </div> 
+                            </div>
+                            <!-- end feature box item -->
+                        </div>
+                    </div> 
                 </div>
-              </div>
-              <div class="form-group mt-3">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-              </div>
-              <div class="form-group mt-3">
-                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-              </div>
-              <div class="text-center"><button class="btn btn-danger" type="submit">Send</button></div>
-            </form>
+            </div>
+        </section>
+        <!-- end about section -->
 
-          </div>
+        <!-- start text slider style 02 section --> 
+        <section id="advertisement" class="wow fadeIn no-padding-bottom">
+            <div class="row justify-content-center">
+                <div class="row mb-5">
+                    <div class="col-12 text-center">
+                        <p class="alt-font margin-5px-bottom text-uppercase text-small text-medium-gray">Things we promote</p>
+                        <h5 class="text-uppercase alt-font text-extra-dark-gray margin-10px-top margin-20px-bottom font-weight-700 md-width-100 sm-width-100">Advertisement</h5>
+                        <span class="separator-line-horrizontal-medium-light2 bg-deep-pink d-table mx-auto width-100px"></span>
+                    </div>
+                </div>
+            <div class="swiper-auto-height-container position-relative w-100">
+                <div class="swiper-wrapper overflow-hidden">
+                  
+                    <?php
+                    $no = 0;
+                    $result=mysqli_query($con,"SELECT * FROM `advertisement` WHERE `Visibility`='Visible' ORDER BY `Date`");
+                    if ($result->num_rows > 0) {
+                      while($row = $result->fetch_assoc()) {
+                        $no++;
+                    ?>
+                    <!-- start slider item -->
+                    <div class="swiper-slide padding-100px-all sm-padding-40px-all cover-background position-relative" style="background-image:url(../../assets/advertisement/<?php echo $row["Banner"]?>)">
+                        <div class="position-relative width-40 lg-width-60 md-width-70 sm-width-100 d-inline-block slide-banner last-paragraph-no-margin">
+                            <div class="padding-80px-all md-padding-40px-all sm-width-100 bg-black-opacity sm-padding-fifteen-tb sm-padding-20px-all">
+                                <h5 class="alt-font text-white-2 width-90 md-width-100"><?php echo $row["Title"]?></h5>
+                                <p class="width-90 sm-width-100"><?php echo $row["Description"]?></p>
+                                <a href="<?php echo $row["Link"]?>" class="margin-35px-top btn btn-small btn-white">Explore Advertisement</a>
+                                <a href="../../assets/advertisement/<?php echo $row["Banner"]?>" class="single-image-lightbox margin-35px-top btn btn-small btn-white" title="<?php echo $row["Title"]?>" data-group="lightbox-gallery">
+                                    <figure>
+                                        <div hidden class="portfolio-img bg-extra-dark-gray"><img src="../../assets/advertisement/<?php echo $row["Banner"]?>" alt="" class="project-img-gallery"/></div>
+                                        <figcaption>
+                                            <div class="portfolio-hover-main text-center">
+                                                <div class="portfolio-hover-box align-middle">
+                                                    <div class="portfolio-hover-content position-relative">
+                                                        <i class="ti-zoom-in fa-2x"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </figcaption>
+                                    </figure>
+                                </a>
+                            </div> 
+                        </div>
+                    </div>
+                    <!-- end slider item -->
+                    <?php
+                      }
+                    }
+                    ?>
+                </div>
+                <div class="navigation-area">
+                    <div class="swiper-button-next swiper-next-style4 text-white-2"><i class="fas fa-arrow-up" aria-hidden="true"></i></div>
+                    <div class="swiper-button-prev swiper-prev-style4"><i class="fas fa-arrow-down" aria-hidden="true"></i></div>
+                </div>
+            </div>
+        </section>
+        <!-- end text slider style 02 section -->
 
-        </div>
+    <?php require '../include/footer.php';?>
 
-      </div>
-    </section><!-- End Contact Section -->
+    <?php require '../include/script.php';?>
 
-  </main><!-- End #main -->
-
-  <!-- ======= Footer ======= -->
-  <footer id="footer">
-
-    <div class="footer-top">
-      <div class="container">
-        <div class="row">
-
-          <div class="col-lg-3 col-md-6 footer-contact">
-            <h3>COMSTAR UTMKL</h3>
-            <p>
-                Jalan Sultan Yahya Petra<br>
-                54100, Kuala Lumpur<br>
-                Malaysia <br><br>
-                <strong>Email:</strong> utmklcomstar@gmail.com<br>
-            </p>
-          </div>
-
-          <div class="col-lg-2 col-md-6 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#hero">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#about">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#services">Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a target='_blank' href="../../account/signup/Terms and Condition.html">Terms of service</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>&emsp;</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a target='_blank' href="https://www.utm.my/">UTM</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a target='_blank' href="https://en.wikipedia.org/wiki/University_of_Technology_Malaysia">Wikipedia</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a target='_blank' href="https://sso.utm.my/login">MyUTM</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a target='_blank' href="https://utmspace.blackboard.com/">Blackboard</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a target='_blank' href="https://www.topuniversities.com/">QS Top University</a></li>
-            </ul>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="container d-md-flex py-4">
-
-      <div class="me-md-auto text-center text-md-start">
-        <div class="copyright">
-          &copy; Copyright <strong><span>COMSTAR UTMKL</span></strong>. All Rights Reserved
-        </div>
-        <div class="credits">
-          <!-- All the links in the footer should remain intact. -->
-          <!-- You can delete the links only if you purchased the pro version. -->
-          <!-- Licensing information: https://bootstrapmade.com/license/ -->
-          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/tempo-free-onepage-bootstrap-theme/ -->
-          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-        </div>
-      </div>
-      <div class="social-links text-center text-md-right pt-3 pt-md-0">
-        <a target='_blank' href="https://www.facebook.com/COMSTAR.UTMKL/" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a target='_blank' href="https://www.instagram.com/comstar.utmkl/?hl=en" class="instagram"><i class="bx bxl-instagram"></i></a>
-		<a target='_blank' href="https://www.youtube.com/channel/UCkagvAQ9G15bj63Z9CUYL_g?view_as=subscriber" class="youtube"><i class="bx bxl-youtube"></i></a>
-		<a target='_blank' href="https://t.me/officialcomstar" class="telegram"><i class="bx bxl-telegram"></i></a>
-      </div>
-    </div>
-  </footer><!-- End Footer -->
-	
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Vendor JS Files -->
-  <script src="../../COMSTAR_INTERFACE_FIRST_SPRINT/Home/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="../../COMSTAR_INTERFACE_FIRST_SPRINT/Home/assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="../../COMSTAR_INTERFACE_FIRST_SPRINT/Home/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="../../COMSTAR_INTERFACE_FIRST_SPRINT/Home/assets/vendor/php-email-form/validate.js"></script>
-  <script src="../../COMSTAR_INTERFACE_FIRST_SPRINT/Home/assets/vendor/swiper/swiper-bundle.min.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="../../COMSTAR_INTERFACE_FIRST_SPRINT/Home/assets/js/main.js"></script>
-<script>
-var slideIndex = 0;
-showSlides();
-
-function showSlides() {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("dot");
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";  
-  }
-  slideIndex++;
-  if (slideIndex > slides.length) {slideIndex = 1}    
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block";  
-  dots[slideIndex-1].className += " active";
-  setTimeout(showSlides, 5000); // Change image every 2 seconds
-}
-window.onscroll = function() {myFunction()};
-
-function myFunction() {
-  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  var scrolled = (winScroll / height) * 100;
-  document.getElementById("myBar").style.width = scrolled + "%";
-}
-
-function Function() {
-   var element = document.body;
-   element.classList.toggle("dark-mode");
-}
-</script>
-</body>
-
+    <script type="text/javascript" src="../../template/POFO/html/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+    <script type="text/javascript" src="../../template/POFO/html/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+    <script type="text/javascript" src="../../template/POFO/html/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+    <script type="text/javascript" src="../../template/POFO/html/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
+    
+    </body>
 </html>

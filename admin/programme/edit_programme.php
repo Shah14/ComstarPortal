@@ -97,45 +97,45 @@
                     <form id="edit_programme" action="../Programme/edit_programme_process.php" class="form-horizontal" method="post">
                       <input type='hidden' id='fileToUpload_edit' value='fileToUpload' name='fileToUpload'>
 					            <input type="hidden" class="form-control" required name="id" value="<?php echo $id;?>">
-					            <div class="form-group row">
+					            <div class="row">
                         <label for="name_edit" class="col-sm-2 col-form-label">Name</label>
-                        <div class='col-sm-10 input-group'>
+                        <div class='col-sm-10 input-group form-group'>
 														<div class="input-group-prepend">
 													  	<span class="input-group-text"><i class="fas fa-calendar-plus"></i></span>
 														</div>
                           <input type="text" class="form-control" id="name_edit" required name="name" value="<?php echo $name;?>" oninvalid="this.setCustomValidity('Please Enter the Programme Name')" oninput="this.setCustomValidity('')">
                         </div>
                       </div>
-                      <div class="form-group row">
+                      <div class="row">
                         <label for="date_edit" class="col-sm-2 col-form-label">Date</label>
-                        <div class='col-sm-10 input-group'>
+                        <div class='col-sm-10 input-group form-group'>
 														<div class="input-group-prepend">
 													  	<span class="input-group-text"><i class="fas fa-calendar"></i></span>
 														</div>
                           <input type="date" class="form-control" id="date_edit" required name="date" value="<?php echo $date;?>" oninvalid="this.setCustomValidity('Please Enter the Programme Date')" oninput="this.setCustomValidity('')">
                         </div>
                       </div>
-                      <div class="form-group row">
+                      <div class="row">
                         <label for="venue_edit" class="col-sm-2 col-form-label">Venue</label>
-                        <div class='col-sm-10 input-group'>
+                        <div class='col-sm-10 input-group form-group'>
 														<div class="input-group-prepend">
 													  	<span class="input-group-text"><i class="fas fa-building"></i></span>
 														</div>
                           <input type="text" class="form-control" id="venue_edit" required name="venue" value="<?php echo $venue;?>" oninvalid="this.setCustomValidity('Please Enter the Programme Venue')" oninput="this.setCustomValidity('')">
                         </div>
                       </div>
-                      <div class="form-group row">
+                      <div class="row">
                         <label for="fee_edit" class="col-sm-2 col-form-label">Fee Price (RM)</label>
-                        <div class='col-sm-10 input-group'>
+                        <div class='col-sm-10 input-group form-group'>
 														<div class="input-group-prepend">
 													  	<span class="input-group-text"><i class="fa-solid fa-sack-dollar"></i></span>
 														</div>
                           <input type="number" class="form-control" id="fee_edit" required name="fee" step='any' value="<?php echo $fee;?>" oninvalid="this.setCustomValidity('Please Enter the Programme Fee')" oninput="this.setCustomValidity('')">
                         </div>
                       </div>
-                      <div class="form-group row">
+                      <div class="row">
                         <label for="status_edit" class="col-sm-2 col-form-label">Status</label>
-                        <div class='col-sm-10 input-group'>
+                        <div class='col-sm-10 input-group form-group'>
 														<div class="input-group-prepend">
 													  	<span class="input-group-text"><i class="fas fa-check-circle"></i></span>
 														</div>
@@ -147,7 +147,7 @@
                           </select>
                         </div>
                       </div>
-                      <div class="form-group row">
+                      <div class="row">
                         <div class="offset-sm-2 col-sm-10">
                           <button hidden id="edit">Test</button>
                           <button onclick="validateForm('Are you sure?','Do you want to update this programme?','info','edit','edit_programme')" type='button' class='btn btn-danger'><i class='fas fa-pen'></i> Edit</button>
@@ -171,9 +171,9 @@
                       <input type='hidden' id='date_edit_pic' value='date' name='date'>
                       <input type='hidden' id='fee_edit_pic' value='fee' name='fee'>
                       <input type='hidden' id='status_edit_pic' value='status' name='status'>
-                      <div class='form-group row'>
+                      <div class='row'>
 												<label for='fileToUpload_edit_pic' class='col-sm-2 col-form-label'>Select Image To Upload</label>
-												<div class="col-sm-10 input-group">
+												<div class="col-sm-10 input-group form-group">
 													<div class="input-group-prepend">
 														<span class="input-group-text"><i class="fas fa-file-image"></i></span>
 													</div>
@@ -183,7 +183,7 @@
                           </div>
 												</div>
 											</div>	  
-                      <div class="form-group row">
+                      <div class="row">
                         <div class="offset-sm-2 col-sm-10">
                           <button hidden id="edit_pic">Test</button>
                           <button onclick="validateForm('Are you sure?','Do you want to update this programme?','info','edit_pic','edit_image')" type='button' class='btn btn-danger'><i class='fas fa-pen'></i> Edit</button>
@@ -239,5 +239,81 @@
 </script>
 
 <?php require '../include/script.php';?>
+
+<script>
+  $(function () {
+    $('#edit_programme').validate({
+      rules: {
+        name: {
+          required: true,
+        },
+        date: {
+          required: true,
+        },
+        venue: {
+          required: true,
+        },
+        fee: {
+          required: true,
+        },
+        status: {
+          required: true,
+        },
+      },
+      messages: {
+        name: {
+          required: "Please enter the programme name",
+        },
+        date: {
+          required: "Please select the programme date",
+        },
+        venue: {
+          required: "Please enter the programme venue",
+        },
+        fee: {
+          required: "Please enter the programme fee price",
+        },
+        status: {
+          required: "Please select the programme status",
+        },
+      },
+      errorElement: 'span',
+      errorPlacement: function (error, element) {
+        error.addClass('invalid-feedback');
+        element.closest('.form-group').append(error);
+      },
+      highlight: function (element, errorClass, validClass) {
+        $(element).addClass('is-invalid');
+      },
+      unhighlight: function (element, errorClass, validClass) {
+        $(element).removeClass('is-invalid');
+      }
+    });
+
+    $('#edit_image').validate({
+      rules: {
+        fileToUpload: {
+          required: true,
+        },
+      },
+      messages: {
+        fileToUpload: {
+          required: "Please select an image file",
+        },
+      },
+      errorElement: 'span',
+      errorPlacement: function (error, element) {
+        error.addClass('invalid-feedback');
+        element.closest('.form-group').append(error);
+      },
+      highlight: function (element, errorClass, validClass) {
+        $(element).addClass('is-invalid');
+      },
+      unhighlight: function (element, errorClass, validClass) {
+        $(element).removeClass('is-invalid');
+      }
+    });
+  });
+</script>
 </html>
 

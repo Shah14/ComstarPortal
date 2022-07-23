@@ -54,18 +54,18 @@
                 <div class="tab-content">
                   <div class="active tab-pane" id="add">
                     <form id="add_ads" action="../advertisement/add_ads_process.php" class="form-horizontal" method="post" enctype="multipart/form-data">
-                      <div class="form-group row">
+                      <div class="row">
                         <label for="title_add_action" class="col-sm-2 col-form-label">Enter Advertisement Title</label>
-                        <div class='col-sm-10 input-group'>
+                        <div class='col-sm-10 input-group form-group'>
 													<div class="input-group-prepend">
 														<span class="input-group-text"><i class="fas fa-font"></i></span>
 													</div>
                           <input type="text" class="form-control" id="title_add_action" required name="title" placeholder="COMSTAR Event" oninvalid="this.setCustomValidity('Please Enter the Advertisement Title')" oninput="this.setCustomValidity('')">
                         </div>
                       </div>
-					            <div class="form-group row">
+					            <div class="row">
                         <label for="link_add_action" class="col-sm-2 col-form-label">Enter Advertisement Link</label>
-                        <div class='col-sm-10 input-group'>
+                        <div class='col-sm-10 input-group form-group'>
 													<div class="input-group-prepend">
 														<span class="input-group-text"><i class="fas fa-link"></i></span>
 													</div>
@@ -82,9 +82,9 @@
                           <a href='https://www.iloveimg.com/resize-image' target='blank' >Resize image here!</a>
                         </center>
                       </div>										  
-                      <div class='form-group row'>
+                      <div class='row'>
                         <label for='fileToUpload_add_action' class='col-sm-2 col-form-label'>Select Image To Upload</label>
-                        <div class="col-sm-10 input-group">
+                        <div class="col-sm-10 input-group form-group">
                           <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-file-image"></i></span>
                           </div>
@@ -94,7 +94,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="form-group row">
+                      <div class="row">
                         <div class="offset-sm-2 col-sm-10">
                           <button hidden id="add_action">Test</button>
                           <button onclick="validateForm('Are you sure?','Do you want to add this programme?','info','add_action','add_ads')" type='button' class='btn btn-danger'><i class='fas fa-plus-circle'></i> Add</button>
@@ -147,6 +147,46 @@
 </script>
 
 <?php require '../include/script.php';?>
+
+<script>
+  $(function () {
+    $('#add_ads').validate({
+      rules: {
+        title: {
+          required: true,
+        },
+        link: {
+          required: true,
+        },
+        fileToUpload: {
+          required: true,
+        },
+      },
+      messages: {
+        title: {
+          required: "Please enter the advertisement title",
+        },
+        link: {
+          required: "Please select the advertisement link",
+        },
+        fileToUpload: {
+          required: "Please select an image file",
+        },
+      },
+      errorElement: 'span',
+      errorPlacement: function (error, element) {
+        error.addClass('invalid-feedback');
+        element.closest('.form-group').append(error);
+      },
+      highlight: function (element, errorClass, validClass) {
+        $(element).addClass('is-invalid');
+      },
+      unhighlight: function (element, errorClass, validClass) {
+        $(element).removeClass('is-invalid');
+      }
+    });
+  });
+</script>
 
 </body>
 

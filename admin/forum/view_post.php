@@ -227,8 +227,8 @@
 										</td>
 										<td>
 											<form id="reply_post" action="../Forum/reply_post_process.php" class="form-horizontal" method="post" >
-												<div class="form-group row">
-													<div class='col-sm-10 input-group'>
+												<div class="row">
+													<div class='col-sm-10 input-group form-group '>
 														<div class="input-group-prepend">
 															<span class="input-group-text"><i class="fas fa-comment-dots"></i></span>
 														</div>
@@ -281,5 +281,34 @@
 </script>
 
 <?php require '../include/script.php';?>
+
+<script>
+  $(function () {
+    $('#reply_post').validate({
+      rules: {
+        reply: {
+          required: true,
+        },
+      },
+      messages: {
+        reply: {
+          required: "Please enter your reply",
+        },
+      },
+      errorElement: 'span',
+      errorPlacement: function (error, element) {
+        error.addClass('invalid-feedback');
+        element.closest('.form-group').append(error);
+      },
+      highlight: function (element, errorClass, validClass) {
+        $(element).addClass('is-invalid');
+      },
+      unhighlight: function (element, errorClass, validClass) {
+        $(element).removeClass('is-invalid');
+      }
+    });
+  });
+</script>
+
 </html>
 

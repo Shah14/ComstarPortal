@@ -145,9 +145,9 @@ if(isset($_GET["id"])){
                       <input type='hidden' id='password_edit' value='password' name='password'>	
                       <input type='hidden' id='confirm_edit' value='confirm' name='confirm'>	
                       <input type='hidden' id='fileToUpload_edit' value='fileToUpload' name='fileToUpload'>	
-                      <div class="form-group row">
+                      <div class="row">
                         <label for="name_edit" class="col-sm-2 col-form-label">Name</label>
-                        <div class='col-sm-10 input-group'>
+                        <div class='col-sm-10 input-group form-group'>
 													<div class="input-group-prepend">
 														<span class="input-group-text"><i class="fas fa-user-circle"></i></span>
 													</div>
@@ -155,9 +155,9 @@ if(isset($_GET["id"])){
                         </div>
                       </div>
 
-					            <div class="form-group row">
+					            <div class="row">
                         <label for="phone" class="col-sm-2 col-form-label">Phone Number <small class="text-primary">[Optional]</small></label>
-                        <div class='col-sm-10 input-group'>
+                        <div class='col-sm-10 input-group form-group'>
 													<div class="input-group-prepend">
 														<span class="input-group-text"><i class="fas fa-phone"></i></span>
 													</div>
@@ -165,9 +165,9 @@ if(isset($_GET["id"])){
                         </div>
                       </div>
 
-                      <div class="form-group row">
+                      <div class="row">
                         <label for="education" class="col-sm-2 col-form-label">Education <small class="text-primary">[Optional]</small></label>
-                        <div class='col-sm-10 input-group'>
+                        <div class='col-sm-10 input-group form-group'>
 													<div class="input-group-prepend">
 														<span class="input-group-text"><i class="fas fa-graduation-cap"></i></span>
 													</div>
@@ -175,9 +175,9 @@ if(isset($_GET["id"])){
                         </div>
                       </div>
 
-                      <div class="form-group row">
+                      <div class="row">
                         <label for="location" class="col-sm-2 col-form-label">Location <small class="text-primary">[Optional]</small></label>
-                        <div class='col-sm-10 input-group'>
+                        <div class='col-sm-10 input-group form-group'>
 													<div class="input-group-prepend">
 														<span class="input-group-text"><i class="fas fa-map"></i></span>
 													</div>
@@ -185,9 +185,9 @@ if(isset($_GET["id"])){
                         </div>
                       </div>
 
-                      <div class="form-group row">
+                      <div class="row">
                         <label for="skill" class="col-sm-2 col-form-label">Skills <small class="text-primary">[Optional]</small></label>
-                        <div class='col-sm-10 input-group'>
+                        <div class='col-sm-10 input-group form-group'>
 													<div class="input-group-prepend">
 														<span class="input-group-text"><i class="fas fa-trophy"></i></span>
 													</div>
@@ -195,9 +195,9 @@ if(isset($_GET["id"])){
                         </div>
                       </div>
 
-                      <div class="form-group row">
+                      <div class="row">
                         <label for="quote" class="col-sm-2 col-form-label">Quote <small class="text-primary">[Optional]</small></label>
-                        <div class='col-sm-10 input-group'>
+                        <div class='col-sm-10 input-group form-group'>
 													<div class="input-group-prepend">
 														<span class="input-group-text"><i class="fas fa-quote-right"></i></span>
 													</div>
@@ -205,11 +205,11 @@ if(isset($_GET["id"])){
                         </div>
                       </div>
 
-                      <div class="form-group row">
+                      <div class="row">
                         <div class="offset-sm-2 col-sm-10">
                           <button hidden id="edit" type="submit">Test</button>
                           <button onclick="validateForm('Are you sure?','Do you want to save changes?','info','edit','edit_details')" type='button' class='btn btn-danger'><i class='fas fa-pen'></i> Edit</button>
-                          <button type='reset' onclick="test()" class='btn btn-danger'><i class='fas fa-rotate-left'></i> Reset</button>
+                          <button type='reset' class='btn btn-danger'><i class='fas fa-rotate-left'></i> Reset</button>
 
                         </div>
                       </div>
@@ -229,9 +229,9 @@ if(isset($_GET["id"])){
                       <input type='hidden' id='name_edit_pic' value='name' name='name'>	
                       <input type='hidden' id='password_edit_pic' value='password' name='password'>	
                       <input type='hidden' id='confirm_edit_pic' value='confirm' name='confirm'>	
-                      <div class='form-group row'>
+                      <div class='row'>
 												<label for='fileToUpload_edit_pic' class='col-sm-2 col-form-label'>Select Image To Upload</label>
-												<div class="col-sm-10 input-group">
+												<div class="col-sm-10 input-group form-group">
 													<div class="input-group-prepend">
 														<span class="input-group-text"><i class="fas fa-file-image"></i></span>
 													</div>
@@ -242,7 +242,7 @@ if(isset($_GET["id"])){
 												</div>
 											</div>
 
-                      <div class="form-group row">
+                      <div class="row">
                         <div class="offset-sm-2 col-sm-10">
                           <button hidden id="edit_pic">Test</button>
                           <button onclick="validateForm('Are you sure?','Do you want to save changes?','info','edit_pic','edit_image')" type='button' class='btn btn-danger'><i class='fas fa-pen'></i> Edit</button>
@@ -253,12 +253,12 @@ if(isset($_GET["id"])){
                   </div>
 				  
 				          <div class="tab-pane" id="change">
-                    <form id="edit_password" action="../Profile/edit_password_process.php"class="form-horizontal" method="post" onsubmit="return verifyPassword1()">
+                    <form id="edit_password" action="../Profile/edit_password_process.php"class="form-horizontal" method="post">
                       <input type='hidden' id='name_change_password' value='name' name='name'>	
                       <input type='hidden' id='fileToUpload_change_password' value='fileToUpload' name='fileToUpload'>	
-                      <div class="form-group row">
+                      <div class="row">
                         <label for="password_change_password" class="col-sm-2 col-form-label">New Password</label>
-                        <div class='col-sm-10 input-group'>
+                        <div class='col-sm-10 input-group form-group'>
 													<div class="input-group-prepend">
 														<span class="input-group-text"><i class="fas fa-key"></i></span>
 													</div>
@@ -266,23 +266,35 @@ if(isset($_GET["id"])){
                         </div>
                       </div>
 
-                      <div class="form-group row">
+                      <div class="row">
                         <label for="confirm_change_password" class="col-sm-2 col-form-label">Confirm New Password</label>
-                        <div class='col-sm-10 input-group'>
+                        <div class='col-sm-10 input-group form-group'>
 													<div class="input-group-prepend">
 														<span class="input-group-text"><i class="fas fa-key"></i></span>
 													</div>
                           <input type="password" id="confirm_change_password" class="form-control" required name="confirm" placeholder="Example : 12345678" minlength="8" maxlength="15" oninvalid="this.setCustomValidity('Please Re-enter Your Password')" oninput="this.setCustomValidity('')">
                         </div>
-						              <span class="offset-sm-2 col-sm-10" id = "message" style="color:red"> </span> 
+                      </div>
+                      <div class="row">
+                      <label for="confirm_change_password" class="col-sm-2 col-form-label"></label>
+                        <div class="col-sm-10 input-group form-group">
+                          <div class="icheck-primary">
+                            <input onchange="visiblePassword('password_change_password');visiblePassword('confirm_change_password')" type="checkbox" id="remember">
+                            <label for="remember">
+                              Show Password
+                            </label>
+                          </div>
+                        </div>
                       </div>
 
-                      <div class="form-group row">
+                      <div class="row">
                         <div class="offset-sm-2 col-sm-10">
                           <button hidden id="change_password">Test</button>
                           <button onclick="validateForm('Are you sure?','Do you want to save changes?','info','change_password','edit_password')" type='button' class='btn btn-danger'><i class='fas fa-pen'></i> Edit</button>
+                          <button type='reset' class='btn btn-danger'><i class='fas fa-rotate-left'></i> Reset</button>
                         </div>
                       </div>
+
                     </form>
                   </div>
                 </div>
@@ -316,26 +328,6 @@ if(isset($_GET["id"])){
     }
   }
 
-  function verifyPassword1() {  
-    var pw = document.getElementById("password_change_password").value; 
-    var cf= document.getElementById("confirm_change_password").value;
-    if(pw !== cf) {  
-      document.getElementById("message").innerHTML = "**Passwords are not matched!";  
-      return false;  
-    } 
-    
-  //minimum password length validation  
-    if(pw.length < 8) {  
-      document.getElementById("message").innerHTML = "**Password length must be at least 8 characters";  
-      return false;  
-    }  
-    
-  //maximum length of password validation  
-    if(pw.length > 15) {  
-      document.getElementById("message").innerHTML = "**Password length must not exceed 15 characters";  
-      return false;  
-    } 
-  } 
  fileToUpload_edit_pic.onchange = evt => {
   const [file] =fileToUpload_edit_pic.files
     if (file) {
@@ -349,6 +341,105 @@ if(isset($_GET["id"])){
 </script>
 
 <?php require '../include/script.php';?>
+
+<script>
+
+function visiblePassword(id) {
+  var x = document.getElementById(id);
+  var y = document.getElementById("remember").checked;
+  console.log(y)
+  if (y === true) {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+
+$(function () {
+    $('#edit_details').validate({
+      rules: {
+        name: {
+          required: true,
+        },
+      },
+      messages: {
+        name: {
+          required: "Please enter your name",
+        },
+      },
+      errorElement: 'span',
+      errorPlacement: function (error, element) {
+        error.addClass('invalid-feedback');
+        element.closest('.form-group').append(error);
+      },
+      highlight: function (element, errorClass, validClass) {
+        $(element).addClass('is-invalid');
+      },
+      unhighlight: function (element, errorClass, validClass) {
+        $(element).removeClass('is-invalid');
+      }
+    });
+	
+	$('#edit_image').validate({
+      rules: {
+        fileToUpload: {
+          required: true,
+        },
+      },
+      messages: {
+        fileToUpload: {
+          required: "Please select an image file",
+        },
+      },
+      errorElement: 'span',
+      errorPlacement: function (error, element) {
+        error.addClass('invalid-feedback');
+        element.closest('.form-group').append(error);
+      },
+      highlight: function (element, errorClass, validClass) {
+        $(element).addClass('is-invalid');
+      },
+      unhighlight: function (element, errorClass, validClass) {
+        $(element).removeClass('is-invalid');
+      }
+    });
+
+    $('#edit_password').validate({
+      rules: {
+        password: {
+          required: true,
+          minlength: 8
+        },
+        confirm: {
+        required: true,
+        minlength: 8,
+        equalTo:"#password_change_password",
+      },
+      },
+      messages: {
+        password: {
+          required: "Please provide a password",
+          minlength: "Your password must be at least 8 characters long"
+        },
+        confirm: {
+          required: "Please retype the password",
+          minlength: "Your password must be at least 8 characters long",
+          equalTo: "Your password must be matched"
+        },
+      },
+      errorElement: 'span',
+      errorPlacement: function (error, element) {
+        error.addClass('invalid-feedback');
+        element.closest('.form-group').append(error);
+      },
+      highlight: function (element, errorClass, validClass) {
+        $(element).addClass('is-invalid');
+      },
+      unhighlight: function (element, errorClass, validClass) {
+        $(element).removeClass('is-invalid');
+      }
+    });
+});
 
 </script>
 </html>

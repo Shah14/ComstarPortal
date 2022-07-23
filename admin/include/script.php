@@ -13,6 +13,9 @@
 <script src="../../template/AdminLTE-3.2.0/plugins/toastr/toastr.min.js"></script>
 <!-- bs-custom-file-input -->
 <script src="../../template/AdminLTE-3.2.0/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+<!-- jquery-validation -->
+<script src="../../template/AdminLTE-3.2.0/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="../../template/AdminLTE-3.2.0/plugins/jquery-validation/additional-methods.min.js"></script>
 
 <!-- DataTables  & Plugins -->
 <script src="../../template/AdminLTE-3.2.0/plugins/datatables/jquery.dataTables.min.js"></script>

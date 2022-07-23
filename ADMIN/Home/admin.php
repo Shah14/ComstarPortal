@@ -36,7 +36,15 @@ $result=mysqli_query($con,"SELECT Name FROM `committee`");
   }
 ?>
 
-<body class="hold-transition sidebar-mini">
+<?php
+if(isset($_GET["id"])){
+  $tab = 'onload = changeTab("'.$_GET["id"].'")';
+}else{
+  $tab = "";
+}
+?>
+
+<body <?php echo $tab ?> class="hold-transition sidebar-mini">
 
   <?php
   if(isset($_GET["name"])){
@@ -303,12 +311,12 @@ $result=mysqli_query($con,"SELECT Name FROM `committee`");
 
                 <div class="card-body p-0">
                   <div class="col-12">
-                    <ul class="nav nav-tabs justify-content-center" id="custom-tabs-four-tab" role="tablist">
+                    <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
                       <?php
                       $value=array();
                       $array=array();
                       $i = 0;
-                      $result=mysqli_query($con,"SELECT *  FROM `committee` ORDER BY `Session` DESC");
+                      $result=mysqli_query($con,"SELECT *  FROM `committee` ORDER BY `Session` DESC, `Position` ASC");
                       while($row = $result->fetch_assoc()) {
                         //echo $row["Session"]."<br>";
                         if($row["Session"]!=NULL){

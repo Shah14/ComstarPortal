@@ -67,33 +67,73 @@
                       <div class='tab-content'>
                         <div class='active tab-pane' id='update'>
                           <form id="add_committee" action='add_committee_process.php' class='form-horizontal' method='post' enctype='multipart/form-data'>
-                            <div class='form-group row'>
+                            <div class='row'>
                               <label for='name_add' class='col-sm-2 col-form-label'>Name</label>
-                              <div class='col-sm-10 input-group'>
+                              <div class='col-sm-10 input-group form-group '>
                                 <div class="input-group-prepend">
                                   <span class="input-group-text"><i class="fas fa-user-circle"></i></span>
                                 </div>
                                 <input type='text' class='form-control' id="name_add" required name='name' placeholder='Example : Muhammad Ali' oninvalid="this.setCustomValidity('Please Enter the Committee Name')" oninput="this.setCustomValidity('')">
                               </div>
                             </div>
-                            <div class='form-group row'>
+                            <div class='row'>
                               <label for='role_add' class='col-sm-2 col-form-label'>Role</label>
-                              <div class='col-sm-10 input-group'>
+                              <div class='col-sm-10 input-group form-group '>
                                 <div class="input-group-prepend">
                                   <span class="input-group-text"><i class="fas fa-briefcase"></i></span>
                                 </div>
-                                <input type='text' class='form-control' id="role_add" required name='role' placeholder='Example : Director' oninvalid="this.setCustomValidity('Please Provide a Role')" oninput="this.setCustomValidity('')">
+                                <select class='form-control a' required name='role' id='role_add' oninvalid="this.setCustomValidity('Please Select the Committee Role')" oninput="this.setCustomValidity('')">
+																	<option disabled selected value="">Select One</option>
+																	<option value='01Club Advisor'> Club Advisor</option>
+																	<option value='02President'> President</option>
+																	<option value='03Vice President(Management)'> Vice President(Management)</option>
+																	<option value='04Vice President (External Relation Affairs)'> Vice President (External Relation Affairs)</option>
+																	<option value='05Secretary'> Secretary</option>
+																	<option value='06Vice Secretary'> Vice Secretary</option>
+																	<option value='07Treasurer'> Treasurer</option>
+																	<option value='08Vice Treasurer'> Vice Treasurer</option>
+																	<option value='09Exco Academic'> Exco Academic</option>
+																	<option value='10Exco Multimedia 1'> Exco Multimedia 1</option>
+																	<option value='11Exco Multimedia 2'> Exco Multimedia 2</option>
+																	<option value='12Exco Publicity'> Exco Publicity</option>
+																	<option value='13Exco Sports & Activity'> Exco Sports & Activity</option>
+																	<option value='14Exco Welfare & Spiritual'> Exco Welfare & Spiritual</option>
+																	<option value='15Exco Protocol'> Exco Protocol</option>
+																	<option value='16Exco Website Manager 1'> Exco Website Manager 1</option>
+																	<option value='17Exco Website Manager 2'> Exco Website Manager 2</option>
+																</select>
                               </div>
-                            </div>						
+                            </div>	
+                            
+                            <div class='row'>
+															<label for='session' class='col-sm-2 col-form-label'>Session <small class="text-primary"></small></label>
+															<div class='col-sm-10 input-group form-group '>
+																<div class="input-group-prepend">
+																	<span class="input-group-text"><i class="fas fa-calendar"></i></span>
+																</div>
+																<select class='form-control a' required name='session' id='session_add' oninvalid="this.setCustomValidity('Please Select the Session')" oninput="this.setCustomValidity('')">
+																	<option disabled selected value="">Select One</option>
+																	<?php 
+																	for ($x = 0; $x <= 10; $x++){
+																		$session1 = date("Y")-$x ;
+																		$session1 .= "/".date("Y")-$x+1 ;
+																	?>
+																		<option value='<?php echo $session1 ?>'> <?php echo $session1 ?></option>
+																	<?php 
+																	}
+																	?>
+																</select>
+															</div>
+														</div>
                             <div class='alert alert-warning' role='alert'>
                               <center>
                                 <i class='fa fa-exclamation-circle'></i>Important! Please select image with dimension of 500x500! 
                                 <a href='https://www.iloveimg.com/resize-image' target='blank' >Resize image here!</a>
                               </center>
                             </div>			
-                            <div class='form-group row'>
+                            <div class='row'>
 															<label for='fileToUpload_add' class='col-sm-2 col-form-label'>Select Image To Upload</label>
-                              <div class="col-sm-10 input-group">
+                              <div class="col-sm-10 input-group form-group ">
                                 <div class="input-group-prepend">
                                   <span class="input-group-text"><i class="fas fa-file-image"></i></span>
                                 </div>
@@ -137,10 +177,11 @@
 <script>
 
   function validateForm(title,text,icon,action,form) { //alert title, alert text, alert icon, action id and form id
-    let x = document.forms[form]["name_"+action].value;
-    let y = document.forms[form]["role_"+action].value;
+    let w = document.forms[form]["name_"+action].value;
+    let x = document.forms[form]["role_"+action].value;
+    let y = document.forms[form]["session_"+action].value;
     let z = document.forms[form]["fileToUpload_"+action].value;
-    if (x == "" || y == "" || z == "") {
+    if (w == "" || x == "" || y == "" || z == "") {
       document.getElementById(action).click();
     }else{
       alert(title,text,icon,action)
@@ -160,6 +201,52 @@
 
 </script>
 <?php require '../include/script.php';?>
+
+<script>
+    $(function () {
+    $('#add_committee').validate({
+      rules: {
+        name: {
+          required: true,
+        },
+        role: {
+          required: true,
+        },
+        session: {
+          required: true,
+        },
+        fileToUpload: {
+          required: true,
+        },
+      },
+      messages: {
+        name: {
+          required: "Please enter the committee name",
+        },
+        role: {
+          required: "Please select the committee role",
+        },
+        session: {
+          required: "Please select the committee session",
+        },
+        fileToUpload: {
+          required: "Please select an image file",
+        },
+      },
+      errorElement: 'span',
+      errorPlacement: function (error, element) {
+        error.addClass('invalid-feedback');
+        element.closest('.form-group').append(error);
+      },
+      highlight: function (element, errorClass, validClass) {
+        $(element).addClass('is-invalid');
+      },
+      unhighlight: function (element, errorClass, validClass) {
+        $(element).removeClass('is-invalid');
+      }
+    });
+  });
+</script>
 
 </body>
 </html>
