@@ -5,7 +5,7 @@
                 <div class="container-fluid nav-header-container">
                     <!-- start logo -->
                     <div class="col-auto col-lg-2 pl-0">
-                        <a href="index.html" title="COMSTAR Portal" class="logo">
+                        <a href="<?php if($page=="Home"){echo "#home";}else{echo "home.php";} ?>" title="COMSTAR Portal" class="logo inner-link">
                             <img src="../../assets/logo/logo.png" data-rjs="../../assets/logo/logo.png" class="logo-dark" alt="Pofo">
                             <img src="../../template/POFO/html/images/logo-white.png" data-rjs="../../template/POFO/html/images/logo-white@2x.png" alt="Pofo" class="logo-light default">
                         </a>
@@ -25,7 +25,7 @@
                                     <a href="<?php if($page=="Home"){echo "#home";}else{echo "home.php";} ?>" class="inner-link"><i class="ti-home"></i>&emsp;Home</a><i class="fas fa-angle-down dropdown-toggle" data-toggle="dropdown" aria-hidden="true"></i>
                                         <ul class="dropdown-menu" role="menu">
                                             <li><a href="<?php if($page=="Home"){echo "#about";}else{echo "home.php#about";} ?>" class="inner-link"><i class="ti-info-alt"></i>&emsp;About</a></li>
-                                            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="<?php if($page=="Home"){echo "#member";}else{echo "home.php#member";} ?>" class="inner-link"><i class="ti-user"></i>&emsp;Members <i class="fas fa-angle-right"></i></a>
+                                            <li class="dropdown"><a class="dropdown-toggle inner-link" data-toggle="dropdown" href="<?php if($page=="Home"){echo "#member";}else{echo "home.php#member";} ?>" class="inner-link"><i class="ti-user"></i>&emsp;Members <i class="fas fa-angle-right"></i></a>
                                                 <ul class="dropdown-menu">
                                                     <li><a href="<?php if($page=="member"){echo "#current";}else{echo "member.php#current";} ?>"><i class="ti-user"></i>&emsp;Current Session</a></li>
                                                     <li><a href="<?php if($page=="member"){echo "#previous";}else{echo "member.php#previous";} ?>"><i class="ti-user"></i>&emsp;Previous Session</a></li>
@@ -41,7 +41,7 @@
                                     <a href="<?php if($page=="Home"){echo "#services";}else{echo "home.php#services";} ?>" class="inner-link"><i class="ti-view-list-alt"></i>&emsp;Services</a><i class="fas fa-angle-down dropdown-toggle" data-toggle="dropdown" aria-hidden="true"></i>
                                         <ul class="dropdown-menu" role="menu">
                                             <li><a href="<?php if($page=="Home"){echo "#advertisement";}else{echo "home.php#advertisement";} ?>" class="inner-link"><i class="ti-announcement"></i>&emsp;Advertisement</a></li>
-                                            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="<?php if($page=="Home"){echo "#gallery";}else{echo "home.php#gallery";} ?>" class="inner-link"><i class="ti-gallery"></i>&emsp;Gallery <i class="fas fa-angle-right"></i></a>
+                                            <li class="dropdown"><a class="dropdown-toggle inner-link" data-toggle="dropdown" href="<?php if($page=="Home"){echo "#gallery";}else{echo "home.php#gallery";} ?>" class="inner-link"><i class="ti-gallery"></i>&emsp;Gallery <i class="fas fa-angle-right"></i></a>
                                                 <ul class="dropdown-menu">
                                                      <li><a href="gallery.php"><i class="ti-gallery"></i>&emsp;View Gallery</a></li>
                                                 </ul>
@@ -53,7 +53,7 @@
                                                      <li><a href="programme.php#public"><i class="ti-calendar"></i>&emsp;Public</a></li>
                                                 </ul>
                                             </li>
-                                            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="<?php if($page=="Home"){echo "#video";}else{echo "home.php#video";} ?>" class="inner-link"><i class="ti-video-camera"></i>&emsp;Video Library <i class="fas fa-angle-right"></i></a>
+                                            <li class="dropdown"><a class="dropdown-toggle inner-link" data-toggle="dropdown" href="<?php if($page=="Home"){echo "#video";}else{echo "home.php#video";} ?>" class="inner-link"><i class="ti-video-camera"></i>&emsp;Video Library <i class="fas fa-angle-right"></i></a>
                                                 <ul class="dropdown-menu">
                                                      <li><a href="video.php"><i class="ti-video-camera"></i>&emsp;View Video Library</a></li>
                                                 </ul>

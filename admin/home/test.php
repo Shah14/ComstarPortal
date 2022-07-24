@@ -1,20 +1,22 @@
 
-<?php require '../include/config.php';
+<?php
 $value=array();
 $array=array();
 $i = 0;
-$result=mysqli_query($con,"SELECT *  FROM `committee` ");
+$con = new mysqli("localhost","root","","comstar_portal");
+
+$result=mysqli_query($con,"SELECT *  FROM `homepage` ");
   while($row = $result->fetch_assoc()) {
-    //echo $row["Session"]."<br>";
-    if($row["Session"]!=NULL){
-      if (!array_key_exists($row["Session"],$value)){
+    //echo $row["Year"]."<br>";
+    if($row["Year"]!=NULL){
+      if (!array_key_exists($row["Year"],$value)){
         $i = 0;
-        array_push($array,$row["Session"]);
+        array_push($array,$row["Year"]);
       }
-        $value[$row["Session"]][$i]["Session"] = $row["Session"];
-        $value[$row["Session"]][$i]["Name"] = $row["Name"];
-        $value[$row["Session"]][$i]["Role"] = $row["Role"];
-        $value[$row["Session"]][$i]["Picture"] = $row["Picture"];
+        $value[$row["Year"]][$i]["Year"] = $row["Year"];
+        $value[$row["Year"]][$i]["Type"] = $row["Type"];
+        $value[$row["Year"]][$i]["About"] = $row["About"];
+        $value[$row["Year"]][$i]["Image"] = $row["Image"];
         $i++;
     }
   }
@@ -25,12 +27,11 @@ $result=mysqli_query($con,"SELECT *  FROM `committee` ");
   for ($x = 0; $x <= count($array)-1; $x++){
     for($y = 0; $y <= count($value[$array[$x]])-1; $y++){
       echo "<br>";
-      echo $value[$array[$x]][$y]["Session"]." ";
-      echo $value[$array[$x]][$y]["Name"]." ";
-      echo $value[$array[$x]][$y]["Role"]." ";
-      echo $value[$array[$x]][$y]["Picture"]." ";
+      echo $value[$array[$x]][$y]["Year"]." ";
+      echo $value[$array[$x]][$y]["Type"]." ";
+      echo $value[$array[$x]][$y]["About"]." ";
+      echo $value[$array[$x]][$y]["Image"]." ";
     }
-
   }
 
 ?>
