@@ -78,9 +78,11 @@
                     </div>
                     <div class="col-auto col-lg-2 pr-0 text-right">
                         <div class="header-social-icon d-none d-md-inline-block no-border-left no-padding-left no-margin-left">
-                            <a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
-                            <a href="https://twitter.com/" title="Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
-                            <a href="https://dribbble.com/" title="Dribbble" target="_blank"><i class="fab fa-dribbble"></i></a>                          
+                            <a class="facebook text-white-2" href="https://www.facebook.com/groups/COMSTAR.UTMKL" target="_blank"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                            <a class="twitter text-white-2" href="https://linktr.ee/ComstarMediaSocial" target="_blank"><i class="fa fa-link"></i></a>
+                            <a class="google text-white-2" href="https://www.youtube.com/channel/UCkagvAQ9G15bj63Z9CUYL_g/featured" target="_blank"><i class="fab fa-youtube"></i></a>
+                            <a class="instagram text-white-2" href="https://www.instagram.com/comstar.utmkl/?hl=en" target="_blank"><i class="fab fa-instagram mr-0" aria-hidden="true"></i></a>
+                            <a class="telegram text-white-2" href="https://t.me/officialcomstar" target="_blank"><i class="fab fa-telegram" aria-hidden="true"></i></a>                        
                         </div>
                     </div>
                 </div>

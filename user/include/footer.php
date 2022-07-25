@@ -54,7 +54,7 @@
                     <div class="row align-items-center">
                         <!-- start logo -->
                         <div class="col-lg-3 col-md-12 md-text-center md-margin-50px-bottom sm-margin-30px-bottom">
-                            <a href="index.html"><img class="footer-logo" src="../../template/POFO/html/images/logo-white.png" data-rjs="../../template/POFO/html/images/logo-white@2x.png" alt="Pofo"></a>
+                            <a class="inner-link" href="<?php if($page=="Home"){echo "#home";}else{echo "home.php";} ?>"><img class="footer-logo" src="../../template/POFO/html/images/logo-white.png" data-rjs="../../template/POFO/html/images/logo-white@2x.png" alt="Pofo"></a>
                         </div> 
                         <!-- end logo -->
                         <!-- start copyright -->
@@ -73,10 +73,11 @@
                         <div class="col-lg-2 col-md-3 text-md-right sm-text-center">
                             <div class="social-icon-style-8 d-inline-block vertical-align-middle">
                                 <ul class="small-icon mb-0">
-                                    <li><a class="facebook text-white-2" href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
-                                    <li><a class="twitter text-white-2" href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a class="google text-white-2" href="https://plus.google.com" target="_blank"><i class="fab fa-google-plus-g"></i></a></li>
-                                    <li><a class="instagram text-white-2" href="https://instagram.com/" target="_blank"><i class="fab fa-instagram mr-0" aria-hidden="true"></i></a></li>
+                                    <li><a class="facebook text-white-2" href="https://www.facebook.com/groups/COMSTAR.UTMKL" target="_blank"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+                                    <li><a class="twitter text-white-2" href="https://linktr.ee/ComstarMediaSocial" target="_blank"><i class="fa fa-link"></i></a></li>
+                                    <li><a class="google text-white-2" href="https://www.youtube.com/channel/UCkagvAQ9G15bj63Z9CUYL_g/featured" target="_blank"><i class="fab fa-youtube"></i></a></li>
+                                    <li><a class="instagram text-white-2" href="https://www.instagram.com/comstar.utmkl/?hl=en" target="_blank"><i class="fab fa-instagram mr-0" aria-hidden="true"></i></a></li>
+                                    <li><a class="telegram text-white-2" href="https://t.me/officialcomstar" target="_blank"><i class="fab fa-telegram" aria-hidden="true"></i></a></li>
                                 </ul>
                             </div>
                         </div>
